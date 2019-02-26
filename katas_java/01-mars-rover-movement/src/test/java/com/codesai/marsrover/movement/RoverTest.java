@@ -28,16 +28,6 @@ class RoverTest {
     }
 
     @Test
-    void shouldBeLookingToEast() {
-        Rover rover = createRoverLookingTo(NORTH);
-
-        rover.process("r");
-
-        Rover lookingEastRover = createRoverLookingTo(EAST);
-        assertThat(rover, is(lookingEastRover));
-    }
-
-    @Test
     void shouldBeLookingToWest() {
         Rover rover = createRoverLookingTo(NORTH);
 

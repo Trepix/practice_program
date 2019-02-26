@@ -1,24 +1,28 @@
 package com.codesai.marsrover.movement;
 
+import lombok.RequiredArgsConstructor;
+
+import java.util.stream.Stream;
+
+@RequiredArgsConstructor
 enum CardinalDirection {
-    NORTH, EAST, SOUTH, WEST;
+    NORTH(0), EAST(90), SOUTH(180), WEST(270);
+
+    private final int degrees;
 
     CardinalDirection turnRight90Degrees() {
-        switch (this){
-            case NORTH:
-                return EAST;
-            case EAST:
-                return SOUTH;
-            case SOUTH:
-                return WEST;
-            case WEST:
-                return NORTH;
-        }
-        throw new IllegalStateException();
+        int newDegreesPosition = (degrees+90)%360;
+        return fromDegrees(newDegreesPosition);
     }
 
     CardinalDirection turnLeft90Degrees() {
         return WEST;
     }
 
+    private static CardinalDirection fromDegrees(int degrees) {
+        return Stream.of(values())
+                .filter(x -> x.degrees == degrees)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
