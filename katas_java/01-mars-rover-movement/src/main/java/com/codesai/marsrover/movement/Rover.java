@@ -15,5 +15,8 @@ class Rover {
         this.position = position;
     }
 
-    void process(String... commands) { }
+    void process(String... commands) {
+        if (commands.length == 0) return ;
+        if ("r".equals(commands[0])) cardinalDirection = cardinalDirection.turnRight90Degrees();
+    }
 }
