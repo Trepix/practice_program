@@ -6,5 +6,9 @@ enum CardinalDirection {
     CardinalDirection turnRight90Degrees() {
          return EAST;
     }
+    
+    CardinalDirection turnLeft90Degrees() {
+        return WEST;
+    }
 
 }
