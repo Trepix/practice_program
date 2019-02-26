@@ -49,10 +49,10 @@ class RoverTest {
 
     private static Stream<Arguments> turnRightCommandProvider() {
         return Stream.of(
-                arguments(NORTH, EAST)
-//                arguments(EAST, SOUTH),
-//                arguments(SOUTH, WEST),
-//                arguments(WEST, NORTH)
+                arguments(NORTH, EAST),
+                arguments(EAST, SOUTH),
+                arguments(SOUTH, WEST),
+                arguments(WEST, NORTH)
         );
     }
 

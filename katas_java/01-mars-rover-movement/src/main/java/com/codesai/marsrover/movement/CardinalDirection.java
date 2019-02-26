@@ -4,7 +4,17 @@ enum CardinalDirection {
     NORTH, EAST, SOUTH, WEST;
 
     CardinalDirection turnRight90Degrees() {
-         return EAST;
+        switch (this){
+            case NORTH:
+                return EAST;
+            case EAST:
+                return SOUTH;
+            case SOUTH:
+                return WEST;
+            case WEST:
+                return NORTH;
+        }
+        throw new IllegalStateException();
     }
 
     CardinalDirection turnLeft90Degrees() {
