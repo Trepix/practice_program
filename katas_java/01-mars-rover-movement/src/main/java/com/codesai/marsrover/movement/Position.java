@@ -10,4 +10,8 @@ import lombok.ToString;
 class Position {
     private final int x;
     private final int y;
+
+    Position movePositivelyOnYAxis(int units) {
+        return new Position(x, y+units);
+    }
 }

@@ -19,5 +19,6 @@ class Rover {
         if (commands.length == 0) return ;
         if ("r".equals(commands[0])) cardinalDirection = cardinalDirection.turnRight90Degrees();
         if ("l".equals(commands[0])) cardinalDirection = cardinalDirection.turnLeft90Degrees();
+        if ("f".equals(commands[0])) position = position.movePositivelyOnYAxis(1);
     }
 }

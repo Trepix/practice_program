@@ -26,16 +26,6 @@ class RoverTest {
         assertThat(rover, is(sameStateRover));
     }
 
-    @Test
-    void shouldBeLookingToWest() {
-        Rover rover = createRoverLookingTo(NORTH);
-
-        rover.process("l");
-
-        Rover lookingWestRover = createRoverLookingTo(WEST);
-        assertThat(rover, is(lookingWestRover));
-    }
-
     @MethodSource("turnRightCommandProvider")
     @DisplayName("Given any position when turn right command ")
     @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
@@ -70,6 +60,16 @@ class RoverTest {
                 arguments(SOUTH, EAST),
                 arguments(EAST, NORTH)
         );
+    }
+
+    @Test
+    void shouldMoveOnePositiveUnitOnYAxis() {
+        Rover rover = createRoverLookingTo(NORTH);
+
+        rover.process("f");
+
+        Rover movedRover = new Rover(NORTH, new Position(0,1));
+        assertThat(rover, is(movedRover));
     }
 
     private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
