@@ -3,12 +3,16 @@ package com.codesai.marsrover.movement;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import static com.codesai.marsrover.movement.CardinalDirection.EAST;
-import static com.codesai.marsrover.movement.CardinalDirection.NORTH;
-import static com.codesai.marsrover.movement.CardinalDirection.WEST;
+import java.util.stream.Stream;
+
+import static com.codesai.marsrover.movement.CardinalDirection.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class RoverTest {
 
@@ -43,11 +47,30 @@ class RoverTest {
         assertThat(rover, is(lookingWestRover));
     }
 
+    private static Stream<Arguments> turnRightCommandProvider() {
+        return Stream.of(
+                arguments(NORTH, EAST)
+//                arguments(EAST, SOUTH),
+//                arguments(SOUTH, WEST),
+//                arguments(WEST, NORTH)
+        );
+    }
 
-    private Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
+    @MethodSource("turnRightCommandProvider")
+    @DisplayName("Given any position when turn right command ")
+    @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
+    void shouldReturnItsRotatedCardinalDirection(CardinalDirection initial, CardinalDirection afterCommand) {
+        Rover rover = createRoverLookingTo(initial);
+        rover.process("r");
+        assertThat(rover, is(createRoverLookingTo(afterCommand)));
+    }
+
+
+    private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
         return new Rover(cardinalDirection, originPosition());
     }
-    private Position originPosition() {
+
+    private static Position originPosition() {
         return new Position(0, 0);
     }
 }
