@@ -16,7 +16,8 @@ enum CardinalDirection {
     }
 
     CardinalDirection turnLeft90Degrees() {
-        return WEST;
+        int newDegreesPosition = (degrees-90+360)%360;
+        return fromDegrees(newDegreesPosition);
     }
 
     private static CardinalDirection fromDegrees(int degrees) {

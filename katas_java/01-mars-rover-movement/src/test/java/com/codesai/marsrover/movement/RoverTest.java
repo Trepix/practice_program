@@ -1,7 +1,6 @@
 package com.codesai.marsrover.movement;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -37,6 +36,15 @@ class RoverTest {
         assertThat(rover, is(lookingWestRover));
     }
 
+    @MethodSource("turnRightCommandProvider")
+    @DisplayName("Given any position when turn right command ")
+    @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
+    void shouldReturnCardinalDirectionAfterRotatePlus90Degrees(CardinalDirection initial, CardinalDirection afterCommand) {
+        Rover rover = createRoverLookingTo(initial);
+        rover.process("r");
+        assertThat(rover, is(createRoverLookingTo(afterCommand)));
+    }
+
     private static Stream<Arguments> turnRightCommandProvider() {
         return Stream.of(
                 arguments(NORTH, EAST),
@@ -46,15 +54,23 @@ class RoverTest {
         );
     }
 
-    @MethodSource("turnRightCommandProvider")
-    @DisplayName("Given any position when turn right command ")
+    @MethodSource("turnLeftCommandProvider")
+    @DisplayName("Given any position when turn left command ")
     @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
-    void shouldReturnItsRotatedCardinalDirection(CardinalDirection initial, CardinalDirection afterCommand) {
+    void shouldReturnCardinalDirectionAfterRotateMinus90Degrees(CardinalDirection initial, CardinalDirection afterCommand) {
         Rover rover = createRoverLookingTo(initial);
-        rover.process("r");
+        rover.process("l");
         assertThat(rover, is(createRoverLookingTo(afterCommand)));
     }
 
+    private static Stream<Arguments> turnLeftCommandProvider() {
+        return Stream.of(
+                arguments(NORTH, WEST),
+                arguments(WEST, SOUTH),
+                arguments(SOUTH, EAST),
+                arguments(EAST, NORTH)
+        );
+    }
 
     private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
         return new Rover(cardinalDirection, originPosition());
