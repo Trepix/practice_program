@@ -98,6 +98,28 @@ class RoverTest {
         );
     }
 
+    @Test
+    @DisplayName("Given multiple commands should be able to process it and move")
+    void shouldProcessMultipleCommandsFromOrigin() {
+        Rover rover = createRoverLookingTo(NORTH);
+
+        rover.process("ffrffrb");
+
+        Rover movedRover = new Rover(SOUTH, new Position(2,3));
+        assertThat(rover, is(movedRover));
+    }
+
+    @Test
+    @DisplayName("Given multiple commands when starting from non origin position should be able to process it and move")
+    void shouldProcessMultipleCommandsFromNotOrigin() {
+        Rover rover = new Rover(EAST, new Position(4,5));
+
+        rover.process("lbrf");
+
+        Rover movedRover = new Rover(EAST, new Position(5,4));
+        assertThat(rover, is(movedRover));
+    }
+
     private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
         return new Rover(cardinalDirection, originPosition());
     }
