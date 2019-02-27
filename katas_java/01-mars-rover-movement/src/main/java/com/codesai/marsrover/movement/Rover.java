@@ -24,8 +24,8 @@ class Rover {
         for (char command : commands.toCharArray()) {
             if (TURN_RIGHT == command) cardinalDirection = cardinalDirection.turnRight90Degrees();
             if (TURN_LEFT == command) cardinalDirection = cardinalDirection.turnLeft90Degrees();
-            if (MOVE_FORWARD == command) position = position.move(cardinalDirection.getDirectionVector());
-            if (MOVE_BACKWARD == command) position = position.move(cardinalDirection.getDirectionVector().changeDirection());
+            if (MOVE_FORWARD == command) position = position.move(cardinalDirection.getUnitaryVector());
+            if (MOVE_BACKWARD == command) position = position.move(cardinalDirection.getUnitaryVector().changeDirection());
         }
     }
 }

@@ -12,10 +12,10 @@ enum CardinalDirection {
     WEST(270, new Vector(-1, 0));
 
     private final int degrees;
-    private final Vector directionVector;
+    private final Vector unitaryVector;
 
-    Vector getDirectionVector() {
-        return this.directionVector;
+    Vector getUnitaryVector() {
+        return this.unitaryVector;
     }
 
     CardinalDirection turnRight90Degrees() {
