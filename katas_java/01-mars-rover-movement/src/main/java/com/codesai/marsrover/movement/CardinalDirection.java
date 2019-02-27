@@ -6,9 +6,17 @@ import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 enum CardinalDirection {
-    NORTH(0), EAST(90), SOUTH(180), WEST(270);
+    NORTH(0, new Vector(0,1)),
+    EAST(90, new Vector(1, 0)),
+    SOUTH(180, new Vector(0, -1)),
+    WEST(270, new Vector(-1, 0));
 
     private final int degrees;
+    private final Vector directionVector;
+
+    Vector getDirectionVector() {
+        return this.directionVector;
+    }
 
     CardinalDirection turnRight90Degrees() {
         int newDegreesPosition = (degrees+90)%360;
