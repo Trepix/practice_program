@@ -20,7 +20,7 @@ class RoverTest {
     void shouldNotMoveRover() {
         Rover rover = createRoverLookingTo(NORTH);
 
-        rover.process();
+        rover.process("");
 
         Rover sameStateRover = createRoverLookingTo(NORTH);
         assertThat(rover, is(sameStateRover));

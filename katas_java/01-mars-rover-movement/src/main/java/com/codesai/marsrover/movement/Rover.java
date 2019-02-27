@@ -15,11 +15,12 @@ class Rover {
         this.position = position;
     }
 
-    void process(String... commands) {
-        if (commands.length == 0) return ;
-        if ("r".equals(commands[0])) cardinalDirection = cardinalDirection.turnRight90Degrees();
-        if ("l".equals(commands[0])) cardinalDirection = cardinalDirection.turnLeft90Degrees();
-        if ("f".equals(commands[0])) position = position.move(cardinalDirection.getDirectionVector());
-        if ("b".equals(commands[0])) position = position.move(cardinalDirection.getDirectionVector().changeDirection());
+    void process(String commands) {
+        for (char command : commands.toCharArray()) {
+            if ('r' == command) cardinalDirection = cardinalDirection.turnRight90Degrees();
+            if ('l' == command) cardinalDirection = cardinalDirection.turnLeft90Degrees();
+            if ('f' == command) position = position.move(cardinalDirection.getDirectionVector());
+            if ('b' == command) position = position.move(cardinalDirection.getDirectionVector().changeDirection());
+        }
     }
 }
