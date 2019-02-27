@@ -1,5 +1,6 @@
 package com.codesai.marsrover.movement;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -118,6 +119,15 @@ class RoverTest {
 
         Rover movedRover = new Rover(EAST, new Position(5,4));
         assertThat(rover, is(movedRover));
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("Given invalid command we don't know what should do")
+    void givenInvalidCommandCase() {
+        Rover rover = new Rover(EAST, new Position(4,5));
+
+        rover.process("x");
     }
 
     private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
