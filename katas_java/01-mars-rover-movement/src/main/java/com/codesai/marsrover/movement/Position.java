@@ -11,7 +11,11 @@ class Position {
     private final int x;
     private final int y;
 
-    Position movePositivelyOnYAxis(int units) {
-        return new Position(x, y+units);
+    Position moveOnXAxis(int units) {
+        return new Position(x + units, y);
+    }
+
+    Position moveOnYAxis(int units) {
+        return new Position(x, y + units);
     }
 }
