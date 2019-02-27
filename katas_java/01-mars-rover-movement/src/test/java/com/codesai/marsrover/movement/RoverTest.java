@@ -80,14 +80,22 @@ class RoverTest {
         );
     }
 
-    @Test
-    void shouldMoveOneNegativeUnitOnYAxis() {
-        Rover rover = createRoverLookingTo(NORTH);
-
+    @MethodSource("moveBackwardCommandProvider")
+    @DisplayName("Given origin position when move forward command ")
+    @ParameterizedTest(name = "and was looking to {0} then should be placed at {1}")
+    void shouldReturnNewPositionAfterMoveOneUnitInTheOppositeCardinalDirection(CardinalDirection cardinalDirection, Position afterCommandPosition) {
+        Rover rover = createRoverLookingTo(cardinalDirection);
         rover.process("b");
+        assertThat(rover, is(new Rover(cardinalDirection, afterCommandPosition)));
+    }
 
-        Rover movedRover = new Rover(NORTH, new Position(0,-1));
-        assertThat(rover, is(movedRover));
+    private static Stream<Arguments> moveBackwardCommandProvider() {
+        return Stream.of(
+                arguments(NORTH, new Position(0, -1)),
+                arguments(WEST, new Position(1, 0)),
+                arguments(SOUTH, new Position(0, 1)),
+                arguments(EAST, new Position(-1, 0))
+        );
     }
 
     private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
