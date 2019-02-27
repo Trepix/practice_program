@@ -81,12 +81,12 @@ class RoverTest {
     }
 
     @Test
-    void shouldMoveOnePositiveUnitOnYAxis() {
+    void shouldMoveOneNegativeUnitOnYAxis() {
         Rover rover = createRoverLookingTo(NORTH);
 
-        rover.process("f");
+        rover.process("b");
 
-        Rover movedRover = new Rover(NORTH, new Position(0,1));
+        Rover movedRover = new Rover(NORTH, new Position(0,-1));
         assertThat(rover, is(movedRover));
     }
 

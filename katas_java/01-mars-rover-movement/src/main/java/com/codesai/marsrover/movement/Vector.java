@@ -8,4 +8,8 @@ import lombok.RequiredArgsConstructor;
 class Vector {
     private final int x;
     private final int y;
+
+    Vector changeDirection() {
+        return new Vector(-x, -y);
+    }
 }
