@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static com.codesai.marsrover.movement.CardinalDirection.*;
+import static com.codesai.marsrover.movement.RoverCreationUtils.createRoverLookingTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
@@ -50,11 +51,4 @@ class RoverRotationTests {
         );
     }
 
-    private static Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
-        return new Rover(cardinalDirection, originPosition());
-    }
-
-    private static Position originPosition() {
-        return new Position(0, 0);
-    }
 }
