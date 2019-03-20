@@ -30,7 +30,7 @@ class RoverTest {
     @MethodSource("turnRightCommandProvider")
     @DisplayName("Given any position when turn right command ")
     @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
-    void shouldReturnCardinalDirectionAfterRotatePlus90Degrees(CardinalDirection initial, CardinalDirection afterCommand) {
+    void shouldReturnCardinalDirectionAfterRotateRight(CardinalDirection initial, CardinalDirection afterCommand) {
         Rover rover = createRoverLookingTo(initial);
         rover.process("r");
         assertThat(rover, is(createRoverLookingTo(afterCommand)));
@@ -48,7 +48,7 @@ class RoverTest {
     @MethodSource("turnLeftCommandProvider")
     @DisplayName("Given any position when turn left command ")
     @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
-    void shouldReturnCardinalDirectionAfterRotateMinus90Degrees(CardinalDirection initial, CardinalDirection afterCommand) {
+    void shouldReturnCardinalDirectionAfterRotateLeft(CardinalDirection initial, CardinalDirection afterCommand) {
         Rover rover = createRoverLookingTo(initial);
         rover.process("l");
         assertThat(rover, is(createRoverLookingTo(afterCommand)));
