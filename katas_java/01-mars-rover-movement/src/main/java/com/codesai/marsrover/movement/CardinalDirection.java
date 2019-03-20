@@ -1,5 +1,5 @@
 package com.codesai.marsrover.movement;
 
 enum CardinalDirection {
-    NORTH, EAST, SOUTH, WEST
+    NORTH, EAST, SOUTH, WEST;
 }

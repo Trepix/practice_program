@@ -15,5 +15,7 @@ class Rover {
         this.position = position;
     }
 
-    void process(String... commands) { }
+    void process(String... commands) {
+        if (commands.length != 0) cardinalDirection = CardinalDirection.EAST;
+    }
 }
