@@ -5,7 +5,7 @@ class RoverCreationUtils {
         return new Rover(cardinalDirection, originPosition());
     }
 
-    static Position originPosition() {
+    private static Position originPosition() {
         return new Position(0, 0);
     }
 }

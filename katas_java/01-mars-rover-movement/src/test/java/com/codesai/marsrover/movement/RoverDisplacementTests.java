@@ -16,7 +16,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 class RoverDisplacementTests {
 
     @MethodSource("moveForwardCommandProvider")
-    @DisplayName("Given origin position when move forward command ")
+    @DisplayName("Given origin position when move backward command ")
     @ParameterizedTest(name = "and was looking to {0} then should be placed at {1}")
     void shouldReturnNewPositionAfterMoveOneUnitInThisCardinalDirection(CardinalDirection cardinalDirection, Position afterCommandPosition) {
         Rover rover = createRoverLookingTo(cardinalDirection);
