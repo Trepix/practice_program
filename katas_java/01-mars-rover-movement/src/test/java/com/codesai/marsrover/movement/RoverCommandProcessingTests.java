@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-class RoverTest {
+class RoverCommandProcessingTests {
 
     @Test
     @DisplayName("Given empty string commands should not move")
