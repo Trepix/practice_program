@@ -27,42 +27,6 @@ class RoverTest {
         assertThat(rover, is(sameStateRover));
     }
 
-    @MethodSource("turnRightCommandProvider")
-    @DisplayName("Given any position when turn right command ")
-    @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
-    void shouldReturnCardinalDirectionAfterRotateRight(CardinalDirection initial, CardinalDirection afterCommand) {
-        Rover rover = createRoverLookingTo(initial);
-        rover.process("r");
-        assertThat(rover, is(createRoverLookingTo(afterCommand)));
-    }
-
-    private static Stream<Arguments> turnRightCommandProvider() {
-        return Stream.of(
-                arguments(NORTH, EAST),
-                arguments(EAST, SOUTH),
-                arguments(SOUTH, WEST),
-                arguments(WEST, NORTH)
-        );
-    }
-
-    @MethodSource("turnLeftCommandProvider")
-    @DisplayName("Given any position when turn left command ")
-    @ParameterizedTest(name = "and was looking to {0} then should be looking to {1}")
-    void shouldReturnCardinalDirectionAfterRotateLeft(CardinalDirection initial, CardinalDirection afterCommand) {
-        Rover rover = createRoverLookingTo(initial);
-        rover.process("l");
-        assertThat(rover, is(createRoverLookingTo(afterCommand)));
-    }
-
-    private static Stream<Arguments> turnLeftCommandProvider() {
-        return Stream.of(
-                arguments(NORTH, WEST),
-                arguments(WEST, SOUTH),
-                arguments(SOUTH, EAST),
-                arguments(EAST, NORTH)
-        );
-    }
-
     @MethodSource("moveForwardCommandProvider")
     @DisplayName("Given origin position when move forward command ")
     @ParameterizedTest(name = "and was looking to {0} then should be placed at {1}")
