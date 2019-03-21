@@ -26,7 +26,10 @@ class Rover {
                 if (ROTATE_LEFT.equals(commands[0])) cardinalDirection = CardinalDirection.NORTH;
                 else cardinalDirection = CardinalDirection.SOUTH;
             }
-            else cardinalDirection = CardinalDirection.WEST;
+            else {
+                if (ROTATE_LEFT.equals(commands[0])) cardinalDirection = CardinalDirection.EAST;
+                else cardinalDirection = CardinalDirection.WEST;
+            }
 
         }
     }

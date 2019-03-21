@@ -53,6 +53,15 @@ class RoverRotationTests {
         assertThat(rover, is(createRoverLookingTo(WEST)));
     }
 
+    @Test
+    void lookingToSouthRotateLeft() {
+        Rover rover = createRoverLookingTo(SOUTH);
+
+        rover.process("l");
+
+        assertThat(rover, is(createRoverLookingTo(EAST)));
+    }
+
 
     private Rover createRoverLookingTo(CardinalDirection cardinalDirection) {
         return new Rover(cardinalDirection, originPosition());
