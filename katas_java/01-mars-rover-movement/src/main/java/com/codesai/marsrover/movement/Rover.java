@@ -7,6 +7,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 class Rover {
 
+    private static final String ROTATE_LEFT = "l";
     private CardinalDirection cardinalDirection;
     private Position position;
 
@@ -16,6 +17,9 @@ class Rover {
     }
 
     void process(String... commands) {
-        if (commands.length != 0) cardinalDirection = CardinalDirection.EAST;
+        if (commands.length != 0) {
+            if (ROTATE_LEFT.equals(commands[0])) cardinalDirection = CardinalDirection.WEST;
+            else cardinalDirection = CardinalDirection.EAST;
+        }
     }
 }
