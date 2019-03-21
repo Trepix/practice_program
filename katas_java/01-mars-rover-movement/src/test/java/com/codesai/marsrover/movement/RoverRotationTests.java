@@ -2,9 +2,7 @@ package com.codesai.marsrover.movement;
 
 import org.junit.jupiter.api.Test;
 
-import static com.codesai.marsrover.movement.CardinalDirection.EAST;
-import static com.codesai.marsrover.movement.CardinalDirection.NORTH;
-import static com.codesai.marsrover.movement.CardinalDirection.WEST;
+import static com.codesai.marsrover.movement.CardinalDirection.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -26,6 +24,15 @@ class RoverRotationTests {
         rover.process("l");
 
         assertThat(rover, is(createRoverLookingTo(WEST)));
+    }
+
+    @Test
+    void lookingToEastRotateRight() {
+        Rover rover = createRoverLookingTo(EAST);
+
+        rover.process("r");
+
+        assertThat(rover, is(createRoverLookingTo(SOUTH)));
     }
 
     private Rover createRoverLookingTo(CardinalDirection cardinalDirection) {

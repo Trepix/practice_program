@@ -18,8 +18,14 @@ class Rover {
 
     void process(String... commands) {
         if (commands.length != 0) {
-            if (ROTATE_LEFT.equals(commands[0])) cardinalDirection = CardinalDirection.WEST;
-            else cardinalDirection = CardinalDirection.EAST;
+            if (cardinalDirection.equals(CardinalDirection.NORTH)) {
+                if (ROTATE_LEFT.equals(commands[0])) cardinalDirection = CardinalDirection.WEST;
+                else cardinalDirection = CardinalDirection.EAST;
+            }
+            else if (cardinalDirection.equals(CardinalDirection.EAST)) {
+                cardinalDirection = CardinalDirection.SOUTH;
+            }
+
         }
     }
 }
