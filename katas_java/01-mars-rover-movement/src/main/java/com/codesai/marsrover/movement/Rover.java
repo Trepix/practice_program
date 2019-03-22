@@ -19,20 +19,12 @@ class Rover {
     void process(String... commands) {
         if (commands.length != 0) {
             if (ROTATE_LEFT.equals(commands[0])) {
-                rotateToLeft();
+                cardinalDirection = cardinalDirection.rotateLeft();
             }
             else {
-                rotateToRight();
+                cardinalDirection = cardinalDirection.rotateRight();
             }
         }
-    }
-
-    private void rotateToRight() {
-        cardinalDirection = cardinalDirection.rotateRight();
-    }
-
-    private void rotateToLeft() {
-        cardinalDirection = cardinalDirection.rotateLeft();
     }
 
 }
