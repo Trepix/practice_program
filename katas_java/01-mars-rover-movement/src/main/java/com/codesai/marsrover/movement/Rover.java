@@ -34,7 +34,11 @@ class Rover {
                 else position = new Position(1, 0);
 
             }
-            else position = new Position(0, -1);
+            else {
+                if (cardinalDirection.equals(NORTH)) position = new Position(0, -1);
+                else position = new Position(-1, 0);
+
+            }
         }
     }
 
