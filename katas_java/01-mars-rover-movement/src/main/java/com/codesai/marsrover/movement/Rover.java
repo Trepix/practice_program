@@ -9,6 +9,7 @@ class Rover {
 
     private static final String ROTATE_LEFT = "l";
     private static final String ROTATE_RIGHT = "r";
+    private static final String MOVE_FORWARD = "f";
 
     private CardinalDirection cardinalDirection;
     private Position position;
@@ -26,7 +27,8 @@ class Rover {
             else if (ROTATE_RIGHT.equals(commands[0])) {
                 cardinalDirection = cardinalDirection.rotateRight();
             }
-            else position = new Position(0, 1);
+            else if (MOVE_FORWARD.equals(commands[0])) position = new Position(0, 1);
+            else position = new Position(0, -1);
         }
     }
 
