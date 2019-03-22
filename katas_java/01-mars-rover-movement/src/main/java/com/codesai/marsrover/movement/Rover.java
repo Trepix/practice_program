@@ -32,7 +32,7 @@ class Rover {
             cardinalDirection = cardinalDirection.rotateRight();
         }
         else if (cardinalDirection.equals(CardinalDirection.NORTH)) {
-            cardinalDirection = CardinalDirection.EAST;
+            cardinalDirection = cardinalDirection.rotateRight();
         }
         else cardinalDirection = CardinalDirection.WEST;
     }

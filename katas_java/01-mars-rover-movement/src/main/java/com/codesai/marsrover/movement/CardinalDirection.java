@@ -4,7 +4,7 @@ enum CardinalDirection {
     NORTH {
         @Override
         CardinalDirection rotateRight() {
-            return null;
+            return EAST;
         }
     },
     EAST {
