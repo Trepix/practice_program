@@ -48,5 +48,6 @@ enum CardinalDirection {
 
 
     abstract CardinalDirection rotateRight();
+
     abstract CardinalDirection rotateLeft();
 }
