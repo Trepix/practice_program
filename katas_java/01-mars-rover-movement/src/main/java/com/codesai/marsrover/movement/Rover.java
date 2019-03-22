@@ -8,6 +8,8 @@ import lombok.ToString;
 class Rover {
 
     private static final String ROTATE_LEFT = "l";
+    private static final String ROTATE_RIGHT = "r";
+
     private CardinalDirection cardinalDirection;
     private Position position;
 
@@ -21,9 +23,10 @@ class Rover {
             if (ROTATE_LEFT.equals(commands[0])) {
                 cardinalDirection = cardinalDirection.rotateLeft();
             }
-            else {
+            else if (ROTATE_RIGHT.equals(commands[0])) {
                 cardinalDirection = cardinalDirection.rotateRight();
             }
+            else position = new Position(0, 1);
         }
     }
 
