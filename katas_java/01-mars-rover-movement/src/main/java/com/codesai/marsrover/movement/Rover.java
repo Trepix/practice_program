@@ -38,7 +38,8 @@ class Rover {
             }
             else if (MOVE_BACKWARD.equals(commands[0])){
                 if (cardinalDirection.equals(NORTH)) position = new Position(0, -1);
-                else position = new Position(-1, 0);
+                else if (cardinalDirection.equals(EAST)) position = new Position(-1, 0);
+                else position = new Position(0, 1);
 
             }
         }
