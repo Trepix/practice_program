@@ -82,7 +82,7 @@ enum CardinalDirection {
 
         @Override
         Position moveBackward(Position position) {
-            return null;
+            return position.moveOnXAxis(1);
         }
     };
 

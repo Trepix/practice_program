@@ -72,6 +72,15 @@ class RoverDisplacementTests {
         assertThat(rover, is(new Rover(WEST, new Position(-1, 0))));
     }
 
+    @Test
+    void lookingToWestMoveBackward() {
+        Rover rover = createRoverAtOriginLookingTo(WEST);
+
+        rover.process("b");
+
+        assertThat(rover, is(new Rover(WEST, new Position(1, 0))));
+    }
+
     private Rover createRoverAtOriginLookingTo(CardinalDirection cardinalDirection) {
         return new Rover(cardinalDirection, originPosition());
     }
