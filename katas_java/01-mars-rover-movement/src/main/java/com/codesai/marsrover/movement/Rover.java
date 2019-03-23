@@ -7,10 +7,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 class Rover {
 
-    private static final String ROTATE_LEFT = "l";
-    private static final String ROTATE_RIGHT = "r";
-    private static final String MOVE_FORWARD = "f";
-    private static final String MOVE_BACKWARD = "b";
+    private static final char ROTATE_LEFT = 'l';
+    private static final char ROTATE_RIGHT = 'r';
+    private static final char MOVE_FORWARD = 'f';
+    private static final char MOVE_BACKWARD = 'b';
 
     private CardinalDirection cardinalDirection;
     private Position position;
@@ -20,18 +20,17 @@ class Rover {
         this.position = position;
     }
 
-    void process(String... commands) {
-        if (commands.length != 0) {
-            if (ROTATE_LEFT.equals(commands[0])) {
+    void process(String commands) {
+        if (commands.length() != 0) {
+            if (ROTATE_LEFT == commands.charAt(0)) {
                 cardinalDirection = cardinalDirection.rotateLeft();
-            } else if (ROTATE_RIGHT.equals(commands[0])) {
+            } else if (ROTATE_RIGHT == commands.charAt(0)) {
                 cardinalDirection = cardinalDirection.rotateRight();
-            } else if (MOVE_FORWARD.equals(commands[0])) {
+            } else if (MOVE_FORWARD == commands.charAt(0)) {
                 position = cardinalDirection.moveForward(position);
-            } else if (MOVE_BACKWARD.equals(commands[0])) {
+            } else if (MOVE_BACKWARD == commands.charAt(0)) {
                 position = cardinalDirection.moveBackward(position);
             }
         }
     }
-
 }

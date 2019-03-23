@@ -2,7 +2,9 @@ package com.codesai.marsrover.movement;
 
 import org.junit.jupiter.api.Test;
 
+import static com.codesai.marsrover.movement.CardinalDirection.EAST;
 import static com.codesai.marsrover.movement.CardinalDirection.NORTH;
+import static com.codesai.marsrover.movement.CardinalDirection.WEST;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -12,7 +14,7 @@ class RoverCommandsProcessingTests {
     void givenEmptyString_ShouldNotMoveRover() {
         Rover rover = new Rover(NORTH, originPosition());
 
-        rover.process();
+        rover.process("");
 
         Rover sameStateRover = new Rover(NORTH, originPosition());
         assertThat(rover, is(sameStateRover));
