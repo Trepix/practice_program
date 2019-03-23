@@ -32,9 +32,7 @@ class Rover {
                 cardinalDirection = cardinalDirection.rotateRight();
             }
             else if (MOVE_FORWARD.equals(commands[0])) {
-                if (cardinalDirection.equals(NORTH)) position = cardinalDirection.moveForward(position);
-                else if (cardinalDirection.equals(EAST)) position = cardinalDirection.moveForward(position);
-                else position = cardinalDirection.moveForward(position);
+                position = cardinalDirection.moveForward(position);
             }
             else if (MOVE_BACKWARD.equals(commands[0])){
                 if (cardinalDirection.equals(NORTH)) position = position.moveOnYAxis(-1);
