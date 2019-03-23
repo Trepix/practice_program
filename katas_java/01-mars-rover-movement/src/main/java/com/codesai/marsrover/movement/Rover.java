@@ -32,14 +32,14 @@ class Rover {
                 cardinalDirection = cardinalDirection.rotateRight();
             }
             else if (MOVE_FORWARD.equals(commands[0])) {
-                if (cardinalDirection.equals(NORTH)) position = new Position(0, 1);
-                else if (cardinalDirection.equals(EAST)) position = new Position(1, 0);
-                else position = new Position(0, -1);
+                if (cardinalDirection.equals(NORTH)) position = position.moveOnYAxis(1);
+                else if (cardinalDirection.equals(EAST)) position = position.moveOnXAxis(1);
+                else position = position.moveOnYAxis(-1);
             }
             else if (MOVE_BACKWARD.equals(commands[0])){
-                if (cardinalDirection.equals(NORTH)) position = new Position(0, -1);
-                else if (cardinalDirection.equals(EAST)) position = new Position(-1, 0);
-                else position = new Position(0, 1);
+                if (cardinalDirection.equals(NORTH)) position = position.moveOnYAxis(-1);
+                else if (cardinalDirection.equals(EAST)) position = position.moveOnXAxis(-1);
+                else position = position.moveOnYAxis(1);
 
             }
         }
