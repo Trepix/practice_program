@@ -21,14 +21,14 @@ class Rover {
     }
 
     void process(String commands) {
-        if (commands.length() != 0) {
-            if (ROTATE_LEFT == commands.charAt(0)) {
+        for (char command : commands.toCharArray()) {
+            if (ROTATE_LEFT == command) {
                 cardinalDirection = cardinalDirection.rotateLeft();
-            } else if (ROTATE_RIGHT == commands.charAt(0)) {
+            } else if (ROTATE_RIGHT == command) {
                 cardinalDirection = cardinalDirection.rotateRight();
-            } else if (MOVE_FORWARD == commands.charAt(0)) {
+            } else if (MOVE_FORWARD == command) {
                 position = cardinalDirection.moveForward(position);
-            } else if (MOVE_BACKWARD == commands.charAt(0)) {
+            } else if (MOVE_BACKWARD == command) {
                 position = cardinalDirection.moveBackward(position);
             }
         }
