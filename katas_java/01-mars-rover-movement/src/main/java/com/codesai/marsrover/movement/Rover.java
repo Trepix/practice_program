@@ -27,18 +27,14 @@ class Rover {
         if (commands.length != 0) {
             if (ROTATE_LEFT.equals(commands[0])) {
                 cardinalDirection = cardinalDirection.rotateLeft();
-            }
-            else if (ROTATE_RIGHT.equals(commands[0])) {
+            } else if (ROTATE_RIGHT.equals(commands[0])) {
                 cardinalDirection = cardinalDirection.rotateRight();
-            }
-            else if (MOVE_FORWARD.equals(commands[0])) {
+            } else if (MOVE_FORWARD.equals(commands[0])) {
                 position = cardinalDirection.moveForward(position);
-            }
-            else if (MOVE_BACKWARD.equals(commands[0])){
-                if (cardinalDirection.equals(NORTH)) position = position.moveOnYAxis(-1);
-                else if (cardinalDirection.equals(EAST)) position = position.moveOnXAxis(-1);
-                else position = position.moveOnYAxis(1);
-
+            } else if (MOVE_BACKWARD.equals(commands[0])) {
+                if (cardinalDirection.equals(NORTH)) position = cardinalDirection.moveBackward(position);
+                else if (cardinalDirection.equals(EAST)) position = cardinalDirection.moveBackward(position);
+                else position = cardinalDirection.moveBackward(position);
             }
         }
     }

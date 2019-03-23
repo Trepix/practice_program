@@ -16,6 +16,11 @@ enum CardinalDirection {
         Position moveForward(Position position) {
             return position.moveOnYAxis(1);
         }
+
+        @Override
+        Position moveBackward(Position position) {
+            return position.moveOnYAxis(-1);
+        }
     },
     EAST {
         @Override
@@ -31,6 +36,11 @@ enum CardinalDirection {
         @Override
         Position moveForward(Position position) {
             return position.moveOnXAxis(1);
+        }
+
+        @Override
+        Position moveBackward(Position position) {
+            return position.moveOnXAxis(-1);
         }
     },
     SOUTH {
@@ -48,6 +58,11 @@ enum CardinalDirection {
         Position moveForward(Position position) {
             return position.moveOnYAxis(-1);
         }
+
+        @Override
+        Position moveBackward(Position position) {
+            return position.moveOnYAxis(1);
+        }
     },
     WEST {
         @Override
@@ -64,6 +79,11 @@ enum CardinalDirection {
         Position moveForward(Position position) {
             return null;
         }
+
+        @Override
+        Position moveBackward(Position position) {
+            return null;
+        }
     };
 
 
@@ -72,4 +92,6 @@ enum CardinalDirection {
     abstract CardinalDirection rotateLeft();
 
     abstract Position moveForward(Position position);
+
+    abstract Position moveBackward(Position position);
 }
