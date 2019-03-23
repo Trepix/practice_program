@@ -3,9 +3,6 @@ package com.codesai.marsrover.movement;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import static com.codesai.marsrover.movement.CardinalDirection.EAST;
-import static com.codesai.marsrover.movement.CardinalDirection.NORTH;
-
 @ToString
 @EqualsAndHashCode
 class Rover {
@@ -32,9 +29,7 @@ class Rover {
             } else if (MOVE_FORWARD.equals(commands[0])) {
                 position = cardinalDirection.moveForward(position);
             } else if (MOVE_BACKWARD.equals(commands[0])) {
-                if (cardinalDirection.equals(NORTH)) position = cardinalDirection.moveBackward(position);
-                else if (cardinalDirection.equals(EAST)) position = cardinalDirection.moveBackward(position);
-                else position = cardinalDirection.moveBackward(position);
+                position = cardinalDirection.moveBackward(position);
             }
         }
     }
