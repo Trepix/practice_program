@@ -8,7 +8,7 @@ import static mars_rover.CardinalDirection.SOUTH;
 import static mars_rover.CardinalDirection.WEST;
 
 @ToString
-@EqualsAndHashCode(exclude = "cardinalDirection")
+@EqualsAndHashCode
 public class Rover {
 
     private Position position;
