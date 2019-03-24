@@ -4,9 +4,10 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "position")
 public class Rover {
 
+    private Position position;
     private String direction;
     private int y;
     private int x;
