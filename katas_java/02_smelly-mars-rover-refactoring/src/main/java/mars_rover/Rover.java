@@ -51,16 +51,24 @@ public class Rover {
                 int displacement = displacement1;
 
                 if (direction.equals("N")) {
-                    setPosition(x, y + displacement);
+                    setPosition(getX(), getY() + displacement);
                 } else if (direction.equals("S")) {
-                    setPosition(x, y - displacement);
+                    setPosition(getX(), getY() - displacement);
                 } else if (direction.equals("W")) {
-                    setPosition(x - displacement, y);
+                    setPosition(getX() - displacement, getY());
                 } else {
-                    setPosition(x + displacement, y);
+                    setPosition(getX() + displacement, getY());
                 }
             }
         }
+    }
+
+    private int getY() {
+        return y;
+    }
+
+    private int getX() {
+        return x;
     }
 
     private void setPosition(int x, int y) {
