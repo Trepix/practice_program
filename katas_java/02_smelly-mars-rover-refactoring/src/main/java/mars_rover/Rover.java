@@ -3,6 +3,10 @@ package mars_rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import static mars_rover.CardinalDirection.NORTH;
+import static mars_rover.CardinalDirection.SOUTH;
+import static mars_rover.CardinalDirection.WEST;
+
 @ToString
 @EqualsAndHashCode(exclude = "cardinalDirection")
 public class Rover {
@@ -50,24 +54,20 @@ public class Rover {
     }
 
     private boolean isLookingToWest() {
-        return getDirection().equals("W");
+        return cardinalDirection.equals(WEST);
     }
 
     private boolean isLookingToNorth() {
-        return getDirection().equals("N");
+        return cardinalDirection.equals(NORTH);
     }
 
     private boolean isLookingToSouth() {
-        return getDirection().equals("S");
+        return cardinalDirection.equals(SOUTH);
     }
 
     private void setDirection(String direction) {
         this.cardinalDirection = CardinalDirection.from(direction);
         this.direction = direction;
-    }
-
-    private String getDirection() {
-        return direction;
     }
 
     private void moveForward() {
