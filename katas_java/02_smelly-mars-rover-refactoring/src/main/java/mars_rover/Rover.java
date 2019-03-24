@@ -11,7 +11,7 @@ public class Rover {
     private String direction;
 
     public Rover(int x, int y, String direction) {
-        this.direction = direction;
+        setDirection(direction);
         this.position = new Position(x, y);
     }
 
@@ -20,24 +20,24 @@ public class Rover {
             String command = commandsSequence.substring(i, i + 1);
 
             if (command.equals("l")) {
-                if (direction.equals("N")) {
-                    direction = "W";
-                } else if (direction.equals("S")) {
-                    direction = "E";
-                } else if (direction.equals("W")) {
-                    direction = "S";
+                if (getDirection().equals("N")) {
+                    setDirection("W");
+                } else if (getDirection().equals("S")) {
+                    setDirection("E");
+                } else if (getDirection().equals("W")) {
+                    setDirection("S");
                 } else {
-                    direction = "N";
+                    setDirection("N");
                 }
             } else if (command.equals("r")) {
-                if (direction.equals("N")) {
-                    direction = "E";
-                } else if (direction.equals("S")) {
-                    direction = "W";
-                } else if (direction.equals("W")) {
-                    direction = "N";
+                if (getDirection().equals("N")) {
+                    setDirection("E");
+                } else if (getDirection().equals("S")) {
+                    setDirection("W");
+                } else if (getDirection().equals("W")) {
+                    setDirection("N");
                 } else {
-                    direction = "S";
+                    setDirection("S");
                 }
             } else {
                 if (command.equals("f")) {
@@ -46,6 +46,10 @@ public class Rover {
                 else moveBackward();
             }
         }
+    }
+
+    private void setDirection(String direction) {
+        this.direction = direction;
     }
 
     private void moveForward() {
@@ -59,11 +63,11 @@ public class Rover {
     }
 
     private void move(int displacement) {
-        if (direction.equals("N")) {
+        if (getDirection().equals("N")) {
             moveInYAxis(displacement);
-        } else if (direction.equals("S")) {
+        } else if (getDirection().equals("S")) {
             moveInYAxis(-displacement);
-        } else if (direction.equals("W")) {
+        } else if (getDirection().equals("W")) {
             moveInXAxis(-displacement);
         } else {
             moveInXAxis(displacement);
@@ -78,4 +82,7 @@ public class Rover {
         this.position = position.moveOnXAxis(displacement);
     }
 
+    private String getDirection() {
+        return direction;
+    }
 }
