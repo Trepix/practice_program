@@ -4,11 +4,12 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "cardinalDirection")
 public class Rover {
 
     private Position position;
     private String direction;
+    private CardinalDirection cardinalDirection;
 
     public Rover(int x, int y, String direction) {
         setDirection(direction);
