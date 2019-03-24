@@ -20,29 +20,16 @@ public class Rover {
 
                 // Rotate Rover left command
                 if (direction.equals("N")) {
-                    if (command.equals("r")) {
-                        direction = "E";
-                    } else {
                         direction = "W";
-                    }
                 } else if (direction.equals("S")) {
-                    if (command.equals("r")) {
-                        direction = "W";
-                    } else {
                         direction = "E";
-                    }
+
                 } else if (direction.equals("W")) {
-                    if (command.equals("r")) {
-                        direction = "N";
-                    } else {
                         direction = "S";
-                    }
+
                 } else {
-                    if (command.equals("r")) {
-                        direction = "S";
-                    } else {
                         direction = "N";
-                    }
+                    
                 }
             }
             else if (command.equals("r")) {
