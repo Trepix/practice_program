@@ -7,6 +7,7 @@ public enum CardinalDirection {
         if ("N".equals(cardinalDirection)) return NORTH;
         if ("W".equals(cardinalDirection)) return WEST;
         if ("E".equals(cardinalDirection)) return EAST;
+        if ("S".equals(cardinalDirection)) return SOUTH;
         return null;
     }
 }
