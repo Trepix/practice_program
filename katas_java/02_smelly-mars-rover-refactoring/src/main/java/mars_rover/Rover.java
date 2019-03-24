@@ -41,10 +41,21 @@ public class Rover {
                 }
             } else {
                 if (command.equals("f")) {
-                    move(1);
+                    moveForward();
                 }
-                else move(-1); }
+                else moveBackward();
+            }
         }
+    }
+
+    private void moveForward() {
+        int displacement = 1;
+        move(displacement);
+    }
+
+    private void moveBackward() {
+        int displacement = -1;
+        move(displacement);
     }
 
     private void move(int displacement) {
