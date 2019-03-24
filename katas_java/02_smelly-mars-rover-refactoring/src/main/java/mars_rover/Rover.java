@@ -49,14 +49,18 @@ public class Rover {
 
     private void move(int displacement) {
         if (direction.equals("N")) {
-            setPosition(getX(), getY() + displacement);
+            moveInYAxis(displacement);
         } else if (direction.equals("S")) {
-            setPosition(getX(), getY() - displacement);
+            moveInYAxis(-displacement);
         } else if (direction.equals("W")) {
             setPosition(getX() - displacement, getY());
         } else {
             setPosition(getX() + displacement, getY());
         }
+    }
+
+    private void moveInYAxis(int displacement) {
+        setPosition(getX(), getY() + displacement);
     }
 
     private int getY() {
