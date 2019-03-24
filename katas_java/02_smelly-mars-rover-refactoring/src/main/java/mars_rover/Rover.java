@@ -53,14 +53,18 @@ public class Rover {
         } else if (direction.equals("S")) {
             moveInYAxis(-displacement);
         } else if (direction.equals("W")) {
-            setPosition(getX() - displacement, getY());
+            moveInXAxis(-displacement);
         } else {
-            setPosition(getX() + displacement, getY());
+            moveInXAxis(displacement);
         }
     }
 
     private void moveInYAxis(int displacement) {
         setPosition(getX(), getY() + displacement);
+    }
+
+    private void moveInXAxis(int displacement) {
+        setPosition(getX() + displacement, getY());
     }
 
     private int getY() {
