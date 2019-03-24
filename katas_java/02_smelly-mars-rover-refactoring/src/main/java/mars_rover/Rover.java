@@ -40,17 +40,10 @@ public class Rover {
                     direction = "S";
                 }
             } else {
-
-                // Displace Rover
-                int displacement1 = -1;
-
                 if (command.equals("f")) {
-                    displacement1 = 1;
+                    move(1);
                 }
-                int displacement = displacement1;
-
-                move(displacement);
-            }
+                else move(-1); }
         }
     }
 
