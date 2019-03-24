@@ -1,5 +1,10 @@
 package mars_rover;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@ToString
+@EqualsAndHashCode
 public class Rover {
 
     private String direction;
@@ -57,35 +62,5 @@ public class Rover {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Rover rover = (Rover) o;
-
-        if (y != rover.y) return false;
-        if (x != rover.x) return false;
-        return direction != null ? direction.equals(rover.direction) : rover.direction == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = direction != null ? direction.hashCode() : 0;
-        result = 31 * result + y;
-        result = 31 * result + x;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Rover{" +
-                "direction='" + direction + '\'' +
-                ", y=" + y +
-                ", x=" + x +
-                '}';
     }
 }
