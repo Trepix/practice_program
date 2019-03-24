@@ -60,7 +60,7 @@ public class Rover {
     }
 
     private void moveInYAxis(int displacement) {
-        setPosition(getX(), getY() + displacement);
+        this.position = position.moveOnYAxis(displacement);
     }
 
     private void moveInXAxis(int displacement) {

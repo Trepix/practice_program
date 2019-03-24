@@ -22,4 +22,8 @@ public class Position {
     Position moveOnXAxis(int displacement) {
         return new Position(x + displacement, y);
     }
+
+    Position moveOnYAxis(int displacement) {
+        return new Position(x , y + displacement);
+    }
 }
