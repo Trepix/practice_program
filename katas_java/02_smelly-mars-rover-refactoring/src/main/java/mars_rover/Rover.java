@@ -12,7 +12,7 @@ public class Rover {
 
     public Rover(int x, int y, String direction) {
         this.direction = direction;
-        setPosition(x, y);
+        this.position = new Position(x, y);
     }
 
     public void receive(String commandsSequence) {
@@ -67,15 +67,4 @@ public class Rover {
         this.position = position.moveOnXAxis(displacement);
     }
 
-    private int getY() {
-        return this.position.getY();
-    }
-
-    private int getX() {
-        return this.position.getX();
-    }
-
-    private void setPosition(int x, int y) {
-        this.position = new Position(x, y);
-    }
 }
