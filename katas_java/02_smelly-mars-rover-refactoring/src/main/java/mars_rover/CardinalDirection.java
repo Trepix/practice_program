@@ -5,6 +5,7 @@ public enum CardinalDirection {
 
     public static CardinalDirection from(String cardinalDirection) {
         if ("N".equals(cardinalDirection)) return NORTH;
-        return NORTH;
+        if ("W".equals(cardinalDirection)) return WEST;
+        return null;
     }
 }

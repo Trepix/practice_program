@@ -9,4 +9,9 @@ public class CardinalDirectionCreationTests {
     public void creatingNorth() {
         assertThat(CardinalDirection.from("N"), is(CardinalDirection.NORTH));
     }
+
+    @Test
+    public void creatingWest() {
+        assertThat(CardinalDirection.from("W"), is(CardinalDirection.WEST));
+    }
 }
