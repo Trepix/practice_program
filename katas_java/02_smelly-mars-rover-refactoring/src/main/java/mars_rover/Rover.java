@@ -17,51 +17,26 @@ public class Rover {
             String command = commandsSequence.substring(i, i + 1);
 
             if (command.equals("l")) {
-
-                // Rotate Rover left command
                 if (direction.equals("N")) {
-                        direction = "W";
+                    direction = "W";
                 } else if (direction.equals("S")) {
-                        direction = "E";
-
+                    direction = "E";
                 } else if (direction.equals("W")) {
-                        direction = "S";
-
+                    direction = "S";
                 } else {
-                        direction = "N";
-                    
+                    direction = "N";
                 }
-            }
-            else if (command.equals("r")) {
-
-                // Rotate Rover right command
+            } else if (command.equals("r")) {
                 if (direction.equals("N")) {
-                    if (command.equals("r")) {
-                        direction = "E";
-                    } else {
-                        direction = "W";
-                    }
+                    direction = "E";
                 } else if (direction.equals("S")) {
-                    if (command.equals("r")) {
-                        direction = "W";
-                    } else {
-                        direction = "E";
-                    }
+                    direction = "W";
                 } else if (direction.equals("W")) {
-                    if (command.equals("r")) {
-                        direction = "N";
-                    } else {
-                        direction = "S";
-                    }
+                    direction = "N";
                 } else {
-                    if (command.equals("r")) {
-                        direction = "S";
-                    } else {
-                        direction = "N";
-                    }
+                    direction = "S";
                 }
-            }
-            else {
+            } else {
 
                 // Displace Rover
                 int displacement1 = -1;
@@ -108,9 +83,9 @@ public class Rover {
     @Override
     public String toString() {
         return "Rover{" +
-            "direction='" + direction + '\'' +
-            ", y=" + y +
-            ", x=" + x +
-            '}';
+                "direction='" + direction + '\'' +
+                ", y=" + y +
+                ", x=" + x +
+                '}';
     }
 }
