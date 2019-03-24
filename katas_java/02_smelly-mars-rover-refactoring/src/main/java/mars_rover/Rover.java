@@ -13,8 +13,7 @@ public class Rover {
 
     public Rover(int x, int y, String direction) {
         this.direction = direction;
-        this.y = y;
-        this.x = x;
+        setPosition(x, y);
     }
 
     public void receive(String commandsSequence) {
@@ -52,15 +51,20 @@ public class Rover {
                 int displacement = displacement1;
 
                 if (direction.equals("N")) {
-                    y += displacement;
+                    setPosition(x, y + displacement);
                 } else if (direction.equals("S")) {
-                    y -= displacement;
+                    setPosition(x, y - displacement);
                 } else if (direction.equals("W")) {
-                    x -= displacement;
+                    setPosition(x - displacement, y);
                 } else {
-                    x += displacement;
+                    setPosition(x + displacement, y);
                 }
             }
         }
+    }
+
+    private void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
