@@ -4,13 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @ToString
-@EqualsAndHashCode(exclude = "position")
+@EqualsAndHashCode
 public class Rover {
 
     private Position position;
     private String direction;
-    private int y;
-    private int x;
 
     public Rover(int x, int y, String direction) {
         this.direction = direction;
@@ -65,15 +63,14 @@ public class Rover {
     }
 
     private int getY() {
-        return y;
+        return this.position.getY();
     }
 
     private int getX() {
-        return x;
+        return this.position.getX();
     }
 
     private void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+        this.position = new Position(x, y);
     }
 }
