@@ -3,11 +3,11 @@ package mars_rover;
 public enum CardinalDirection {
     NORTH, SOUTH, EAST, WEST;
 
-    public static CardinalDirection from(String cardinalDirection) {
-        if ("N".equals(cardinalDirection)) return NORTH;
-        if ("W".equals(cardinalDirection)) return WEST;
-        if ("E".equals(cardinalDirection)) return EAST;
-        if ("S".equals(cardinalDirection)) return SOUTH;
-        return null;
+    public static CardinalDirection from(String directionEncoding) {
+        if ("N".equals(directionEncoding)) return NORTH;
+        if ("W".equals(directionEncoding)) return WEST;
+        if ("E".equals(directionEncoding)) return EAST;
+        if ("S".equals(directionEncoding)) return SOUTH;
+        throw new IllegalArgumentException();
     }
 }

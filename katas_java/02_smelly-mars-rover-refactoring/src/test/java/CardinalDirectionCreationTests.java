@@ -25,4 +25,9 @@ public class CardinalDirectionCreationTests {
         assertThat(CardinalDirection.from("W"), is(CardinalDirection.WEST));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void creatingInvalidCardinalDirection() {
+        CardinalDirection.from("X");
+    }
+
 }
