@@ -11,7 +11,13 @@ public class CardinalDirectionCreationTests {
     }
 
     @Test
+    public void creatingEast() {
+        assertThat(CardinalDirection.from("E"), is(CardinalDirection.EAST));
+    }
+
+    @Test
     public void creatingWest() {
         assertThat(CardinalDirection.from("W"), is(CardinalDirection.WEST));
     }
+
 }
