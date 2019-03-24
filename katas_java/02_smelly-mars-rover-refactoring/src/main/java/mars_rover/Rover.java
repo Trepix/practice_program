@@ -3,20 +3,17 @@ package mars_rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import static mars_rover.CardinalDirection.NORTH;
-import static mars_rover.CardinalDirection.SOUTH;
-import static mars_rover.CardinalDirection.WEST;
+import static mars_rover.CardinalDirection.*;
 
 @ToString
 @EqualsAndHashCode
 public class Rover {
 
     private Position position;
-    private String direction;
     private CardinalDirection cardinalDirection;
 
     public Rover(int x, int y, String direction) {
-        setDirection(direction);
+        setDirection(CardinalDirection.from(direction));
         this.position = new Position(x, y);
     }
 
@@ -26,29 +23,28 @@ public class Rover {
 
             if (command.equals("l")) {
                 if (isLookingToNorth()) {
-                    setDirection("W");
+                    setDirection(WEST);
                 } else if (isLookingToSouth()) {
-                    setDirection("E");
+                    setDirection(EAST);
                 } else if (isLookingToWest()) {
-                    setDirection("S");
+                    setDirection(SOUTH);
                 } else {
-                    setDirection("N");
+                    setDirection(NORTH);
                 }
             } else if (command.equals("r")) {
                 if (isLookingToNorth()) {
-                    setDirection("E");
+                    setDirection(EAST);
                 } else if (isLookingToSouth()) {
-                    setDirection("W");
+                    setDirection(WEST);
                 } else if (isLookingToWest()) {
-                    setDirection("N");
+                    setDirection(NORTH);
                 } else {
-                    setDirection("S");
+                    setDirection(SOUTH);
                 }
             } else {
                 if (command.equals("f")) {
                     moveForward();
-                }
-                else moveBackward();
+                } else moveBackward();
             }
         }
     }
@@ -65,9 +61,8 @@ public class Rover {
         return cardinalDirection.equals(SOUTH);
     }
 
-    private void setDirection(String direction) {
-        this.cardinalDirection = CardinalDirection.from(direction);
-        this.direction = direction;
+    private void setDirection(CardinalDirection cardinalDirection) {
+        this.cardinalDirection = cardinalDirection;
     }
 
     private void moveForward() {
