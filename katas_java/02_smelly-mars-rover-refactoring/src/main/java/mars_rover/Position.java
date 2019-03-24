@@ -18,4 +18,8 @@ public class Position {
     int getY() {
         return y;
     }
+
+    Position moveOnXAxis(int displacement) {
+        return new Position(x + displacement, y);
+    }
 }
