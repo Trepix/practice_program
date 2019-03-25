@@ -11,6 +11,11 @@ public enum CardinalDirection {
         public CardinalDirection rotateRight() {
             return WEST;
         }
+
+        @Override
+        public Position move(Position position, int displacement) {
+            return null;
+        }
     }, SOUTH {
         @Override
         public CardinalDirection rotateLeft() {
@@ -20,6 +25,11 @@ public enum CardinalDirection {
         @Override
         public CardinalDirection rotateRight() {
             return EAST;
+        }
+
+        @Override
+        public Position move(Position position, int displacement) {
+            return null;
         }
     }, EAST {
         @Override
@@ -31,6 +41,11 @@ public enum CardinalDirection {
         public CardinalDirection rotateRight() {
             return NORTH;
         }
+
+        @Override
+        public Position move(Position position, int displacement) {
+            return null;
+        }
     }, WEST {
         @Override
         public CardinalDirection rotateLeft() {
@@ -40,6 +55,11 @@ public enum CardinalDirection {
         @Override
         public CardinalDirection rotateRight() {
             return SOUTH;
+        }
+
+        @Override
+        public Position move(Position position, int displacement) {
+            return null;
         }
     };
 
@@ -53,4 +73,5 @@ public enum CardinalDirection {
 
     abstract public CardinalDirection rotateLeft();
     abstract public CardinalDirection rotateRight();
+    abstract public Position move(Position position, int displacement);
 }
