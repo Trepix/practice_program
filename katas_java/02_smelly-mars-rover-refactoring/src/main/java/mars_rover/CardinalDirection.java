@@ -1,7 +1,5 @@
 package mars_rover;
 
-import javafx.geometry.Pos;
-
 public enum CardinalDirection {
     NORTH {
         @Override
@@ -16,7 +14,7 @@ public enum CardinalDirection {
 
         @Override
         public Position move(Position position, int displacement) {
-            return null;
+            return moveInYAxis(position, displacement);
         }
     }, SOUTH {
         @Override
@@ -77,11 +75,11 @@ public enum CardinalDirection {
     abstract public CardinalDirection rotateRight();
     abstract public Position move(Position position, int displacement);
 
-    private Position moveInYAxis(Position position, int displacement) {
+    private static Position moveInYAxis(Position position, int displacement) {
         return position.moveOnYAxis(displacement);
     }
 
-    private Position moveInXAxis(Position position, int displacement) {
+    private static Position moveInXAxis(Position position, int displacement) {
         return position.moveOnXAxis(displacement);
     }
 }

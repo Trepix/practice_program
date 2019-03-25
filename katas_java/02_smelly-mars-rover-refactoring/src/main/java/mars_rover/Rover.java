@@ -70,7 +70,7 @@ public class Rover {
 
     private void move(int displacement) {
         if (isLookingToNorth()) {
-            moveInYAxis(this.position, displacement);
+            this.position = cardinalDirection.move(this.position, displacement);
         } else if (isLookingToSouth()) {
             moveInYAxis(this.position, -displacement);
         } else if (isLookingToWest()) {
