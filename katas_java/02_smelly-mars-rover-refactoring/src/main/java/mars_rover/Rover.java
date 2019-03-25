@@ -70,21 +70,21 @@ public class Rover {
 
     private void move(int displacement) {
         if (isLookingToNorth()) {
-            moveInYAxis(displacement);
+            moveInYAxis(this.position, displacement);
         } else if (isLookingToSouth()) {
-            moveInYAxis(-displacement);
+            moveInYAxis(this.position, -displacement);
         } else if (isLookingToWest()) {
-            moveInXAxis(-displacement);
+            moveInXAxis(this.position, -displacement);
         } else {
-            moveInXAxis(displacement);
+            moveInXAxis(this.position, displacement);
         }
     }
 
-    private void moveInYAxis(int displacement) {
+    private void moveInYAxis(Position position, int displacement) {
         this.position = position.moveOnYAxis(displacement);
     }
 
-    private void moveInXAxis(int displacement) {
+    private void moveInXAxis(Position position, int displacement) {
         this.position = position.moveOnXAxis(displacement);
     }
 }
