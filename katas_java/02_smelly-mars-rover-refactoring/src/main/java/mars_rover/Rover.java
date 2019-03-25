@@ -72,9 +72,9 @@ public class Rover {
         if (isLookingToNorth()) {
             this.position = cardinalDirection.move(this.position, displacement);
         } else if (isLookingToSouth()) {
-            this.position = cardinalDirection.move(this.position, -displacement);
+            this.position = cardinalDirection.move(this.position, displacement);
         } else if (isLookingToWest()) {
-            this.position = cardinalDirection.move(this.position, -displacement);
+            this.position = cardinalDirection.move(this.position, displacement);
         } else {
             this.position = cardinalDirection.move(this.position, displacement);
         }
