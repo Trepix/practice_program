@@ -73,7 +73,15 @@ public enum CardinalDirection {
 
     abstract public CardinalDirection rotateLeft();
     abstract public CardinalDirection rotateRight();
-    abstract public Position move(Position position, int displacement);
+    abstract Position move(Position position, int displacement);
+
+    public Position moveForward(Position position, int unitsToMove) {
+        return move(position, unitsToMove);
+    }
+
+    public Position moveBackward(Position position, int unitsToMove) {
+        return move(position, -unitsToMove);
+    }
 
     private static Position moveInYAxis(Position position, int displacement) {
         return position.moveOnYAxis(displacement);

@@ -7,6 +7,8 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Rover {
 
+    private static final int UNITS_TO_MOVE = 1;
+
     private Position position;
     private CardinalDirection cardinalDirection;
 
@@ -45,12 +47,10 @@ public class Rover {
     }
 
     private void moveForward() {
-        int displacement = 1;
-        this.position = cardinalDirection.move(position, displacement);
+        this.position = cardinalDirection.moveForward(position, UNITS_TO_MOVE);
     }
 
     private void moveBackward() {
-        int displacement = -1;
-        this.position = cardinalDirection.move(position, displacement);
+        this.position = cardinalDirection.moveBackward(position, UNITS_TO_MOVE);
     }
 }
