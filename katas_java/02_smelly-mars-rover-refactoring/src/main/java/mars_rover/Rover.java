@@ -25,11 +25,9 @@ public class Rover {
                 rotateRight();
             } else if (command.equals("r")) {
                 rotateLeft();
-            } else {
-                if (command.equals("f")) {
-                    moveForward();
-                } else moveBackward();
-            }
+            } else if (command.equals("f")) {
+                moveForward();
+            } else moveBackward();
         }
     }
 
