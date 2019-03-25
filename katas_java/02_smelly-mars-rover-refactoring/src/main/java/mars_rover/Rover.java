@@ -36,15 +36,7 @@ public class Rover {
     }
 
     private void rotateRight() {
-        if (isLookingToNorth()) {
-            setDirection(WEST);
-        } else if (isLookingToSouth()) {
-            setDirection(EAST);
-        } else if (isLookingToWest()) {
-            setDirection(SOUTH);
-        } else {
-            setDirection(NORTH);
-        }
+        cardinalDirection = cardinalDirection.rotateRight();
     }
 
     private boolean isLookingToWest() {

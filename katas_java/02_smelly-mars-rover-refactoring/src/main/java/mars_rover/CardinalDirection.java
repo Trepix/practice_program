@@ -6,20 +6,40 @@ public enum CardinalDirection {
         public CardinalDirection rotateLeft() {
             return EAST;
         }
+
+        @Override
+        public CardinalDirection rotateRight() {
+            return WEST;
+        }
     }, SOUTH {
         @Override
         public CardinalDirection rotateLeft() {
             return WEST;
+        }
+
+        @Override
+        public CardinalDirection rotateRight() {
+            return EAST;
         }
     }, EAST {
         @Override
         public CardinalDirection rotateLeft() {
             return SOUTH;
         }
+
+        @Override
+        public CardinalDirection rotateRight() {
+            return NORTH;
+        }
     }, WEST {
         @Override
         public CardinalDirection rotateLeft() {
             return NORTH;
+        }
+
+        @Override
+        public CardinalDirection rotateRight() {
+            return SOUTH;
         }
     };
 
@@ -32,4 +52,5 @@ public enum CardinalDirection {
     }
 
     abstract public CardinalDirection rotateLeft();
+    abstract public CardinalDirection rotateRight();
 }
