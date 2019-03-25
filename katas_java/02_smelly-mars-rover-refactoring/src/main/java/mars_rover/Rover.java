@@ -46,18 +46,6 @@ public class Rover {
         cardinalDirection = cardinalDirection.rotateRight();
     }
 
-    private boolean isLookingToWest() {
-        return cardinalDirection.equals(WEST);
-    }
-
-    private boolean isLookingToNorth() {
-        return cardinalDirection.equals(NORTH);
-    }
-
-    private boolean isLookingToSouth() {
-        return cardinalDirection.equals(SOUTH);
-    }
-
     private void moveForward() {
         int displacement = 1;
         move(displacement);
@@ -69,14 +57,6 @@ public class Rover {
     }
 
     private void move(int displacement) {
-        if (isLookingToNorth()) {
-            this.position = cardinalDirection.move(this.position, displacement);
-        } else if (isLookingToSouth()) {
-            this.position = cardinalDirection.move(this.position, displacement);
-        } else if (isLookingToWest()) {
-            this.position = cardinalDirection.move(this.position, displacement);
-        } else {
-            this.position = cardinalDirection.move(this.position, displacement);
-        }
+        this.position = cardinalDirection.move(this.position, displacement);
     }
 }
