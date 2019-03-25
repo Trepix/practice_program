@@ -3,8 +3,6 @@ package mars_rover;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import static mars_rover.CardinalDirection.*;
-
 @ToString
 @EqualsAndHashCode
 public class Rover {
@@ -39,24 +37,20 @@ public class Rover {
     }
 
     private void rotateLeft() {
-        cardinalDirection = cardinalDirection.rotateLeft();
+        this.cardinalDirection = cardinalDirection.rotateLeft();
     }
 
     private void rotateRight() {
-        cardinalDirection = cardinalDirection.rotateRight();
+        this.cardinalDirection = cardinalDirection.rotateRight();
     }
 
     private void moveForward() {
         int displacement = 1;
-        move(displacement);
+        this.position = cardinalDirection.move(position, displacement);
     }
 
     private void moveBackward() {
         int displacement = -1;
-        move(displacement);
-    }
-
-    private void move(int displacement) {
-        this.position = cardinalDirection.move(this.position, displacement);
+        this.position = cardinalDirection.move(position, displacement);
     }
 }
