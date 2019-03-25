@@ -22,30 +22,38 @@ public class Rover {
             String command = commandsSequence.substring(i, i + 1);
 
             if (command.equals("l")) {
-                if (isLookingToNorth()) {
-                    setDirection(WEST);
-                } else if (isLookingToSouth()) {
-                    setDirection(EAST);
-                } else if (isLookingToWest()) {
-                    setDirection(SOUTH);
-                } else {
-                    setDirection(NORTH);
-                }
+                rotateRight();
             } else if (command.equals("r")) {
-                if (isLookingToNorth()) {
-                    setDirection(EAST);
-                } else if (isLookingToSouth()) {
-                    setDirection(WEST);
-                } else if (isLookingToWest()) {
-                    setDirection(NORTH);
-                } else {
-                    setDirection(SOUTH);
-                }
+                rotateLeft();
             } else {
                 if (command.equals("f")) {
                     moveForward();
                 } else moveBackward();
             }
+        }
+    }
+
+    private void rotateLeft() {
+        if (isLookingToNorth()) {
+            setDirection(EAST);
+        } else if (isLookingToSouth()) {
+            setDirection(WEST);
+        } else if (isLookingToWest()) {
+            setDirection(NORTH);
+        } else {
+            setDirection(SOUTH);
+        }
+    }
+
+    private void rotateRight() {
+        if (isLookingToNorth()) {
+            setDirection(WEST);
+        } else if (isLookingToSouth()) {
+            setDirection(EAST);
+        } else if (isLookingToWest()) {
+            setDirection(SOUTH);
+        } else {
+            setDirection(NORTH);
         }
     }
 
