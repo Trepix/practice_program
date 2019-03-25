@@ -35,11 +35,11 @@ public class Rover {
         if (isLookingToNorth()) {
             cardinalDirection = cardinalDirection.rotateLeft();
         } else if (isLookingToSouth()) {
-            setDirection(WEST);
+            cardinalDirection = cardinalDirection.rotateLeft();
         } else if (isLookingToWest()) {
-            setDirection(NORTH);
+            cardinalDirection = cardinalDirection.rotateLeft();
         } else {
-            setDirection(SOUTH);
+            cardinalDirection = cardinalDirection.rotateLeft();
         }
     }
 

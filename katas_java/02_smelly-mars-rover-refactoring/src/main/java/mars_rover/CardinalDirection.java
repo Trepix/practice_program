@@ -6,7 +6,22 @@ public enum CardinalDirection {
         public CardinalDirection rotateLeft() {
             return EAST;
         }
-    }, SOUTH, EAST, WEST;
+    }, SOUTH {
+        @Override
+        public CardinalDirection rotateLeft() {
+            return WEST;
+        }
+    }, EAST {
+        @Override
+        public CardinalDirection rotateLeft() {
+            return SOUTH;
+        }
+    }, WEST {
+        @Override
+        public CardinalDirection rotateLeft() {
+            return NORTH;
+        }
+    };
 
     public static CardinalDirection from(String directionEncoding) {
         if ("N".equals(directionEncoding)) return NORTH;
@@ -16,7 +31,5 @@ public enum CardinalDirection {
         throw new IllegalArgumentException();
     }
 
-    public CardinalDirection rotateLeft() {
-        return null;
-    }
+    abstract public CardinalDirection rotateLeft();
 }
