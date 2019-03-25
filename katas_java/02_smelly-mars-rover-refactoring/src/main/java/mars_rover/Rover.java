@@ -13,7 +13,7 @@ public class Rover {
     private CardinalDirection cardinalDirection;
 
     public Rover(int x, int y, String direction) {
-        setDirection(CardinalDirection.from(direction));
+        this.cardinalDirection = CardinalDirection.from(direction);
         this.position = new Position(x, y);
     }
 
@@ -21,13 +21,20 @@ public class Rover {
         for (int i = 0; i < commandsSequence.length(); ++i) {
             String command = commandsSequence.substring(i, i + 1);
 
-            if (command.equals("l")) {
-                rotateRight();
-            } else if (command.equals("r")) {
-                rotateLeft();
-            } else if (command.equals("f")) {
-                moveForward();
-            } else moveBackward();
+            switch (command) {
+                case "l":
+                    rotateRight();
+                    break;
+                case "r":
+                    rotateLeft();
+                    break;
+                case "f":
+                    moveForward();
+                    break;
+                default:
+                    moveBackward();
+                    break;
+            }
         }
     }
 
@@ -49,10 +56,6 @@ public class Rover {
 
     private boolean isLookingToSouth() {
         return cardinalDirection.equals(SOUTH);
-    }
-
-    private void setDirection(CardinalDirection cardinalDirection) {
-        this.cardinalDirection = cardinalDirection;
     }
 
     private void moveForward() {
