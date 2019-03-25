@@ -29,7 +29,7 @@ public enum CardinalDirection {
 
         @Override
         public Position move(Position position, int displacement) {
-            return null;
+            return moveInYAxis(position, displacement);
         }
     }, EAST {
         @Override
@@ -44,7 +44,7 @@ public enum CardinalDirection {
 
         @Override
         public Position move(Position position, int displacement) {
-            return null;
+            return moveInXAxis(position, displacement);
         }
     }, WEST {
         @Override
@@ -59,7 +59,7 @@ public enum CardinalDirection {
 
         @Override
         public Position move(Position position, int displacement) {
-            return null;
+            return moveInXAxis(position, displacement);
         }
     };
 
