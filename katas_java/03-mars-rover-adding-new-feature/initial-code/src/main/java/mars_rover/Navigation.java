@@ -17,4 +17,12 @@ class Navigation {
         this.coordinates = coordinates;
         this.direction = direction;
     }
+
+    Navigation turnRight() {
+        return new Navigation(coordinates, direction.turnRight());
+    }
+
+    Navigation turnLeft() {
+        return new Navigation(coordinates, direction.turnLeft());
+    }
 }

@@ -17,6 +17,7 @@ public class MarsRover {
     public MarsRover(int x, int y, String direction) {
         this.coordinates = new Coordinates(x, y);
         this.direction = Direction.parse(direction);
+        this.navigation = new Navigation(this.coordinates, this.direction);
     }
 
     public void receive(String commandsSequence) {
@@ -27,9 +28,11 @@ public class MarsRover {
 
     private void executeCommand(String command) {
         if (command.equals("r")) {
-            direction = direction.turnRight();
+            navigation = navigation.turnRight();
+            direction = navigation.getDirection();
         } else if (command.equals("l")) {
-            direction = direction.turnLeft();
+            navigation = navigation.turnLeft();
+            direction = navigation.getDirection();
         } else if (command.equals("f")) {
             coordinates = direction.moveForward(coordinates, MOVEMENT_DELTA);
         } else if (command.equals("b")) {
