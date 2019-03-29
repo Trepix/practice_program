@@ -24,7 +24,7 @@ public class Navigation {
         return new Navigation(coordinates, direction.turnLeft());
     }
 
-    Navigation moveForward(int delta) {
+    public Navigation moveForward(int delta) {
         return new Navigation(direction.moveForward(coordinates, delta), direction);
     }
 
