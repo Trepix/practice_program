@@ -7,7 +7,7 @@ import mars_rover.navigation.Direction;
 
 @ToString
 @EqualsAndHashCode
-class Navigation {
+public class Navigation {
     private Coordinates coordinates;
     private Direction direction;
 
@@ -16,7 +16,7 @@ class Navigation {
         this.direction = direction;
     }
 
-    Navigation turnRight() {
+    public Navigation turnRight() {
         return new Navigation(coordinates, direction.turnRight());
     }
 

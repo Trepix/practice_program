@@ -2,6 +2,7 @@ package mars_rover;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import mars_rover.commands.TurnRightCommand;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
@@ -10,6 +11,8 @@ import mars_rover.navigation.Direction;
 public class MarsRover {
 
     private static final int MOVEMENT_DELTA = 1;
+    private static final NavigationCommand TURN_RIGHT_COMMAND = new TurnRightCommand();
+
     private Navigation navigation;
 
     public MarsRover(int x, int y, String direction) {
@@ -24,7 +27,7 @@ public class MarsRover {
 
     private void executeCommand(String command) {
         if (command.equals("r")) {
-            navigation = navigation.turnRight();
+            navigation = TURN_RIGHT_COMMAND.perform(this.navigation);
         } else if (command.equals("l")) {
             navigation = navigation.turnLeft();
         } else if (command.equals("f")) {
