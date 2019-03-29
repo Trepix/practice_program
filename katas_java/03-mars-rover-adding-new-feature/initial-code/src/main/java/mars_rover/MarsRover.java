@@ -34,9 +34,11 @@ public class MarsRover {
             navigation = navigation.turnLeft();
             direction = navigation.getDirection();
         } else if (command.equals("f")) {
-            coordinates = direction.moveForward(coordinates, MOVEMENT_DELTA);
+            navigation = navigation.moveForward(MOVEMENT_DELTA);
+            coordinates = navigation.getCoordinates();
         } else if (command.equals("b")) {
-            coordinates = direction.moveBackwards(coordinates, MOVEMENT_DELTA);
+            navigation = navigation.moveBackward(MOVEMENT_DELTA);
+            coordinates = navigation.getCoordinates();
         }
     }
 }
