@@ -28,7 +28,7 @@ public class Navigation {
         return new Navigation(direction.moveForward(coordinates, delta), direction);
     }
 
-    Navigation moveBackward(int delta) {
+    public Navigation moveBackward(int delta) {
         return new Navigation(direction.moveBackwards(coordinates, delta), direction);
     }
 }

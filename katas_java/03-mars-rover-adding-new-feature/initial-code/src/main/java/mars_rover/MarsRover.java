@@ -2,6 +2,7 @@ package mars_rover;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import mars_rover.commands.MoveBackwardCommand;
 import mars_rover.commands.MoveForwardCommand;
 import mars_rover.commands.TurnLeftCommand;
 import mars_rover.commands.TurnRightCommand;
@@ -16,6 +17,7 @@ public class MarsRover {
     private static final NavigationCommand TURN_RIGHT_COMMAND = new TurnRightCommand();
     private static final NavigationCommand TURN_LEFT_COMMAND = new TurnLeftCommand();
     private static final NavigationCommand MOVE_FORWARD_COMMAND = new MoveForwardCommand(MOVEMENT_DELTA);
+    private static final NavigationCommand MOVE_BACKWARD_COMMAND = new MoveBackwardCommand(MOVEMENT_DELTA);
 
     private Navigation navigation;
 
@@ -37,7 +39,7 @@ public class MarsRover {
         } else if (command.equals("f")) {
             navigation = MOVE_FORWARD_COMMAND.perform(this.navigation);
         } else if (command.equals("b")) {
-            navigation = navigation.moveBackward(MOVEMENT_DELTA);
+            navigation = MOVE_BACKWARD_COMMAND.perform(this.navigation);
         }
     }
 }
