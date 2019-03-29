@@ -1,12 +1,10 @@
 package mars_rover;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.ToString;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
-@Getter
 @ToString
 @EqualsAndHashCode
 class Navigation {
