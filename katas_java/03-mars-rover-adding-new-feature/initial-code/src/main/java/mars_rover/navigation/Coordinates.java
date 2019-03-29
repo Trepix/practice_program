@@ -1,16 +1,16 @@
-package mars_rover;
+package mars_rover.navigation;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-class Coordinates {
+public class Coordinates {
 
     private final int x;
     private final int y;
 
-    Coordinates(int x, int y) {
+    public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }

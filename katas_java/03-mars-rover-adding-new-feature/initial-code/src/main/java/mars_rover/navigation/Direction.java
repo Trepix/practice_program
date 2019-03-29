@@ -1,6 +1,6 @@
-package mars_rover;
+package mars_rover.navigation;
 
-enum Direction {
+public enum Direction {
     North {
         public Direction turnRight() {
             return East;

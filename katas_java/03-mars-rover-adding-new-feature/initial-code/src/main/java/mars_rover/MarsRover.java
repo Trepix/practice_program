@@ -2,6 +2,8 @@ package mars_rover;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import mars_rover.navigation.Coordinates;
+import mars_rover.navigation.Direction;
 
 @ToString
 @EqualsAndHashCode
