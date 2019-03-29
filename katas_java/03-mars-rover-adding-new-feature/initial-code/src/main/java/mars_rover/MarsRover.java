@@ -1,5 +1,10 @@
 package mars_rover;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@ToString
+@EqualsAndHashCode
 public class MarsRover {
 
     private static final int MOVEMENT_DELTA = 1;
@@ -27,33 +32,5 @@ public class MarsRover {
         } else if (command.equals("b")) {
             coordinates = direction.moveBackwards(coordinates, MOVEMENT_DELTA);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MarsRover)) return false;
-
-        MarsRover marsRover = (MarsRover) o;
-
-        if (coordinates != null ? !coordinates.equals(marsRover.coordinates) : marsRover.coordinates != null)
-            return false;
-        return direction == marsRover.direction;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = coordinates != null ? coordinates.hashCode() : 0;
-        result = 31 * result + (direction != null ? direction.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "MarsRover{" +
-            "coordinates=" + coordinates +
-            ", direction=" + direction +
-            '}';
     }
 }
