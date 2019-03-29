@@ -5,8 +5,8 @@ import lombok.ToString;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
-@ToString(exclude = "navigation")
-@EqualsAndHashCode(exclude = "navigation")
+@ToString
+@EqualsAndHashCode
 public class MarsRover {
 
     private static final int MOVEMENT_DELTA = 1;
