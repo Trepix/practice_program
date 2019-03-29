@@ -5,13 +5,14 @@ import lombok.ToString;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
-@ToString
-@EqualsAndHashCode
+@ToString(exclude = "navigation")
+@EqualsAndHashCode(exclude = "navigation")
 public class MarsRover {
 
     private static final int MOVEMENT_DELTA = 1;
     private Coordinates coordinates;
     private Direction direction;
+    private Navigation navigation;
 
     public MarsRover(int x, int y, String direction) {
         this.coordinates = new Coordinates(x, y);
