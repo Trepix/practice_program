@@ -20,7 +20,7 @@ public class Navigation {
         return new Navigation(coordinates, direction.turnRight());
     }
 
-    Navigation turnLeft() {
+    public Navigation turnLeft() {
         return new Navigation(coordinates, direction.turnLeft());
     }
 
