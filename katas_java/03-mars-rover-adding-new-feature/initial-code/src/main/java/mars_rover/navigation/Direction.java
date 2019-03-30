@@ -70,7 +70,7 @@ public enum Direction {
         }
     };
 
-    static public Direction parse(String directionAsString) {
+    public static Direction parse(String directionAsString) {
         switch (directionAsString) {
             case "N":
                 return North;
@@ -83,11 +83,11 @@ public enum Direction {
         }
     }
 
-    abstract public Direction turnRight();
+    public abstract Direction turnRight();
 
-    abstract public Direction turnLeft();
+    public abstract Direction turnLeft();
 
-    abstract public Coordinates moveForward(Coordinates coordinates, int delta);
+    public abstract Coordinates moveForward(Coordinates coordinates, int delta);
 
-    abstract public Coordinates moveBackwards(Coordinates coordinates, int delta);
+    public abstract Coordinates moveBackwards(Coordinates coordinates, int delta);
 }
