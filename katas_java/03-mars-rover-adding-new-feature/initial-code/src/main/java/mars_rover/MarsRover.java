@@ -2,10 +2,7 @@ package mars_rover;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import mars_rover.commands.MoveBackwardCommand;
-import mars_rover.commands.MoveForwardCommand;
-import mars_rover.commands.TurnLeftCommand;
-import mars_rover.commands.TurnRightCommand;
+import mars_rover.commands.*;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
@@ -18,6 +15,7 @@ public class MarsRover {
     private static final NavigationCommand TURN_LEFT_COMMAND = new TurnLeftCommand();
     private static final NavigationCommand MOVE_FORWARD_COMMAND = new MoveForwardCommand(MOVEMENT_DELTA);
     private static final NavigationCommand MOVE_BACKWARD_COMMAND = new MoveBackwardCommand(MOVEMENT_DELTA);
+    private static final NavigationCommand UNKNOWN_COMMAND = new NoOperationCommand();
 
     private Navigation navigation;
 
@@ -32,14 +30,19 @@ public class MarsRover {
     }
 
     private void executeCommand(String command) {
+        navigation = getCommand(command).perform(this.navigation);
+    }
+
+    private NavigationCommand getCommand(String command) {
         if (command.equals("r")) {
-            navigation = TURN_RIGHT_COMMAND.perform(this.navigation);
+            return TURN_RIGHT_COMMAND;
         } else if (command.equals("l")) {
-            navigation = TURN_LEFT_COMMAND.perform(this.navigation);
+            return TURN_LEFT_COMMAND;
         } else if (command.equals("f")) {
-            navigation = MOVE_FORWARD_COMMAND.perform(this.navigation);
+            return MOVE_FORWARD_COMMAND;
         } else if (command.equals("b")) {
-            navigation = MOVE_BACKWARD_COMMAND.perform(this.navigation);
+            return MOVE_BACKWARD_COMMAND;
         }
+        return UNKNOWN_COMMAND;
     }
 }
