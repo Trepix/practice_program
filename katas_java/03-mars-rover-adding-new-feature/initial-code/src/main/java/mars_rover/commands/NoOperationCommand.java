@@ -5,7 +5,7 @@ import mars_rover.NavigationCommand;
 
 public class NoOperationCommand implements NavigationCommand {
     @Override
-    public Navigation perform(Navigation navigation) {
+    public Navigation execute(Navigation navigation) {
         return navigation;
     }
 }

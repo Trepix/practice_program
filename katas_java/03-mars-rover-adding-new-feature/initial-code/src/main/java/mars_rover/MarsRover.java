@@ -6,6 +6,8 @@ import mars_rover.interpreters.NASACommunicationInterpreter;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
+import java.util.List;
+
 @ToString(exclude = "communicationInterpreter")
 @EqualsAndHashCode(exclude = "communicationInterpreter")
 public class MarsRover {
@@ -19,8 +21,12 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
-        for (NavigationCommand command : this.communicationInterpreter.translateSequence(commandsSequence)) {
-            navigation = command.perform(navigation);
+        for (NavigationCommand command : translateSequence(commandsSequence)) {
+            navigation = command.execute(navigation);
         }
+    }
+
+    private List<NavigationCommand> translateSequence(String commandsSequence) {
+        return this.communicationInterpreter.translateSequence(commandsSequence);
     }
 }

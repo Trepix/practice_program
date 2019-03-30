@@ -10,7 +10,7 @@ public class MoveForwardCommand implements NavigationCommand {
     private final int delta;
 
     @Override
-    public Navigation perform(Navigation navigation) {
+    public Navigation execute(Navigation navigation) {
         return navigation.moveForward(this.delta);
     }
 }
