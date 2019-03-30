@@ -19,7 +19,9 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
-        this.communicationInterpreter.split(commandsSequence).forEach(this::executeCommand);
+        for (NavigationCommand command : this.communicationInterpreter.translateMultiple(commandsSequence)) {
+            navigation = command.perform(navigation);
+        }
     }
 
     private void executeCommand(String command) {

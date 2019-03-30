@@ -6,6 +6,7 @@ import mars_rover.commands.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NASACommunicationInterpreter implements CommunicationInterpreter {
 
@@ -33,5 +34,10 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
     @Override
     public List<String> split(String commandSequence) {
         return Arrays.asList(commandSequence.split(""));
+    }
+
+    @Override
+    public List<NavigationCommand> translateMultiple(String commandSequence) {
+        return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
     }
 }
