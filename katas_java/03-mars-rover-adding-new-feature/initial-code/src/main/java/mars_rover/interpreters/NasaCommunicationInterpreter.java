@@ -18,7 +18,15 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
     private static final NavigationCommand UNKNOWN_COMMAND = new NoOperationCommand();
 
     @Override
-    public NavigationCommand translate(String command) {
+    public List<NavigationCommand> translateMultiple(String commandSequence) {
+        return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
+    }
+
+    private  List<String> split(String commandSequence) {
+        return Arrays.asList(commandSequence.split(""));
+    }
+
+    private NavigationCommand translate(String command) {
         if (command.equals("r")) {
             return TURN_RIGHT_COMMAND;
         } else if (command.equals("l")) {
@@ -29,15 +37,5 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
             return MOVE_BACKWARD_COMMAND;
         }
         return UNKNOWN_COMMAND;
-    }
-
-    @Override
-    public List<String> split(String commandSequence) {
-        return Arrays.asList(commandSequence.split(""));
-    }
-
-    @Override
-    public List<NavigationCommand> translateMultiple(String commandSequence) {
-        return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
     }
 }

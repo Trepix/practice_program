@@ -23,12 +23,4 @@ public class MarsRover {
             navigation = command.perform(navigation);
         }
     }
-
-    private void executeCommand(String command) {
-        navigation = getCommand(command).perform(this.navigation);
-    }
-
-    private NavigationCommand getCommand(String command) {
-        return this.communicationInterpreter.translate(command);
-    }
 }
