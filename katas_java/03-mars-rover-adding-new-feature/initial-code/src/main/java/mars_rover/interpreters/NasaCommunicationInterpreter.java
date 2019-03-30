@@ -18,7 +18,7 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
     private static final NavigationCommand UNKNOWN_COMMAND = new NoOperationCommand();
 
     @Override
-    public List<NavigationCommand> translateMultiple(String commandSequence) {
+    public List<NavigationCommand> translateSequence(String commandSequence) {
         return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
     }
 
