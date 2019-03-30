@@ -4,6 +4,9 @@ import mars_rover.CommunicationInterpreter;
 import mars_rover.NavigationCommand;
 import mars_rover.commands.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NASACommunicationInterpreter implements CommunicationInterpreter {
 
     private static final int MOVEMENT_DELTA = 1;
@@ -25,5 +28,10 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
             return MOVE_BACKWARD_COMMAND;
         }
         return UNKNOWN_COMMAND;
+    }
+
+    @Override
+    public List<String> split(String commandSequence) {
+        return Arrays.asList(commandSequence.split(""));
     }
 }

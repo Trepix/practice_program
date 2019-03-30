@@ -19,9 +19,7 @@ public class MarsRover {
     }
 
     public void receive(String commandsSequence) {
-        for (String command : commandsSequence.split("")) {
-            executeCommand(command);
-        }
+        this.communicationInterpreter.split(commandsSequence).forEach(this::executeCommand);
     }
 
     private void executeCommand(String command) {
