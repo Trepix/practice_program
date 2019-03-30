@@ -71,14 +71,15 @@ public enum Direction {
     };
 
     static public Direction parse(String directionAsString) {
-        if (directionAsString.equals("N")) {
-            return North;
-        } else if (directionAsString.equals("E")) {
-            return East;
-        } else if (directionAsString.equals("S")) {
-            return South;
-        } else {
-            return West;
+        switch (directionAsString) {
+            case "N":
+                return North;
+            case "E":
+                return East;
+            case "S":
+                return South;
+            default:
+                return West;
         }
     }
 

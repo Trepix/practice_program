@@ -22,20 +22,22 @@ public class NASACommunicationInterpreter implements CommunicationInterpreter {
         return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
     }
 
-    private  List<String> split(String commandSequence) {
+    private List<String> split(String commandSequence) {
         return Arrays.asList(commandSequence.split(""));
     }
 
     private NavigationCommand translate(String command) {
-        if (command.equals("r")) {
-            return TURN_RIGHT_COMMAND;
-        } else if (command.equals("l")) {
-            return TURN_LEFT_COMMAND;
-        } else if (command.equals("f")) {
-            return MOVE_FORWARD_COMMAND;
-        } else if (command.equals("b")) {
-            return MOVE_BACKWARD_COMMAND;
+        switch (command) {
+            case "r":
+                return TURN_RIGHT_COMMAND;
+            case "l":
+                return TURN_LEFT_COMMAND;
+            case "f":
+                return MOVE_FORWARD_COMMAND;
+            case "b":
+                return MOVE_BACKWARD_COMMAND;
+            default:
+                return UNKNOWN_COMMAND;
         }
-        return UNKNOWN_COMMAND;
     }
 }
