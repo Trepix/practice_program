@@ -10,173 +10,173 @@ public class MarsRoverTest {
 
     @Test
     public void does_nothing_when_receiving_empty_commands_sequence() {
-        MarsRover marsRover = anyMarsRover().build();
+        MarsRover marsRover = anyNASAMarsRover().build();
 
         marsRover.receive("");
 
-        assertThat(marsRover, is(anyMarsRover().build()));
+        assertThat(marsRover, is(anyNASAMarsRover().build()));
     }
 
     @Test
     public void turns_right_when_pointing_north() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("N").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("N").build();
 
         marsRover.receive("r");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("E").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("E").build()));
     }
 
     @Test
     public void turns_right_when_pointing_east() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("E").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("E").build();
 
         marsRover.receive("r");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("S").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("S").build()));
     }
 
     @Test
     public void turns_right_when_pointing_south() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("S").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("S").build();
 
         marsRover.receive("r");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("W").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("W").build()));
     }
 
     @Test
     public void turns_right_when_pointing_west() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("W").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("W").build();
 
         marsRover.receive("r");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("N").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("N").build()));
     }
 
     @Test
     public void turns_left_when_pointing_north() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("N").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("N").build();
 
         marsRover.receive("l");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("W").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("W").build()));
     }
 
     @Test
     public void turns_left_when_pointing_west() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("W").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("W").build();
 
         marsRover.receive("l");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("S").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("S").build()));
     }
 
     @Test
     public void turns_left_when_pointing_south() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("S").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("S").build();
 
         marsRover.receive("l");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("E").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("E").build()));
     }
 
     @Test
     public void turns_left_when_pointing_east() {
-        MarsRover marsRover = aMarsRoverAnywhere().facing("E").build();
+        MarsRover marsRover = aNASAMarsRoverAnywhere().facing("E").build();
 
         marsRover.receive("l");
 
-        assertThat(marsRover, is(aMarsRoverAnywhere().facing("N").build()));
+        assertThat(marsRover, is(aNASAMarsRoverAnywhere().facing("N").build()));
     }
 
     @Test
     public void moves_forward_when_pointing_north() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("N").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("N").build();
 
         marsRover.receive("f");
 
-        assertThat(marsRover, is(aMarsRover().at(5, 5).facing("N").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(5, 5).facing("N").build()));
     }
 
     @Test
     public void moves_forward_when_pointing_east() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("E").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("E").build();
 
         marsRover.receive("f");
 
-        assertThat(marsRover, is(aMarsRover().at(6, 4).facing("E").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(6, 4).facing("E").build()));
     }
 
     @Test
     public void moves_forward_when_pointing_south() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("S").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("S").build();
 
         marsRover.receive("f");
 
-        assertThat(marsRover, is(aMarsRover().at(5, 3).facing("S").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(5, 3).facing("S").build()));
     }
 
     @Test
     public void moves_forward_when_pointing_west() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("W").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("W").build();
 
         marsRover.receive("f");
 
-        assertThat(marsRover, is(aMarsRover().at(4, 4).facing("W").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(4, 4).facing("W").build()));
     }
 
     @Test
     public void moves_backward_when_pointing_north() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("N").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("N").build();
 
         marsRover.receive("b");
 
-        assertThat(marsRover, is(aMarsRover().at(5, 3).facing("N").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(5, 3).facing("N").build()));
     }
 
     @Test
     public void moves_backward_when_pointing_east() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("E").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("E").build();
 
         marsRover.receive("b");
 
-        assertThat(marsRover, is(aMarsRover().at(4, 4).facing("E").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(4, 4).facing("E").build()));
     }
 
     @Test
     public void moves_backward_when_pointing_south() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("S").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("S").build();
 
         marsRover.receive("b");
 
-        assertThat(marsRover, is(aMarsRover().at(5, 5).facing("S").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(5, 5).facing("S").build()));
     }
 
     @Test
     public void moves_backward_when_pointing_west() {
-        MarsRover marsRover = aMarsRover().at(5, 4).facing("W").build();
+        MarsRover marsRover = aNASAMarsRover().at(5, 4).facing("W").build();
 
         marsRover.receive("b");
 
-        assertThat(marsRover, is(aMarsRover().at(6, 4).facing("W").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(6, 4).facing("W").build()));
     }
 
     @Test
     public void receives_multiple_commands() {
-        MarsRover marsRover = aMarsRover().at(7, 4).facing("E").build();
+        MarsRover marsRover = aNASAMarsRover().at(7, 4).facing("E").build();
 
         marsRover.receive("fr");
 
-        assertThat(marsRover, is(aMarsRover().at(8, 4).facing("S").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(8, 4).facing("S").build()));
     }
 
     @Test
     public void ignores_unknown_commands() {
-        MarsRover marsRover = aMarsRover().at(7, 4).facing("E").build();
+        MarsRover marsRover = aNASAMarsRover().at(7, 4).facing("E").build();
 
         marsRover.receive("*");
 
-        assertThat(marsRover, is(aMarsRover().at(7, 4).facing("E").build()));
+        assertThat(marsRover, is(aNASAMarsRover().at(7, 4).facing("E").build()));
     }
 
 }

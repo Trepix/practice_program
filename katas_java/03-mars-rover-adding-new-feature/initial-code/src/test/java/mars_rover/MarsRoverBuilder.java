@@ -9,22 +9,26 @@ class MarsRoverBuilder {
     private int x;
     private int y;
     private String direction;
+    private CommunicationInterpreter communicationInterpreter;
 
     private MarsRoverBuilder() {
 
     }
 
-    static MarsRoverBuilder anyMarsRover() {
-        return new MarsRoverBuilder().at(0, 0).facing("N");
+    static MarsRoverBuilder anyNASAMarsRover() {
+        return new MarsRoverBuilder()
+                .at(0, 0)
+                .facing("N")
+                .withNASACommunicationInterpreter();
     }
 
-    static MarsRoverBuilder aMarsRoverAnywhere() {
-        return new MarsRoverBuilder().at(0, 0);
+    static MarsRoverBuilder aNASAMarsRoverAnywhere() {
+        return new MarsRoverBuilder().at(0, 0).withNASACommunicationInterpreter();
     }
 
 
-    static MarsRoverBuilder aMarsRover() {
-        return new MarsRoverBuilder();
+    static MarsRoverBuilder aNASAMarsRover() {
+        return new MarsRoverBuilder().withNASACommunicationInterpreter();
     }
 
     MarsRoverBuilder at(int x, int y) {
@@ -38,8 +42,13 @@ class MarsRoverBuilder {
         return this;
     }
 
+    private MarsRoverBuilder withNASACommunicationInterpreter() {
+        this.communicationInterpreter = new NASACommunicationInterpreter();
+        return this;
+    }
+
     MarsRover build() {
         Navigation navigation = new Navigation(new Coordinates(x,y), Direction.parse(direction));
-        return new MarsRover(navigation, new NASACommunicationInterpreter());
+        return new MarsRover(navigation, communicationInterpreter);
     }
 }
