@@ -10,6 +10,10 @@ class MarsRoverBuilder {
 
     }
 
+    static MarsRoverBuilder anyMarsRover() {
+        return new MarsRoverBuilder().at(0, 0).facing("N");
+    }
+
     static MarsRoverBuilder aMarsRover() {
         return new MarsRoverBuilder();
     }

@@ -10,11 +10,11 @@ public class MarsRoverTest {
 
     @Test
     public void does_nothing_when_receiving_empty_commands_sequence() {
-        MarsRover marsRover = aMarsRover().at(0, 0).facing("N").build();
+        MarsRover marsRover = anyMarsRover().build();
 
         marsRover.receive("");
 
-        assertThat(marsRover, is(aMarsRover().at(0, 0).facing("N").build()));
+        assertThat(marsRover, is(anyMarsRover().build()));
     }
 
     @Test
