@@ -3,6 +3,7 @@ package mars_rover;
 import mars_rover.MarsRover;
 import org.junit.Test;
 
+import static mars_rover.MarsRoverBuilder.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -180,6 +181,6 @@ public class MarsRoverTest {
     }
 
     private MarsRover createMarsRover(int x, int y, String direction)  {
-        return new MarsRover(x, y, direction);
+        return aMarsRover(x, y, direction).build();
     }
 }
