@@ -2,9 +2,6 @@ package mars_rover;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import mars_rover.interpreters.NASACommunicationInterpreter;
-import mars_rover.navigation.Coordinates;
-import mars_rover.navigation.Direction;
 
 import java.util.List;
 
@@ -15,9 +12,9 @@ class MarsRover {
     private Navigation navigation;
     private CommunicationInterpreter communicationInterpreter;
 
-    MarsRover(Navigation navigation) {
+    MarsRover(Navigation navigation, CommunicationInterpreter communicationInterpreter) {
         this.navigation = navigation;
-        this.communicationInterpreter = new NASACommunicationInterpreter();
+        this.communicationInterpreter = communicationInterpreter;
     }
 
     void receive(String commandsSequence) {

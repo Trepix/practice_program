@@ -1,5 +1,6 @@
 package mars_rover;
 
+import mars_rover.interpreters.NASACommunicationInterpreter;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
 
@@ -39,6 +40,6 @@ class MarsRoverBuilder {
 
     MarsRover build() {
         Navigation navigation = new Navigation(new Coordinates(x,y), Direction.parse(direction));
-        return new MarsRover(navigation);
+        return new MarsRover(navigation, new NASACommunicationInterpreter());
     }
 }
