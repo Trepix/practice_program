@@ -15,8 +15,8 @@ class MarsRover {
     private Navigation navigation;
     private CommunicationInterpreter communicationInterpreter;
 
-    MarsRover(Coordinates coordinates, String direction) {
-        this.navigation = new Navigation(coordinates, Direction.parse(direction));
+    MarsRover(Navigation navigation) {
+        this.navigation = navigation;
         this.communicationInterpreter = new NASACommunicationInterpreter();
     }
 
