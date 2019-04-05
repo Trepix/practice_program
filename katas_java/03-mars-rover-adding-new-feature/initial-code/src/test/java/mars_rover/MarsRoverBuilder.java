@@ -14,6 +14,11 @@ class MarsRoverBuilder {
         return new MarsRoverBuilder().at(0, 0).facing("N");
     }
 
+    static MarsRoverBuilder aMarsRoverAnywhere() {
+        return new MarsRoverBuilder().at(0, 0);
+    }
+
+
     static MarsRoverBuilder aMarsRover() {
         return new MarsRoverBuilder();
     }
