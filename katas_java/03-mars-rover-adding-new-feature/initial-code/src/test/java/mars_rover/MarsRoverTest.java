@@ -181,6 +181,6 @@ public class MarsRoverTest {
     }
 
     private MarsRover createMarsRover(int x, int y, String direction)  {
-        return aMarsRover(x, y, direction).build();
+        return aMarsRover().at(x, y).facing(direction).build();
     }
 }

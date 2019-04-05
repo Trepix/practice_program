@@ -10,12 +10,19 @@ class MarsRoverBuilder {
 
     }
 
-    static MarsRoverBuilder aMarsRover(int x, int y, String direction) {
-        MarsRoverBuilder builder = new MarsRoverBuilder();
-        builder.x = x;
-        builder.y = y;
-        builder.direction = direction;
-        return builder;
+    static MarsRoverBuilder aMarsRover() {
+        return new MarsRoverBuilder();
+    }
+
+    MarsRoverBuilder at(int x, int y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+
+    MarsRoverBuilder facing(String direction) {
+        this.direction = direction;
+        return this;
     }
 
     MarsRover build() {
