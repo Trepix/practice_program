@@ -38,9 +38,12 @@ class MarsRoverBuilder {
         return new MarsRoverBuilder().at(0, 0).withESACommunicationInterpreter();
     }
 
-
     static MarsRoverBuilder aNASAMarsRover() {
         return new MarsRoverBuilder().withNASACommunicationInterpreter();
+    }
+
+    static MarsRoverBuilder anESAMarsRover() {
+        return new MarsRoverBuilder().withESACommunicationInterpreter();
     }
 
     MarsRoverBuilder at(int x, int y) {
