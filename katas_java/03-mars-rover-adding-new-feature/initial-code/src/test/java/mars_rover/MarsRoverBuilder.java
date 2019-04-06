@@ -60,6 +60,10 @@ class MarsRoverBuilder {
         return new MarsRoverBuilder().withESACommunicationInterpreter();
     }
 
+    static MarsRoverBuilder aMultiInterpreterMarsRover() {
+        return new MarsRoverBuilder().withMultipleCommunicationInterpreter();
+    }
+
     MarsRoverBuilder at(int x, int y) {
         this.x = x;
         this.y = y;
