@@ -170,4 +170,13 @@ public class ESAMarsRoverTest {
 
         assertThat(marsRover, is(anESAMarsRover().at(8, 4).facing("S").build()));
     }
+
+    @Test
+    public void ignores_unknown_commands() {
+        MarsRover marsRover = anESAMarsRover().at(7, 4).facing("E").build();
+
+        marsRover.receive("*");
+
+        assertThat(marsRover, is(anESAMarsRover().at(7, 4).facing("E").build()));
+    }
 }
