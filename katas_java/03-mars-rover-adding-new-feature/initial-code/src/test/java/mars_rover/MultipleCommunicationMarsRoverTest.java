@@ -17,4 +17,13 @@ public class MultipleCommunicationMarsRoverTest {
         assertThat(marsRover, is(anyMultiInterpreterMarsRover().build()));
     }
 
+    @Test
+    public void does_nothing_when_communication_interpreter_is_not_specified() {
+        MarsRover marsRover = anyMultiInterpreterMarsRover().build();
+
+        marsRover.receive("rlbx");
+
+        assertThat(marsRover, is(anyMultiInterpreterMarsRover().build()));
+    }
+
 }

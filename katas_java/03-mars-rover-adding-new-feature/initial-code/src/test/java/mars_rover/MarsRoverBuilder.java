@@ -48,6 +48,10 @@ class MarsRoverBuilder {
         return aMarsRoverAnywhere().withESACommunicationInterpreter();
     }
 
+    static MarsRoverBuilder aMultiInterpreterMarsRoverAnywhere() {
+        return aMarsRoverAnywhere().withMultipleCommunicationInterpreter();
+    }
+
     static MarsRoverBuilder aNASAMarsRover() {
         return new MarsRoverBuilder().withNASACommunicationInterpreter();
     }
