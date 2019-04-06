@@ -1,6 +1,7 @@
 package mars_rover;
 
 import mars_rover.interpreters.ESACommunicationInterpreter;
+import mars_rover.interpreters.MultipleCommunicationInterpreter;
 import mars_rover.interpreters.NASACommunicationInterpreter;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
@@ -17,25 +18,34 @@ class MarsRoverBuilder {
     }
 
     static MarsRoverBuilder anyNASAMarsRover() {
-        return new MarsRoverBuilder()
-                .at(0, 0)
-                .facing("N")
+        return anyMarsRover()
                 .withNASACommunicationInterpreter();
     }
 
     static MarsRoverBuilder anyESAMarsRover() {
-        return new MarsRoverBuilder()
-                .at(0, 0)
-                .facing("N")
+        return anyMarsRover()
                 .withESACommunicationInterpreter();
     }
 
+    static MarsRoverBuilder anyMultiInterpreterMarsRover() {
+        return anyMarsRover()
+                .withMultipleCommunicationInterpreter();
+    }
+
+    private static MarsRoverBuilder anyMarsRover() {
+        return aMarsRoverAnywhere().facing("N");
+    }
+
+    private static MarsRoverBuilder aMarsRoverAnywhere() {
+        return new MarsRoverBuilder().at(0, 0);
+    }
+
     static MarsRoverBuilder aNASAMarsRoverAnywhere() {
-        return new MarsRoverBuilder().at(0, 0).withNASACommunicationInterpreter();
+        return aMarsRoverAnywhere().withNASACommunicationInterpreter();
     }
 
     static MarsRoverBuilder anESAMarsRoverAnywhere() {
-        return new MarsRoverBuilder().at(0, 0).withESACommunicationInterpreter();
+        return aMarsRoverAnywhere().withESACommunicationInterpreter();
     }
 
     static MarsRoverBuilder aNASAMarsRover() {
@@ -64,6 +74,11 @@ class MarsRoverBuilder {
 
     private MarsRoverBuilder withESACommunicationInterpreter() {
         this.communicationInterpreter = new ESACommunicationInterpreter();
+        return this;
+    }
+
+    private MarsRoverBuilder withMultipleCommunicationInterpreter() {
+        this.communicationInterpreter = new MultipleCommunicationInterpreter();
         return this;
     }
 
