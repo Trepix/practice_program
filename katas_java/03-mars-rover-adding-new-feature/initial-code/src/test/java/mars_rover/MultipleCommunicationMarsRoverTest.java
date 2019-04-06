@@ -178,4 +178,40 @@ public class MultipleCommunicationMarsRoverTest {
         assertThat(marsRover, is(aMultiInterpreterMarsRover().at(8, 4).facing("S").build()));
     }
 
+    @Test
+    public void turns_right_when_pointing_north_using_esa_commands() {
+        MarsRover marsRover = aMultiInterpreterMarsRoverAnywhere().facing("N").build();
+
+        marsRover.receive("kl");
+
+        assertThat(marsRover, is(aMultiInterpreterMarsRoverAnywhere().facing("E").build()));
+    }
+
+    @Test
+    public void turns_right_when_pointing_east_using_esa_commands() {
+        MarsRover marsRover = aMultiInterpreterMarsRoverAnywhere().facing("E").build();
+
+        marsRover.receive("kl");
+
+        assertThat(marsRover, is(aMultiInterpreterMarsRoverAnywhere().facing("S").build()));
+    }
+
+    @Test
+    public void turns_right_when_pointing_south_using_esa_commands() {
+        MarsRover marsRover = aMultiInterpreterMarsRoverAnywhere().facing("S").build();
+
+        marsRover.receive("kl");
+
+        assertThat(marsRover, is(aMultiInterpreterMarsRoverAnywhere().facing("W").build()));
+    }
+
+    @Test
+    public void turns_right_when_pointing_west_using_esa_commands() {
+        MarsRover marsRover = aMultiInterpreterMarsRoverAnywhere().facing("W").build();
+
+        marsRover.receive("kl");
+
+        assertThat(marsRover, is(aMultiInterpreterMarsRoverAnywhere().facing("N").build()));
+    }
+
 }

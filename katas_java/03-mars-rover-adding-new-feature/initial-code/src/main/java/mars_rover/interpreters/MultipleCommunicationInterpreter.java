@@ -29,6 +29,8 @@ public class MultipleCommunicationInterpreter implements CommunicationInterprete
     private List<NavigationCommand> translate(String command) {
         if ("z".equals(command)) {
             currentInterpreter = new NASACommunicationInterpreter();
+        } else if ("k".equals(command)) {
+            currentInterpreter = new ESACommunicationInterpreter();
         } else if (getInterpreter().isPresent()) {
             return getInterpreter().get().translateSequence(command);
         }
