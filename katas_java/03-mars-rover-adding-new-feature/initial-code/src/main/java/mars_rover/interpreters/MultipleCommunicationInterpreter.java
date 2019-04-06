@@ -2,24 +2,27 @@ package mars_rover.interpreters;
 
 import mars_rover.CommunicationInterpreter;
 import mars_rover.NavigationCommand;
-import mars_rover.commands.*;
+import mars_rover.commands.NoOperationCommand;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.toList;
 
 
 public class MultipleCommunicationInterpreter implements CommunicationInterpreter {
 
-    private CommunicationInterpreter currentInterpreter = null;
+    private CommunicationInterpreter currentInterpreter = new NullCommunicationInterpreter();
 
     @Override
     public List<NavigationCommand> translateSequence(String commandSequence) {
-        List<NavigationCommand> result = new LinkedList<>();
-        for (String command : split(commandSequence)){
-            result.addAll(translate(command));
-        }
-        return result;
+        return split(commandSequence)
+                .stream()
+                .map(this::translate)
+                .flatMap(Collection::stream)
+                .collect(toList());
     }
 
     private List<String> split(String commandSequence) {
@@ -27,17 +30,22 @@ public class MultipleCommunicationInterpreter implements CommunicationInterprete
     }
 
     private List<NavigationCommand> translate(String command) {
-        if ("z".equals(command)) {
-            currentInterpreter = new NASACommunicationInterpreter();
-        } else if ("k".equals(command)) {
-            currentInterpreter = new ESACommunicationInterpreter();
-        } else if (getInterpreter().isPresent()) {
-            return getInterpreter().get().translateSequence(command);
+        switch (command) {
+            case "z":
+                currentInterpreter = new NASACommunicationInterpreter();
+                return singletonList(new NoOperationCommand());
+            case "k":
+                currentInterpreter = new ESACommunicationInterpreter();
+                return singletonList(new NoOperationCommand());
+            default:
+                return currentInterpreter.translateSequence(command);
         }
-        return singletonList(new NoOperationCommand());
     }
 
-    private Optional<CommunicationInterpreter> getInterpreter() {
-        return Optional.ofNullable(currentInterpreter);
+    private static class NullCommunicationInterpreter implements CommunicationInterpreter {
+        @Override
+        public List<NavigationCommand> translateSequence(String commandSequence) {
+            return singletonList(new NoOperationCommand());
+        }
     }
 }
