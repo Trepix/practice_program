@@ -3,6 +3,7 @@ package mars_rover;
 import org.junit.Test;
 
 import static mars_rover.MarsRoverBuilder.anESAMarsRoverAnywhere;
+import static mars_rover.MarsRoverBuilder.anESAMarsRoverAnywhere;
 import static mars_rover.MarsRoverBuilder.anyESAMarsRover;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -50,6 +51,42 @@ public class ESAMarsRoverTest {
         MarsRover marsRover = anESAMarsRoverAnywhere().facing("W").build();
 
         marsRover.receive("l");
+
+        assertThat(marsRover, is(anESAMarsRoverAnywhere().facing("N").build()));
+    }
+
+    @Test
+    public void turns_left_when_pointing_north() {
+        MarsRover marsRover = anESAMarsRoverAnywhere().facing("N").build();
+
+        marsRover.receive("f");
+
+        assertThat(marsRover, is(anESAMarsRoverAnywhere().facing("W").build()));
+    }
+
+    @Test
+    public void turns_left_when_pointing_west() {
+        MarsRover marsRover = anESAMarsRoverAnywhere().facing("W").build();
+
+        marsRover.receive("f");
+
+        assertThat(marsRover, is(anESAMarsRoverAnywhere().facing("S").build()));
+    }
+
+    @Test
+    public void turns_left_when_pointing_south() {
+        MarsRover marsRover = anESAMarsRoverAnywhere().facing("S").build();
+
+        marsRover.receive("f");
+
+        assertThat(marsRover, is(anESAMarsRoverAnywhere().facing("E").build()));
+    }
+
+    @Test
+    public void turns_left_when_pointing_east() {
+        MarsRover marsRover = anESAMarsRoverAnywhere().facing("E").build();
+
+        marsRover.receive("f");
 
         assertThat(marsRover, is(anESAMarsRoverAnywhere().facing("N").build()));
     }

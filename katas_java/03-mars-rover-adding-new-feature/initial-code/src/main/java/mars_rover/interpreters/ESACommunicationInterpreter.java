@@ -2,7 +2,9 @@ package mars_rover.interpreters;
 
 import mars_rover.CommunicationInterpreter;
 import mars_rover.NavigationCommand;
-import mars_rover.commands.*;
+import mars_rover.commands.NoOperationCommand;
+import mars_rover.commands.TurnLeftCommand;
+import mars_rover.commands.TurnRightCommand;
 
 import java.util.List;
 
@@ -18,6 +20,8 @@ public class ESACommunicationInterpreter implements CommunicationInterpreter {
     private NavigationCommand translate(String command) {
         if ("l".equals(command)) {
             return new TurnRightCommand();
+        } else if ("f".equals(command)) {
+            return new TurnLeftCommand();
         } else {
             return new NoOperationCommand();
         }
