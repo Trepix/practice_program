@@ -4,9 +4,9 @@ import mars_rover.CommunicationInterpreter;
 import mars_rover.NavigationCommand;
 import mars_rover.commands.*;
 
+import java.util.Arrays;
 import java.util.List;
-
-import static java.util.Collections.singletonList;
+import java.util.stream.Collectors;
 
 public class ESACommunicationInterpreter implements CommunicationInterpreter {
 
@@ -14,20 +14,25 @@ public class ESACommunicationInterpreter implements CommunicationInterpreter {
 
     @Override
     public List<NavigationCommand> translateSequence(String commandSequence) {
-        return singletonList(translate(commandSequence));
+        return split(commandSequence).stream().map(this::translate).collect(Collectors.toList());
+    }
+
+    private List<String> split(String commandSequence) {
+        return Arrays.asList(commandSequence.split(""));
     }
 
     private NavigationCommand translate(String command) {
-        if ("l".equals(command)) {
-            return new TurnRightCommand();
-        } else if ("f".equals(command)) {
-            return new TurnLeftCommand();
-        } else if ("b".equals(command)) {
-            return new MoveForwardCommand(MOVEMENT_DELTA);
-        } else if ("x".equals(command)) {
-            return new MoveBackwardCommand(MOVEMENT_DELTA);
-        } else {
-            return new NoOperationCommand();
+        switch (command) {
+            case "l":
+                return new TurnRightCommand();
+            case "f":
+                return new TurnLeftCommand();
+            case "b":
+                return new MoveForwardCommand(MOVEMENT_DELTA);
+            case "x":
+                return new MoveBackwardCommand(MOVEMENT_DELTA);
+            default:
+                return new NoOperationCommand();
         }
     }
 }

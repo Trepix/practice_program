@@ -161,4 +161,13 @@ public class ESAMarsRoverTest {
 
         assertThat(marsRover, is(anESAMarsRover().at(6, 4).facing("W").build()));
     }
+
+    @Test
+    public void receives_multiple_commands() {
+        MarsRover marsRover = anESAMarsRover().at(7, 4).facing("E").build();
+
+        marsRover.receive("bl");
+
+        assertThat(marsRover, is(anESAMarsRover().at(8, 4).facing("S").build()));
+    }
 }
