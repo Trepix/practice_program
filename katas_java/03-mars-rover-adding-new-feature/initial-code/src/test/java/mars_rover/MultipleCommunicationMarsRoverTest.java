@@ -27,6 +27,15 @@ public class MultipleCommunicationMarsRoverTest {
         assertThat(marsRover, is(anyMultiInterpreterMarsRover().build()));
     }
 
+    @Test
+    public void receives_multiple_commands_switching_between_interpreters() {
+        MarsRover marsRover = aMultiInterpreterMarsRover().at(0,0).facing("N").build();
+
+        marsRover.receive("zffkbbklzr");
+
+        assertThat(marsRover, is(aMultiInterpreterMarsRover().at(0, 4).facing("S").build()));
+    }
+
     /*NASA commands*/
 
     @Test
