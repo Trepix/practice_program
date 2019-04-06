@@ -6,7 +6,7 @@ import static mars_rover.MarsRoverBuilder.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class MarsRoverTest {
+public class NASAMarsRoverTest {
 
     @Test
     public void does_nothing_when_receiving_empty_commands_sequence() {

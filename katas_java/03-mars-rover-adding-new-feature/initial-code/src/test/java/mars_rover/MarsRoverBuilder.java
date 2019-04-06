@@ -1,5 +1,6 @@
 package mars_rover;
 
+import mars_rover.interpreters.ESACommunicationInterpreter;
 import mars_rover.interpreters.NASACommunicationInterpreter;
 import mars_rover.navigation.Coordinates;
 import mars_rover.navigation.Direction;
@@ -20,6 +21,13 @@ class MarsRoverBuilder {
                 .at(0, 0)
                 .facing("N")
                 .withNASACommunicationInterpreter();
+    }
+
+    static MarsRoverBuilder anyESAMarsRover() {
+        return new MarsRoverBuilder()
+                .at(0, 0)
+                .facing("N")
+                .withESACommunicationInterpreter();
     }
 
     static MarsRoverBuilder aNASAMarsRoverAnywhere() {
@@ -44,6 +52,11 @@ class MarsRoverBuilder {
 
     private MarsRoverBuilder withNASACommunicationInterpreter() {
         this.communicationInterpreter = new NASACommunicationInterpreter();
+        return this;
+    }
+
+    private MarsRoverBuilder withESACommunicationInterpreter() {
+        this.communicationInterpreter = new ESACommunicationInterpreter();
         return this;
     }
 
