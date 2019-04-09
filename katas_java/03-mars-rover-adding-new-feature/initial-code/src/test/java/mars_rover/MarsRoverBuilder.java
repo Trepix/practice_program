@@ -91,7 +91,7 @@ class MarsRoverBuilder {
     }
 
     MarsRover build() {
-        Navigation navigation = new Navigation(new Coordinates(x,y), Direction.parse(direction));
+        Navigation navigation = new Navigation(new Coordinates(x, y), Direction.parse(direction));
         return new MarsRover(navigation, communicationInterpreter);
     }
 }

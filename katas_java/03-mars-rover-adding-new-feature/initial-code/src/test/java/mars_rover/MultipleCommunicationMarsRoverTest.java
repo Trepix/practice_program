@@ -29,7 +29,7 @@ public class MultipleCommunicationMarsRoverTest {
 
     @Test
     public void receives_multiple_commands_switching_between_interpreters() {
-        MarsRover marsRover = aMultiInterpreterMarsRover().at(0,0).facing("N").build();
+        MarsRover marsRover = aMultiInterpreterMarsRover().at(0, 0).facing("N").build();
 
         marsRover.receive("zffkbbklzr");
 
@@ -46,6 +46,7 @@ public class MultipleCommunicationMarsRoverTest {
 
         assertThat(marsRover, is(aMultiInterpreterMarsRoverAnywhere().facing("E").build()));
     }
+
     @Test
     public void turns_right_when_pointing_east_using_nasa_commands() {
         MarsRover marsRover = aMultiInterpreterMarsRoverAnywhere().facing("E").build();

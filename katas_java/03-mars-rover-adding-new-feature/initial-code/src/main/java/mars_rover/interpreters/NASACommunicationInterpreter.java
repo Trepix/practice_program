@@ -1,7 +1,5 @@
 package mars_rover.interpreters;
 
-
-
 import mars_rover.CommunicationInterpreter;
 import mars_rover.NavigationCommand;
 import mars_rover.commands.*;
