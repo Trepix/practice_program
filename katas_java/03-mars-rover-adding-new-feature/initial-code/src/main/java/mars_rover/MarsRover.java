@@ -7,7 +7,9 @@ import java.util.List;
 
 @ToString(exclude = "communicationInterpreter")
 @EqualsAndHashCode(exclude = "communicationInterpreter")
-class MarsRover {
+public class MarsRover {
+
+    public static final int MOVEMENT_DELTA = 1;
 
     private Navigation navigation;
     private CommunicationInterpreter communicationInterpreter;

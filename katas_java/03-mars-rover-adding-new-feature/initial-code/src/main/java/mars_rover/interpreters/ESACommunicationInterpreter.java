@@ -8,9 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ESACommunicationInterpreter implements CommunicationInterpreter {
+import static mars_rover.MarsRover.MOVEMENT_DELTA;
 
-    private static final int MOVEMENT_DELTA = 1;
+public class ESACommunicationInterpreter implements CommunicationInterpreter {
 
     @Override
     public List<NavigationCommand> translateSequence(String commandSequence) {
