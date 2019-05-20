@@ -3,6 +3,7 @@ package unit_tests;
 import beverages.*;
 import org.junit.Test;
 
+import static beverages.WithMilk.withMilk;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
@@ -34,7 +35,7 @@ public class BeveragesPricingTest {
 
     @Test
     public void computes_coffee_with_milk_price() {
-        Coffee coffeeWithMilk = new WithMilk(new Coffee());
+        Coffee coffeeWithMilk = withMilk(new Coffee());
         assertThat(coffeeWithMilk.price(), is(closeTo(1.30, 0.001)));
     }
 

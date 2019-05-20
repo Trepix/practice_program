@@ -4,8 +4,12 @@ public class WithMilk extends Coffee {
 
     private final Beverage beverage;
 
-    public WithMilk(Beverage beverage) {
+    private WithMilk(Beverage beverage) {
         this.beverage = beverage;
+    }
+
+    public static WithMilk withMilk(Beverage beverage) {
+        return new WithMilk(beverage);
     }
 
     @Override
