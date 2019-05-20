@@ -1,6 +1,8 @@
-package beverages;
+package beverages.toppings;
 
-public class WithMilk implements Beverage{
+import beverages.Beverage;
+
+public class WithMilk implements Beverage {
 
     private final Beverage beverage;
 

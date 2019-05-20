@@ -3,8 +3,8 @@ package unit_tests;
 import beverages.*;
 import org.junit.Test;
 
-import static beverages.WithCream.withCream;
-import static beverages.WithMilk.withMilk;
+import static beverages.toppings.WithCream.withCream;
+import static beverages.toppings.WithMilk.withMilk;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;

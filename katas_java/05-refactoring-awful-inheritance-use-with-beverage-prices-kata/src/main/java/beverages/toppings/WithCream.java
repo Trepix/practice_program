@@ -1,4 +1,6 @@
-package beverages;
+package beverages.toppings;
+
+import beverages.Beverage;
 
 public class WithCream implements Beverage {
 
