@@ -1,6 +1,6 @@
 package beverages;
 
-public class WithMilk extends Coffee {
+public class WithMilk implements Beverage{
 
     private final Beverage beverage;
 
