@@ -59,13 +59,20 @@ public class BeveragesPricingTest {
   }
 
   @Test
-  public void computes_with_cinnamon_topping_price() {
-    Beverage beverageWithCinnamon = withCinnamon(new Beverage() {
-      @Override
-      public double price() {
-        return 0;
-      }
-    });
-    assertThat(beverageWithCinnamon.price(), is(closeTo(0.05, 0.001)));
+  public void computes_coffee_with_cinnamon_price() {
+    Beverage beverageWithCinnamon = withCinnamon(new Coffee());
+    assertThat(beverageWithCinnamon.price(), is(closeTo(1.25, 0.001)));
+  }
+
+  @Test
+  public void computes_tea_with_cinnamon_price() {
+    Beverage beverageWithCinnamon = withCinnamon(new Tea());
+    assertThat(beverageWithCinnamon.price(), is(closeTo(1.55, 0.001)));
+  }
+
+  @Test
+  public void computes_hot_chocolate_with_cinnamon_price() {
+    Beverage beverageWithCinnamon = withCinnamon(new HotChocolate());
+    assertThat(beverageWithCinnamon.price(), is(closeTo(1.50, 0.001)));
   }
 }
