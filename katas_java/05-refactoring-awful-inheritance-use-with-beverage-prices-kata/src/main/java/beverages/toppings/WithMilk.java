@@ -16,6 +16,6 @@ public class WithMilk implements Beverage {
 
     @Override
     public double price() {
-        return this.beverage.price() +  0.10;
+        return this.beverage.price() + 0.10;
     }
 }

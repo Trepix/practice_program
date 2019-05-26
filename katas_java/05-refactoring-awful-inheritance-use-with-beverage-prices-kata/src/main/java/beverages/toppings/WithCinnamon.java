@@ -13,8 +13,9 @@ public class WithCinnamon implements Beverage {
     public static WithCinnamon withCinnamon(Beverage beverage) {
         return new WithCinnamon(beverage);
     }
+
     @Override
     public double price() {
-        return this.beverage.price() +  0.05;
+        return this.beverage.price() + 0.05;
     }
 }
