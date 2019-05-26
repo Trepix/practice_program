@@ -1,13 +1,10 @@
 package unit_tests;
 
 import beverages.Beverage;
-import beverages.HotChocolate;
 import beverages.Menu;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
-import static beverages.toppings.WithCinnamon.withCinnamon;
-import static beverages.toppings.WithCream.withCream;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -27,7 +24,7 @@ public class BeveragesPricingTest {
 
     @Test
     public void computes_hot_chocolate_price() {
-        Beverage hotChocolate = new HotChocolate();
+        Beverage hotChocolate = Menu.hotChocolate().order();
         assertThat(hotChocolate.price(), is(closeTo(1.45)));
     }
 
@@ -51,7 +48,7 @@ public class BeveragesPricingTest {
 
     @Test
     public void computes_hot_chocolate_with_cream_price() {
-        Beverage hotChocolateWithCream = withCream(new HotChocolate());
+        Beverage hotChocolateWithCream = Menu.hotChocolate().withCream().order();
         assertThat(hotChocolateWithCream.price(), is(closeTo(1.60)));
     }
 
@@ -69,7 +66,7 @@ public class BeveragesPricingTest {
 
     @Test
     public void computes_hot_chocolate_with_cinnamon_price() {
-        Beverage beverageWithCinnamon = withCinnamon(new HotChocolate());
+        Beverage beverageWithCinnamon = Menu.hotChocolate().withCinnamon().order();
         assertThat(beverageWithCinnamon.price(), is(closeTo(1.50)));
     }
 
