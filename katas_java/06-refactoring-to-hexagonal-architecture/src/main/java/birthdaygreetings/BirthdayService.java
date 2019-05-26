@@ -30,14 +30,18 @@ public class BirthdayService {
                     employeeData[2], employeeData[3]);
             if (employee.isBirthday(ourDate)) {
                 employeesWhoIsBirthday.add(employee);
-                String recipient = employee.getEmail();
-                String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
-                        employee.getFirstName());
-                String subject = "Happy Birthday!";
-                sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
-                        body, recipient);
+                sendGreetings(smtpHost, smtpPort, employee);
             }
         }
+    }
+
+    private void sendGreetings(String smtpHost, int smtpPort, Employee employee) throws MessagingException {
+        String recipient = employee.getEmail();
+        String body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
+                employee.getFirstName());
+        String subject = "Happy Birthday!";
+        sendMessage(smtpHost, smtpPort, "sender@here.com", subject,
+                body, recipient);
     }
 
     private void sendMessage(String smtpHost, int smtpPort, String sender,
