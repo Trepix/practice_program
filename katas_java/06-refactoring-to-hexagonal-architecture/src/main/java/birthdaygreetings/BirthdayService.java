@@ -1,10 +1,7 @@
 package birthdaygreetings;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.mail.Message;
@@ -20,29 +17,12 @@ public class BirthdayService {
     public void sendGreetings(String fileName, OurDate ourDate,
             String smtpHost, int smtpPort) throws IOException, ParseException,
             AddressException, MessagingException {
-        List<Employee> employeesThatIsHisBirthday = getEmployeesThatIsHisBirthday(ourDate, fileName);
+        EmployeesRepository employeesRepository = new EmployeesRepository(fileName);
+        List<Employee> employeesThatIsHisBirthday = employeesRepository.getWhichIsHisBirthday(ourDate);
 
         for (Employee employee: employeesThatIsHisBirthday) {
             sendGreetings(smtpHost, smtpPort, employee);
         }
-    }
-
-    private List<Employee> getEmployeesThatIsHisBirthday(OurDate ourDate, String fileName) throws IOException, ParseException{
-        BufferedReader in = new BufferedReader(new FileReader(fileName));
-
-        String str = "";
-        str = in.readLine(); // skip header
-
-        List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
-        while ((str = in.readLine()) != null) {
-            String[] employeeData = str.split(", ");
-            Employee employee = new Employee(employeeData[1], employeeData[0],
-                    employeeData[2], employeeData[3]);
-            if (employee.isBirthday(ourDate)) {
-                employeesThatIsHisBirthday.add(employee);
-            }
-        }
-        return employeesThatIsHisBirthday;
     }
 
     private void sendGreetings(String smtpHost, int smtpPort, Employee employee) throws MessagingException {
