@@ -23,15 +23,18 @@ public class BirthdayService {
         BufferedReader in = new BufferedReader(new FileReader(fileName));
         String str = "";
         str = in.readLine(); // skip header
-        List<Employee> employeesWhoIsBirthday = new LinkedList<>();
+        List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
         while ((str = in.readLine()) != null) {
             String[] employeeData = str.split(", ");
             Employee employee = new Employee(employeeData[1], employeeData[0],
                     employeeData[2], employeeData[3]);
             if (employee.isBirthday(ourDate)) {
-                employeesWhoIsBirthday.add(employee);
-                sendGreetings(smtpHost, smtpPort, employee);
+                employeesThatIsHisBirthday.add(employee);
             }
+        }
+
+        for (Employee employee: employeesThatIsHisBirthday) {
+            sendGreetings(smtpHost, smtpPort, employee);
         }
     }
 
