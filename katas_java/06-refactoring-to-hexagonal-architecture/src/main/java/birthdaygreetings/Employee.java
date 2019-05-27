@@ -17,6 +17,15 @@ public class Employee {
         this.email = email;
     }
 
+    public Employee(String firstName, String lastName, OurDate birthDate,
+                    String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.email = email;
+    }
+
+
     public boolean isBirthday(OurDate today) {
         return today.isSameDay(birthDate);
     }
