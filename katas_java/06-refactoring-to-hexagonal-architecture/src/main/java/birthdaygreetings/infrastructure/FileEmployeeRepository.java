@@ -33,7 +33,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
             while ((str = in.readLine()) != null) {
                 String[] employeeData = str.split(", ");
                 Employee employee = new Employee(employeeData[1], employeeData[0],
-                        employeeData[2], employeeData[3]);
+                        new OurDate(employeeData[2]), employeeData[3]);
                 if (employee.isBirthday(ourDate)) {
                     employeesThatIsHisBirthday.add(employee);
                 }
