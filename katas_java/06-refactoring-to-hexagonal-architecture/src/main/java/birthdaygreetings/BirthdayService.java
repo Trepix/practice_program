@@ -16,10 +16,6 @@ public class BirthdayService {
 
     private final EmployeesRepository employeesRepository;
 
-    public BirthdayService(String filename) {
-        this.employeesRepository = new EmployeesRepository(filename);
-    }
-
     public BirthdayService(EmployeesRepository employeesRepository) {
         this.employeesRepository = employeesRepository;
     }
@@ -70,7 +66,7 @@ public class BirthdayService {
     }
 
     public static void main(String[] args) {
-        BirthdayService service = new BirthdayService("employee_data.txt");
+        BirthdayService service = new BirthdayService(new EmployeesRepository("employee_data.txt"));
         try {
             service.sendGreetings(
                     new OurDate("2008/10/08"), "localhost", 25);
