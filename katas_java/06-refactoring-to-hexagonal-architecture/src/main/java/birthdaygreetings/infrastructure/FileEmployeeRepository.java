@@ -1,4 +1,8 @@
-package birthdaygreetings;
+package birthdaygreetings.infrastructure;
+
+import birthdaygreetings.Employee;
+import birthdaygreetings.EmployeeRepository;
+import birthdaygreetings.OurDate;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +11,7 @@ import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class FileEmployeeRepository {
+public class FileEmployeeRepository implements EmployeeRepository {
 
     private final String filename;
 
@@ -15,7 +19,8 @@ public class FileEmployeeRepository {
         this.filename = filename;
     }
 
-    List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws IOException, ParseException {
+    @Override
+    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws IOException, ParseException {
         BufferedReader in = new BufferedReader(new FileReader(filename));
 
         String str = "";

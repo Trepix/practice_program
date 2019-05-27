@@ -1,5 +1,7 @@
 package birthdaygreetings;
 
+import birthdaygreetings.infrastructure.FileEmployeeRepository;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -14,9 +16,9 @@ import javax.mail.internet.MimeMessage;
 
 public class BirthdayService {
 
-    private final FileEmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public BirthdayService(FileEmployeeRepository employeeRepository) {
+    public BirthdayService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 

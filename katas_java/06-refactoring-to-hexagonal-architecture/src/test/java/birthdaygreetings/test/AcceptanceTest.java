@@ -7,7 +7,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 
 import birthdaygreetings.BirthdayService;
-import birthdaygreetings.FileEmployeeRepository;
+import birthdaygreetings.infrastructure.FileEmployeeRepository;
 import birthdaygreetings.OurDate;
 
 import org.junit.Before;
