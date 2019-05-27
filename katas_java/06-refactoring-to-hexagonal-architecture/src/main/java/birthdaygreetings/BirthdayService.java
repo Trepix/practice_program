@@ -23,7 +23,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate ourDate,
-                              String smtpHost, int smtpPort) throws EmployeesNotAvailableException, ParseException,
+                              String smtpHost, int smtpPort) throws EmployeesNotAvailableException,
             AddressException, MessagingException {
         List<Employee> employeesThatIsHisBirthday = employeeRepository.getWhichIsHisBirthday(ourDate);
 

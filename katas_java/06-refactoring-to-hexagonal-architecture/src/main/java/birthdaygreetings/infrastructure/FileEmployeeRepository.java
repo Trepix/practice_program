@@ -21,7 +21,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotAvailableException, ParseException {
+    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotAvailableException {
 
 
         try {
@@ -39,7 +39,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
                 }
             }
             return employeesThatIsHisBirthday;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new EmployeesNotAvailableException(e);
         }
     }
