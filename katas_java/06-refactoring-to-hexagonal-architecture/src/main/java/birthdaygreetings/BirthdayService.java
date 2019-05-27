@@ -20,6 +20,10 @@ public class BirthdayService {
         this.employeesRepository = new EmployeesRepository(filename);
     }
 
+    public BirthdayService(EmployeesRepository employeesRepository) {
+        this.employeesRepository = employeesRepository;
+    }
+
     public void sendGreetings(OurDate ourDate,
                               String smtpHost, int smtpPort) throws IOException, ParseException,
             AddressException, MessagingException {
