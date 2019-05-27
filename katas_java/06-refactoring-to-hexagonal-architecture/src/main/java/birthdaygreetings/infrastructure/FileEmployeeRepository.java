@@ -2,6 +2,7 @@ package birthdaygreetings.infrastructure;
 
 import birthdaygreetings.Employee;
 import birthdaygreetings.EmployeeRepository;
+import birthdaygreetings.EmployeesNotAvailableException;
 import birthdaygreetings.OurDate;
 
 import java.io.BufferedReader;
@@ -20,21 +21,26 @@ public class FileEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws IOException, ParseException {
-        BufferedReader in = new BufferedReader(new FileReader(filename));
+    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotAvailableException, ParseException {
 
-        String str = "";
-        str = in.readLine(); // skip header
 
-        List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
-        while ((str = in.readLine()) != null) {
-            String[] employeeData = str.split(", ");
-            Employee employee = new Employee(employeeData[1], employeeData[0],
-                    employeeData[2], employeeData[3]);
-            if (employee.isBirthday(ourDate)) {
-                employeesThatIsHisBirthday.add(employee);
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(filename));
+            String str = "";
+            str = in.readLine(); // skip header
+
+            List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
+            while ((str = in.readLine()) != null) {
+                String[] employeeData = str.split(", ");
+                Employee employee = new Employee(employeeData[1], employeeData[0],
+                        employeeData[2], employeeData[3]);
+                if (employee.isBirthday(ourDate)) {
+                    employeesThatIsHisBirthday.add(employee);
+                }
             }
+            return employeesThatIsHisBirthday;
+        } catch (IOException e) {
+            throw new EmployeesNotAvailableException(e);
         }
-        return employeesThatIsHisBirthday;
     }
 }
