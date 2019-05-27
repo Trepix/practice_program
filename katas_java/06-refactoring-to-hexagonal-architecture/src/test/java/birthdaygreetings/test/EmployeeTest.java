@@ -7,11 +7,13 @@ import birthdaygreetings.OurDate;
 
 import org.junit.Test;
 
+import java.text.ParseException;
+
 public class EmployeeTest {
 
     @Test
     public void testBirthday() throws Exception {
-        Employee employee = new Employee("foo", "bar", "1990/01/31", "a@b.c");
+        Employee employee = createEmployee("foo", "bar", "1990/01/31", "a@b.c");
         assertFalse("not his birthday",
                 employee.isBirthday(new OurDate("2008/01/30")));
         assertTrue("his birthday",
@@ -20,16 +22,20 @@ public class EmployeeTest {
 
     @Test
     public void equality() throws Exception {
-        Employee base = new Employee("First", "Last", "1999/09/01",
+        Employee base = createEmployee("First", "Last", "1999/09/01",
                 "first@last.com");
-        Employee same = new Employee("First", "Last", "1999/09/01",
+        Employee same = createEmployee("First", "Last", "1999/09/01",
                 "first@last.com");
-        Employee different = new Employee("First", "Last", "1999/09/01",
+        Employee different = createEmployee("First", "Last", "1999/09/01",
                 "boom@boom.com");
 
         assertFalse(base.equals(null));
         assertFalse(base.equals(""));
         assertTrue(base.equals(same));
         assertFalse(base.equals(different));
+    }
+
+    private Employee createEmployee(String firstName, String lastName, String birthDate, String email) throws ParseException {
+        return new Employee(firstName, lastName, new OurDate(birthDate), email);
     }
 }
