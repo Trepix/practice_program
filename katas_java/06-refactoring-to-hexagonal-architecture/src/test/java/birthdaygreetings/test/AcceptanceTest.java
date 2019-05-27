@@ -7,7 +7,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 
 import birthdaygreetings.BirthdayService;
-import birthdaygreetings.EmployeeRepository;
+import birthdaygreetings.FileEmployeeRepository;
 import birthdaygreetings.OurDate;
 
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class AcceptanceTest {
     public void setUp() throws Exception {
         messagesSent = new ArrayList<Message>();
 
-        service = new BirthdayService(new EmployeeRepository("src/test/resources/employee_data.txt")) {
+        service = new BirthdayService(new FileEmployeeRepository("src/test/resources/employee_data.txt")) {
             @Override
             protected void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);

@@ -14,9 +14,9 @@ import javax.mail.internet.MimeMessage;
 
 public class BirthdayService {
 
-    private final EmployeeRepository employeeRepository;
+    private final FileEmployeeRepository employeeRepository;
 
-    public BirthdayService(EmployeeRepository employeeRepository) {
+    public BirthdayService(FileEmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -66,7 +66,7 @@ public class BirthdayService {
     }
 
     public static void main(String[] args) {
-        BirthdayService service = new BirthdayService(new EmployeeRepository("employee_data.txt"));
+        BirthdayService service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try {
             service.sendGreetings(
                     new OurDate("2008/10/08"), "localhost", 25);

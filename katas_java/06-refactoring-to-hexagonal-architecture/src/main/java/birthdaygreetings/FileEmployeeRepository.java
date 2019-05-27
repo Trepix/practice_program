@@ -7,11 +7,11 @@ import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmployeeRepository {
+public class FileEmployeeRepository {
 
     private final String filename;
 
-    public EmployeeRepository(String filename) {
+    public FileEmployeeRepository(String filename) {
         this.filename = filename;
     }
 
