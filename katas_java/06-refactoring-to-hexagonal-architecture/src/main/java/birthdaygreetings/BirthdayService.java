@@ -2,8 +2,6 @@ package birthdaygreetings;
 
 import birthdaygreetings.infrastructure.FileEmployeeRepository;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.mail.Message;
@@ -23,7 +21,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate ourDate,
-                              String smtpHost, int smtpPort) throws EmployeesNotAvailableException,
+                              String smtpHost, int smtpPort) throws EmployeesNotRetriableException,
             AddressException, MessagingException {
         List<Employee> employeesThatIsHisBirthday = employeeRepository.getWhichIsHisBirthday(ourDate);
 

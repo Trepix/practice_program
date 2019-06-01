@@ -2,13 +2,12 @@ package birthdaygreetings.infrastructure;
 
 import birthdaygreetings.Employee;
 import birthdaygreetings.EmployeeRepository;
-import birthdaygreetings.EmployeesNotAvailableException;
+import birthdaygreetings.EmployeesNotRetriableException;
 import birthdaygreetings.OurDate;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,14 +20,12 @@ public class FileEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotAvailableException {
-
-
+    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotRetriableException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
-            String str = "";
-            str = in.readLine(); // skip header
+            skipHeader(in);
 
+            String str;
             List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
             while ((str = in.readLine()) != null) {
                 String[] employeeData = str.split(", ");
@@ -40,7 +37,11 @@ public class FileEmployeeRepository implements EmployeeRepository {
             }
             return employeesThatIsHisBirthday;
         } catch (Exception e) {
-            throw new EmployeesNotAvailableException(e);
+            throw new EmployeesNotRetriableException(e);
         }
+    }
+
+    private void skipHeader(BufferedReader in) throws IOException {
+        in.readLine();
     }
 }
