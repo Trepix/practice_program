@@ -37,6 +37,6 @@ public class EmployeeTest {
     }
 
     private Employee createEmployee(String firstName, String lastName, String birthDate, String email) throws ParseException {
-        return new Employee(firstName, lastName, OurDateFactory.create(birthDate), email);
+        return new Employee(firstName, lastName, OurDateFactory.createFromDateSeparatedBySlash(birthDate), email);
     }
 }

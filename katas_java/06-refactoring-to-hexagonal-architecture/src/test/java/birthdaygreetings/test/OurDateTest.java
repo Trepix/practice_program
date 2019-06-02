@@ -10,17 +10,17 @@ import org.junit.Test;
 public class OurDateTest {
     @Test
     public void getters() throws Exception {
-        OurDate ourDate = create("1789/01/24");
+        OurDate ourDate = createFromDateSeparatedBySlash("1789/01/24");
         assertEquals(1, ourDate.getMonth());
         assertEquals(24, ourDate.getDay());
     }
 
     @Test
     public void isSameDate() throws Exception {
-        OurDate ourDate = create("1789/01/24");
-        OurDate sameDay = create("2001/01/24");
-        OurDate notSameDay = create("1789/01/25");
-        OurDate notSameMonth = create("1789/02/25");
+        OurDate ourDate = createFromDateSeparatedBySlash("1789/01/24");
+        OurDate sameDay = createFromDateSeparatedBySlash("2001/01/24");
+        OurDate notSameDay = createFromDateSeparatedBySlash("1789/01/25");
+        OurDate notSameMonth = createFromDateSeparatedBySlash("1789/02/25");
 
         assertTrue("same", ourDate.isSameDay(sameDay));
         assertFalse("not same day", ourDate.isSameDay(notSameDay));
@@ -29,9 +29,9 @@ public class OurDateTest {
 
     @Test
     public void equality() throws Exception {
-        OurDate base = create("2000/01/02");
-        OurDate same = create("2000/01/02");
-        OurDate different = create("2000/01/04");
+        OurDate base = createFromDateSeparatedBySlash("2000/01/02");
+        OurDate same = createFromDateSeparatedBySlash("2000/01/02");
+        OurDate different = createFromDateSeparatedBySlash("2000/01/04");
         
         assertFalse(base.equals(null));
         assertFalse(base.equals(""));

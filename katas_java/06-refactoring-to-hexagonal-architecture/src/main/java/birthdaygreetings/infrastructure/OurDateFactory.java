@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class OurDateFactory {
 
-    public static OurDate create(String date) throws ParseException {
+    public static OurDate createFromDateSeparatedBySlash(String date) throws ParseException {
         return new OurDate(new SimpleDateFormat("yyyy/MM/dd").parse(date));
     }
 }
