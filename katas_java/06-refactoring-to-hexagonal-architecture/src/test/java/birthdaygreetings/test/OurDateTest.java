@@ -1,6 +1,6 @@
 package birthdaygreetings.test;
 
-import static birthdaygreetings.test.OurDateFactory.*;
+import static birthdaygreetings.infrastructure.OurDateFactory.*;
 import static org.junit.Assert.*;
 
 import birthdaygreetings.OurDate;

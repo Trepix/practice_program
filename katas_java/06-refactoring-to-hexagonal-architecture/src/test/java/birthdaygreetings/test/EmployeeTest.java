@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import birthdaygreetings.Employee;
 import birthdaygreetings.OurDate;
 
+import birthdaygreetings.infrastructure.OurDateFactory;
 import org.junit.Test;
 
 import java.text.ParseException;

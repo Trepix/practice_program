@@ -1,4 +1,4 @@
-package birthdaygreetings.test;
+package birthdaygreetings.infrastructure;
 
 import birthdaygreetings.OurDate;
 

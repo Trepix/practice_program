@@ -8,8 +8,8 @@ import javax.mail.MessagingException;
 
 import birthdaygreetings.BirthdayService;
 import birthdaygreetings.infrastructure.FileEmployeeRepository;
-import birthdaygreetings.OurDate;
 
+import birthdaygreetings.infrastructure.OurDateFactory;
 import org.junit.Before;
 import org.junit.Test;
 
