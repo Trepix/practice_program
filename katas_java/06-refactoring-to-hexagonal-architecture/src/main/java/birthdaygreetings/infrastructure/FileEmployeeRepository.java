@@ -10,8 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static birthdaygreetings.infrastructure.OurDateFactory.*;
 import static java.util.stream.Collectors.*;
 
 public class FileEmployeeRepository implements EmployeeRepository {
@@ -24,25 +24,26 @@ public class FileEmployeeRepository implements EmployeeRepository {
 
     @Override
     public List<Employee> findWhoseBirthdayIsAt(OurDate date) throws EmployeesNotRetrievableException {
-        return findEmployees(date).stream().filter(x -> x.isBirthday(date)).collect(toList());
+        return getAllEmployees()
+                .stream()
+                .filter(x -> x.isBirthday(date))
+                .collect(toList());
     }
 
-    private List<Employee> findEmployees(OurDate date) throws EmployeesNotRetrievableException {
+    private List<Employee> getAllEmployees() throws EmployeesNotRetrievableException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             skipHeader(in);
 
             String str;
-            List<Employee> employeesWhoseBirthdayIsAtDate = new LinkedList<>();
+            List<Employee> allEmployees = new LinkedList<>();
             while ((str = in.readLine()) != null) {
                 String[] employeeData = str.split(", ");
                 Employee employee = new Employee(employeeData[1], employeeData[0],
-                        OurDateFactory.createFromDateSeparatedBySlash(employeeData[2]), employeeData[3]);
-                if (employee.isBirthday(date)) {
-                    employeesWhoseBirthdayIsAtDate.add(employee);
-                }
+                        createFromDateSeparatedBySlash(employeeData[2]), employeeData[3]);
+                allEmployees.add(employee);
             }
-            return employeesWhoseBirthdayIsAtDate;
+            return allEmployees;
         } catch (Exception e) {
             throw new EmployeesNotRetrievableException(e);
         }
