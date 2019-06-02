@@ -16,9 +16,9 @@ public class EmployeeTest {
     public void testBirthday() throws Exception {
         Employee employee = createEmployee("foo", "bar", "1990/01/31", "a@b.c");
         assertFalse("not his birthday",
-                employee.isBirthday(new OurDate("2008/01/30")));
+                employee.isBirthday(OurDateFactory.createFromDateSeparatedBySlash("2008/01/30")));
         assertTrue("his birthday",
-                employee.isBirthday(new OurDate("2008/01/31")));
+                employee.isBirthday(OurDateFactory.createFromDateSeparatedBySlash("2008/01/31")));
     }
 
     @Test
