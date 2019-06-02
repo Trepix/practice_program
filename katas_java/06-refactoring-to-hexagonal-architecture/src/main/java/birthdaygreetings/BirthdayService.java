@@ -1,6 +1,7 @@
 package birthdaygreetings;
 
 import birthdaygreetings.infrastructure.FileEmployeeRepository;
+import birthdaygreetings.infrastructure.OurDateFactory;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class BirthdayService {
         BirthdayService service = new BirthdayService(new FileEmployeeRepository("employee_data.txt"));
         try {
             service.sendGreetings(
-                    new OurDate("2008/10/08"), "localhost", 25);
+                    OurDateFactory.createFromDateSeparatedBySlash("2008/10/08"), "localhost", 25);
         } catch (Exception e) {
             e.printStackTrace();
         }

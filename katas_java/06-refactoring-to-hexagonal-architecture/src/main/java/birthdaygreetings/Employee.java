@@ -7,8 +7,7 @@ public class Employee {
     private String firstName;
     private String email;
 
-    public Employee(String firstName, String lastName, OurDate birthDate,
-                    String email) {
+    public Employee(String firstName, String lastName, OurDate birthDate, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
