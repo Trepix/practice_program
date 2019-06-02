@@ -21,6 +21,10 @@ public class FileEmployeeRepository implements EmployeeRepository {
 
     @Override
     public List<Employee> findWhoseBirthdayIsAt(OurDate date) throws EmployeesNotRetrievableException {
+        return findEmployees(date);
+    }
+
+    private List<Employee> findEmployees(OurDate date) throws EmployeesNotRetrievableException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             skipHeader(in);
