@@ -22,7 +22,7 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate ourDate,
-                              String smtpHost, int smtpPort) throws EmployeesNotRetriableException,
+                              String smtpHost, int smtpPort) throws EmployeesNotRetrievableException,
             AddressException, MessagingException {
         List<Employee> employeesThatIsHisBirthday = employeeRepository.getWhichIsHisBirthday(ourDate);
 

@@ -2,13 +2,12 @@ package birthdaygreetings.infrastructure;
 
 import birthdaygreetings.Employee;
 import birthdaygreetings.EmployeeRepository;
-import birthdaygreetings.EmployeesNotRetriableException;
+import birthdaygreetings.EmployeesNotRetrievableException;
 import birthdaygreetings.OurDate;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotRetriableException {
+    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotRetrievableException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             skipHeader(in);
@@ -38,7 +37,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
             }
             return employeesThatIsHisBirthday;
         } catch (Exception e) {
-            throw new EmployeesNotRetriableException(e);
+            throw new EmployeesNotRetrievableException(e);
         }
     }
 
