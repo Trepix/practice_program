@@ -10,6 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.*;
 
 public class FileEmployeeRepository implements EmployeeRepository {
 
@@ -21,7 +24,7 @@ public class FileEmployeeRepository implements EmployeeRepository {
 
     @Override
     public List<Employee> findWhoseBirthdayIsAt(OurDate date) throws EmployeesNotRetrievableException {
-        return findEmployees(date);
+        return findEmployees(date).stream().filter(x -> x.isBirthday(date)).collect(toList());
     }
 
     private List<Employee> findEmployees(OurDate date) throws EmployeesNotRetrievableException {
