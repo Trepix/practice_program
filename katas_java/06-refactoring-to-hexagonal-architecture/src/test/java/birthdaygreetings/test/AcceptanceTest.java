@@ -6,7 +6,7 @@ import java.util.List;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 
-import birthdaygreetings.BirthdayService;
+import birthdaygreetings.application.BirthdayService;
 import birthdaygreetings.infrastructure.FileEmployeeRepository;
 
 import birthdaygreetings.infrastructure.OurDateFactory;

@@ -1,8 +1,7 @@
 package cli;
 
-import birthdaygreetings.BirthdayService;
+import birthdaygreetings.application.BirthdayService;
 import birthdaygreetings.infrastructure.FileEmployeeRepository;
-import birthdaygreetings.infrastructure.OurDateFactory;
 
 import static birthdaygreetings.infrastructure.OurDateFactory.*;
 
