@@ -1,6 +1,6 @@
 package birthdaygreetings.infrastructure;
 
-import birthdaygreetings.OurDate;
+import birthdaygreetings.domain.OurDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

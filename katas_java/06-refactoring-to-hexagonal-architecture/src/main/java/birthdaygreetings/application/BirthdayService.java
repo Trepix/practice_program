@@ -1,11 +1,9 @@
 package birthdaygreetings.application;
 
-import birthdaygreetings.Employee;
-import birthdaygreetings.EmployeeRepository;
-import birthdaygreetings.EmployeesNotRetrievableException;
-import birthdaygreetings.OurDate;
-import birthdaygreetings.infrastructure.FileEmployeeRepository;
-import birthdaygreetings.infrastructure.OurDateFactory;
+import birthdaygreetings.domain.Employee;
+import birthdaygreetings.domain.EmployeeRepository;
+import birthdaygreetings.domain.EmployeesNotRetrievableException;
+import birthdaygreetings.domain.OurDate;
 
 import java.util.List;
 

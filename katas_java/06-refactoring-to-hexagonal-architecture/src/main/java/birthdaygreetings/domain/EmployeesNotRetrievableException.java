@@ -1,4 +1,4 @@
-package birthdaygreetings;
+package birthdaygreetings.domain;
 
 public class EmployeesNotRetrievableException extends Exception {
 
