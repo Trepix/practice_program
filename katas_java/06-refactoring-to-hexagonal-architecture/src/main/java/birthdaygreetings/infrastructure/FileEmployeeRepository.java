@@ -20,22 +20,22 @@ public class FileEmployeeRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getWhichIsHisBirthday(OurDate ourDate) throws EmployeesNotRetrievableException {
+    public List<Employee> findWhoseBirthdayIsAt(OurDate date) throws EmployeesNotRetrievableException {
         try {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             skipHeader(in);
 
             String str;
-            List<Employee> employeesThatIsHisBirthday = new LinkedList<>();
+            List<Employee> employeesWhoseBirthdayIsAtDate = new LinkedList<>();
             while ((str = in.readLine()) != null) {
                 String[] employeeData = str.split(", ");
                 Employee employee = new Employee(employeeData[1], employeeData[0],
                         OurDateFactory.createFromDateSeparatedBySlash(employeeData[2]), employeeData[3]);
-                if (employee.isBirthday(ourDate)) {
-                    employeesThatIsHisBirthday.add(employee);
+                if (employee.isBirthday(date)) {
+                    employeesWhoseBirthdayIsAtDate.add(employee);
                 }
             }
-            return employeesThatIsHisBirthday;
+            return employeesWhoseBirthdayIsAtDate;
         } catch (Exception e) {
             throw new EmployeesNotRetrievableException(e);
         }

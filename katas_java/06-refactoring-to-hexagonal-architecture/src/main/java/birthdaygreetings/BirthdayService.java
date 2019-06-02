@@ -21,12 +21,12 @@ public class BirthdayService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void sendGreetings(OurDate ourDate,
+    public void sendGreetings(OurDate date,
                               String smtpHost, int smtpPort) throws EmployeesNotRetrievableException,
             AddressException, MessagingException {
-        List<Employee> employeesThatIsHisBirthday = employeeRepository.getWhichIsHisBirthday(ourDate);
+        List<Employee> employeesWhoseBirthdayIsAtDate = employeeRepository.findWhoseBirthdayIsAt(date);
 
-        for (Employee employee: employeesThatIsHisBirthday) {
+        for (Employee employee: employeesWhoseBirthdayIsAtDate) {
             sendGreetings(smtpHost, smtpPort, employee);
         }
     }
