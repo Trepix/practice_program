@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,11 +34,10 @@ public class CsvFileEmployeeRepository implements EmployeeRepository {
 
     private List<Employee> getAllEmployees() throws EmployeesNotRetrievableException {
         try {
-            BufferedReader in = getReaderSkippingHeader();
-            String row;
+            Iterator<String> iterator = getIteratorSkippingHeader();
             List<Employee> employees = new LinkedList<>();
-            while ((row = in.readLine()) != null) {
-                Employee employee = createEmployeeFromRow(row);
+            while (iterator.hasNext()) {
+                Employee employee = createEmployeeFromRow(iterator.next());
                 employees.add(employee);
             }
             return employees;
@@ -46,10 +46,10 @@ public class CsvFileEmployeeRepository implements EmployeeRepository {
         }
     }
 
-    private BufferedReader getReaderSkippingHeader() throws IOException {
+    private Iterator<String> getIteratorSkippingHeader() throws IOException {
         BufferedReader in = new BufferedReader(new FileReader(filename));
         skipHeader(in);
-        return in;
+        return in.lines().iterator();
     }
 
     private void skipHeader(BufferedReader in) throws IOException {
