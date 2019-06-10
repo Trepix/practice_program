@@ -36,13 +36,13 @@ public class CsvFileEmployeeRepository implements EmployeeRepository {
             BufferedReader in = new BufferedReader(new FileReader(filename));
             skipHeader(in);
 
-            String str;
-            List<Employee> allEmployees = new LinkedList<>();
-            while ((str = in.readLine()) != null) {
-                Employee employee = createEmployeeFromRow(str);
-                allEmployees.add(employee);
+            String row;
+            List<Employee> employees = new LinkedList<>();
+            while ((row = in.readLine()) != null) {
+                Employee employee = createEmployeeFromRow(row);
+                employees.add(employee);
             }
-            return allEmployees;
+            return employees;
         } catch (Exception e) {
             throw new EmployeesNotRetrievableException(e);
         }
