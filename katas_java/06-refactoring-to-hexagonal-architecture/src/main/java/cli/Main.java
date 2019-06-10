@@ -1,7 +1,7 @@
 package cli;
 
 import birthdaygreetings.application.BirthdayService;
-import birthdaygreetings.infrastructure.FileEmployeeRepository;
+import birthdaygreetings.infrastructure.CsvFileEmployeeRepository;
 
 import static birthdaygreetings.infrastructure.OurDateFactory.*;
 
@@ -13,7 +13,7 @@ public class Main {
     private static final String FILE_WITH_EMPLOYEES = "employee_data.txt";
 
     public static void main(String[] args) {
-        BirthdayService service = new BirthdayService(new FileEmployeeRepository(FILE_WITH_EMPLOYEES));
+        BirthdayService service = new BirthdayService(new CsvFileEmployeeRepository(FILE_WITH_EMPLOYEES));
         try {
             service.sendGreetings(createFromDateSeparatedBySlash(DATE), SMTP_HOST, SMTP_PORT);
         } catch (Exception e) {

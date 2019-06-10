@@ -14,11 +14,11 @@ import java.util.List;
 import static birthdaygreetings.infrastructure.OurDateFactory.*;
 import static java.util.stream.Collectors.*;
 
-public class FileEmployeeRepository implements EmployeeRepository {
+public class CsvFileEmployeeRepository implements EmployeeRepository {
 
     private final String filename;
 
-    public FileEmployeeRepository(String filename) {
+    public CsvFileEmployeeRepository(String filename) {
         this.filename = filename;
     }
 
