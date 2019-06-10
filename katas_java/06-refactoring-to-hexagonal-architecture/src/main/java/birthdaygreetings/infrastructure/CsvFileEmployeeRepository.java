@@ -33,9 +33,7 @@ public class CsvFileEmployeeRepository implements EmployeeRepository {
 
     private List<Employee> getAllEmployees() throws EmployeesNotRetrievableException {
         try {
-            BufferedReader in = new BufferedReader(new FileReader(filename));
-            skipHeader(in);
-
+            BufferedReader in = getReaderSkippingHeader();
             String row;
             List<Employee> employees = new LinkedList<>();
             while ((row = in.readLine()) != null) {
@@ -46,6 +44,12 @@ public class CsvFileEmployeeRepository implements EmployeeRepository {
         } catch (Exception e) {
             throw new EmployeesNotRetrievableException(e);
         }
+    }
+
+    private BufferedReader getReaderSkippingHeader() throws IOException {
+        BufferedReader in = new BufferedReader(new FileReader(filename));
+        skipHeader(in);
+        return in;
     }
 
     private void skipHeader(BufferedReader in) throws IOException {
