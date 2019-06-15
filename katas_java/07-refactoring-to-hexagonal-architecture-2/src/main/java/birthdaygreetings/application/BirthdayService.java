@@ -4,6 +4,7 @@ import birthdaygreetings.core.Employee;
 import birthdaygreetings.core.EmployeesRepository;
 import birthdaygreetings.core.GreetingMessage;
 import birthdaygreetings.core.OurDate;
+import birthdaygreetings.infrastructure.senders.GreetingsSender;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -21,7 +22,7 @@ public class BirthdayService {
         this.employeesRepository = employeesRepository;
     }
 
-    public void sendGreetings(OurDate date, String smtpHost, int smtpPort, String sender) throws MessagingException {
+    public void sendGreetings(OurDate date, String smtpHost, int smtpPort, String sender)  throws MessagingException {
 
         send(greetingMessagesFor(employeesHavingBirthday(date)),
             smtpHost, smtpPort, sender);
@@ -67,7 +68,7 @@ public class BirthdayService {
 
     // made protected for testing :-(
     protected void sendMessage(Message msg) throws MessagingException {
-        Transport.send(msg);
+        new GreetingsSender().sendMessage(msg);
     }
 
 }
