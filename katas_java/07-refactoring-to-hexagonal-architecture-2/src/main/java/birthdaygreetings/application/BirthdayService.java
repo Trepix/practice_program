@@ -16,9 +16,11 @@ import java.util.List;
 
 public class BirthdayService {
 
+    private final GreetingsSender greetingsSender;
     private EmployeesRepository employeesRepository;
 
     public BirthdayService(EmployeesRepository employeesRepository) {
+        this.greetingsSender = new GreetingsSender();
         this.employeesRepository = employeesRepository;
     }
 
@@ -68,7 +70,7 @@ public class BirthdayService {
 
     // made protected for testing :-(
     protected void sendMessage(Message msg) throws MessagingException {
-        new GreetingsSender().sendMessage(msg);
+        this.greetingsSender.sendMessage(msg);
     }
 
 }
