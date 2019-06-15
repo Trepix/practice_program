@@ -19,8 +19,8 @@ public class BirthdayService {
     private final GreetingsSender greetingsSender;
     private EmployeesRepository employeesRepository;
 
-    public BirthdayService(EmployeesRepository employeesRepository) {
-        this.greetingsSender = new GreetingsSender();
+    public BirthdayService(GreetingsSender greetingsSender, EmployeesRepository employeesRepository) {
+        this.greetingsSender = greetingsSender;
         this.employeesRepository = employeesRepository;
     }
 
