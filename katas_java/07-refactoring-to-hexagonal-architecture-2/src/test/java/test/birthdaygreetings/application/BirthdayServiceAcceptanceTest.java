@@ -27,13 +27,13 @@ public class BirthdayServiceAcceptanceTest {
     @Before
     public void setUp() throws Exception {
         messagesSent = new ArrayList<>();
-
-        service = new BirthdayService(new GreetingsSender(), new FileEmployeesRepository(EMPLOYEES_FILE_PATH)) {
+        GreetingsSender greetingsSender = new GreetingsSender() {
             @Override
-            protected void sendMessage(Message msg) throws MessagingException {
+            public void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);
             }
         };
+        service = new BirthdayService( greetingsSender, new FileEmployeesRepository(EMPLOYEES_FILE_PATH));
     }
 
     @Test
