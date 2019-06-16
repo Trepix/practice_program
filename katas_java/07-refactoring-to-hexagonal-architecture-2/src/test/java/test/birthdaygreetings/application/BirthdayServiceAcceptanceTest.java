@@ -40,7 +40,7 @@ public class BirthdayServiceAcceptanceTest {
     public void baseScenario() throws Exception {
         OurDate today = ourDateFromString("2008/10/08");
 
-        service.sendGreetings(today, SMTP_HOST, SMTP_PORT, FROM);
+        service.sendGreetings(today);
 
         assertEquals("message not sent?", 1, messagesSent.size());
         Message message = messagesSent.get(0);
@@ -54,7 +54,7 @@ public class BirthdayServiceAcceptanceTest {
     public void willNotSendEmailsWhenNobodysBirthday() throws Exception {
         OurDate today = ourDateFromString("2008/01/01");
 
-        service.sendGreetings(today, SMTP_HOST, SMTP_PORT, FROM);
+        service.sendGreetings(today);
 
         assertEquals(0, messagesSent.size());
     }

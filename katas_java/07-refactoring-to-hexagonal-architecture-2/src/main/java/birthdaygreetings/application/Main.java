@@ -19,7 +19,7 @@ public class Main {
                 new FileEmployeesRepository(EMPLOYEES_FILE_PATH));
         try {
             OurDate today = new OurDate(new Date());
-            service.sendGreetings(today, HOST, SMTP_PORT, SENDER_EMAIL_ADDRESS);
+            service.sendGreetings(today);
         } catch (Exception e) {
             e.printStackTrace();
         }

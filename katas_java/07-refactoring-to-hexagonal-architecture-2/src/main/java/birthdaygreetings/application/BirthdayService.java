@@ -19,10 +19,8 @@ public class BirthdayService {
         this.employeesRepository = employeesRepository;
     }
 
-    public void sendGreetings(OurDate date, String smtpHost, int smtpPort, String sender)  throws MessagingException {
-
-        send(greetingMessagesFor(employeesHavingBirthday(date)),
-            smtpHost, smtpPort, sender);
+    public void sendGreetings(OurDate date) throws MessagingException {
+        send(greetingMessagesFor(employeesHavingBirthday(date)));
     }
 
     private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
@@ -33,7 +31,7 @@ public class BirthdayService {
         return employeesRepository.whoseBirthdayIs(today);
     }
 
-    private void send(List<GreetingMessage> messages, String smtpHost, int smtpPort, String sender) throws MessagingException {
+    private void send(List<GreetingMessage> messages) throws MessagingException {
         for (GreetingMessage message : messages) {
             String recipient = message.to();
             String body = message.text();
@@ -41,7 +39,6 @@ public class BirthdayService {
             greetingsSender.sendMessage(subject, body, recipient);
         }
     }
-
 
 
 }
