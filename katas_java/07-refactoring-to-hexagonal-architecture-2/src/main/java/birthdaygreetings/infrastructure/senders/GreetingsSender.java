@@ -19,8 +19,7 @@ public class GreetingsSender {
         this.sender = sender;
     }
 
-    public void sendMessage(String smtpHost, int smtpPort, String sender,
-                             String subject, String body, String recipient)
+    public void sendMessage(String subject, String body, String recipient)
             throws MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();

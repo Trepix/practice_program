@@ -6,12 +6,7 @@ import birthdaygreetings.core.GreetingMessage;
 import birthdaygreetings.core.OurDate;
 import birthdaygreetings.infrastructure.senders.GreetingsSender;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.util.List;
 
 public class BirthdayService {
@@ -43,7 +38,7 @@ public class BirthdayService {
             String recipient = message.to();
             String body = message.text();
             String subject = message.subject();
-            greetingsSender.sendMessage(smtpHost, smtpPort, sender, subject, body, recipient);
+            greetingsSender.sendMessage(subject, body, recipient);
         }
     }
 
