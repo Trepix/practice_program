@@ -27,7 +27,7 @@ public class BirthdayServiceAcceptanceTest {
     @Before
     public void setUp() throws Exception {
         messagesSent = new ArrayList<>();
-        GreetingsSender greetingsSender = new GreetingsSender() {
+        GreetingsSender greetingsSender = new GreetingsSender(SMTP_HOST) {
             @Override
             public void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);

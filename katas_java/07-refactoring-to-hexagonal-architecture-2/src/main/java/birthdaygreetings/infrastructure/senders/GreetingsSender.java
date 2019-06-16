@@ -9,12 +9,18 @@ import javax.mail.internet.MimeMessage;
 
 public class GreetingsSender {
 
+    private final String smtpHost;
+
+    public GreetingsSender(String smptHost) {
+        this.smtpHost = smptHost;
+    }
+
     public void sendMessage(String smtpHost, int smtpPort, String sender,
                              String subject, String body, String recipient)
             throws MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
-        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.host", this.smtpHost);
         props.put("mail.smtp.port", "" + smtpPort);
         Session session = Session.getDefaultInstance(props, null);
 
