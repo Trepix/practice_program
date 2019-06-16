@@ -1,5 +1,6 @@
 package birthdaygreetings.infrastructure.senders;
 
+import birthdaygreetings.core.CannotSendGreetingsException;
 import birthdaygreetings.core.GreetingMessage;
 
 import javax.mail.Message;
@@ -21,8 +22,14 @@ public class GreetingsSender {
         this.sender = sender;
     }
 
-    public void sendMessage(GreetingMessage greetingMessage) throws MessagingException {
-        sendMessage(greetingMessage.subject(), greetingMessage.text(), greetingMessage.to());
+    public void sendMessage(GreetingMessage greetingMessage) {
+        try {
+            sendMessage(greetingMessage.subject(), greetingMessage.text(), greetingMessage.to());
+        }
+        catch (MessagingException e) {
+            throw new CannotSendGreetingsException("", e);
+        }
+
     }
 
     private void sendMessage(String subject, String body, String recipient)
