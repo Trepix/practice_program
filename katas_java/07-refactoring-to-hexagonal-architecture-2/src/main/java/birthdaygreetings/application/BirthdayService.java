@@ -6,7 +6,6 @@ import birthdaygreetings.core.GreetingMessage;
 import birthdaygreetings.core.OurDate;
 import birthdaygreetings.infrastructure.senders.GreetingsSender;
 
-import javax.mail.MessagingException;
 import java.util.List;
 
 public class BirthdayService {
@@ -19,7 +18,7 @@ public class BirthdayService {
         this.employeesRepository = employeesRepository;
     }
 
-    public void sendGreetings(OurDate date) throws MessagingException {
+    public void sendGreetings(OurDate date) {
         send(greetingMessagesFor(employeesHavingBirthday(date)));
     }
 
@@ -31,7 +30,7 @@ public class BirthdayService {
         return employeesRepository.whoseBirthdayIs(today);
     }
 
-    private void send(List<GreetingMessage> messages) throws MessagingException {
+    private void send(List<GreetingMessage> messages) {
         for (GreetingMessage message : messages) {
             greetingsSender.sendMessage(message);
         }
