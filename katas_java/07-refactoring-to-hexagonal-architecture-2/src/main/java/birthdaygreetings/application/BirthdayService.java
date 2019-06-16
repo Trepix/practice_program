@@ -33,10 +33,7 @@ public class BirthdayService {
 
     private void send(List<GreetingMessage> messages) throws MessagingException {
         for (GreetingMessage message : messages) {
-            String recipient = message.to();
-            String body = message.text();
-            String subject = message.subject();
-            greetingsSender.sendMessage(subject, body, recipient);
+            greetingsSender.sendMessage(message);
         }
     }
 

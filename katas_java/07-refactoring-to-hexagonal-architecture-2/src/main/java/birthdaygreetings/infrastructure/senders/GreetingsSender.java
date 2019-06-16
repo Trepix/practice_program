@@ -1,5 +1,7 @@
 package birthdaygreetings.infrastructure.senders;
 
+import birthdaygreetings.core.GreetingMessage;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -19,7 +21,11 @@ public class GreetingsSender {
         this.sender = sender;
     }
 
-    public void sendMessage(String subject, String body, String recipient)
+    public void sendMessage(GreetingMessage greetingMessage) throws MessagingException {
+        sendMessage(greetingMessage.subject(), greetingMessage.text(), greetingMessage.to());
+    }
+
+    private void sendMessage(String subject, String body, String recipient)
             throws MessagingException {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
@@ -39,7 +45,7 @@ public class GreetingsSender {
         this.sendMessage(msg);
     }
 
-    public void sendMessage(Message msg) throws MessagingException {
+    protected void sendMessage(Message msg) throws MessagingException {
         Transport.send(msg);
     }
 }
