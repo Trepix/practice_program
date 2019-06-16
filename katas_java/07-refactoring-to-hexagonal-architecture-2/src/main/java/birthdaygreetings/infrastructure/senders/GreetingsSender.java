@@ -11,10 +11,12 @@ public class GreetingsSender {
 
     private final String smtpHost;
     private final int smtpPort;
+    private final String sender;
 
-    public GreetingsSender(String smptHost, int smtpPort) {
+    public GreetingsSender(String smptHost, int smtpPort, String sender) {
         this.smtpHost = smptHost;
         this.smtpPort = smtpPort;
+        this.sender = sender;
     }
 
     public void sendMessage(String smtpHost, int smtpPort, String sender,
@@ -28,7 +30,7 @@ public class GreetingsSender {
 
         // Construct the message
         Message msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress(sender));
+        msg.setFrom(new InternetAddress(this.sender));
         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(
                 recipient));
         msg.setSubject(subject);
