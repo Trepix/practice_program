@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         BirthdayService service = new BirthdayService(
-                new GreetingsSender(HOST),
+                new GreetingsSender(HOST, SMTP_PORT),
                 new FileEmployeesRepository(EMPLOYEES_FILE_PATH));
         try {
             OurDate today = new OurDate(new Date());

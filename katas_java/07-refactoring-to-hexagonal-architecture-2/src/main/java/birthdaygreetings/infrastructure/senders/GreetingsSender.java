@@ -10,9 +10,11 @@ import javax.mail.internet.MimeMessage;
 public class GreetingsSender {
 
     private final String smtpHost;
+    private final int smtpPort;
 
-    public GreetingsSender(String smptHost) {
+    public GreetingsSender(String smptHost, int smtpPort) {
         this.smtpHost = smptHost;
+        this.smtpPort = smtpPort;
     }
 
     public void sendMessage(String smtpHost, int smtpPort, String sender,
@@ -21,7 +23,7 @@ public class GreetingsSender {
         // Create a mail session
         java.util.Properties props = new java.util.Properties();
         props.put("mail.smtp.host", this.smtpHost);
-        props.put("mail.smtp.port", "" + smtpPort);
+        props.put("mail.smtp.port", "" + this.smtpPort);
         Session session = Session.getDefaultInstance(props, null);
 
         // Construct the message
