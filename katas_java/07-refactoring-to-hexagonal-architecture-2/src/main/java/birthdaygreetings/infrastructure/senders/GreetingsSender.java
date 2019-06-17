@@ -9,6 +9,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 public class GreetingsSender {
 
@@ -22,7 +23,13 @@ public class GreetingsSender {
         this.sender = sender;
     }
 
-    public void sendMessage(GreetingMessage greetingMessage) {
+    public void send(List<GreetingMessage> messages) {
+        for (GreetingMessage message : messages) {
+            this.sendMessage(message);
+        }
+    }
+
+    private void sendMessage(GreetingMessage greetingMessage) {
         try {
             sendMessage(greetingMessage.subject(), greetingMessage.text(), greetingMessage.to());
         }

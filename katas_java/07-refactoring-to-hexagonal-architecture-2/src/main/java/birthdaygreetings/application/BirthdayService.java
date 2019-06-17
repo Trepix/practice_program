@@ -21,7 +21,7 @@ public class BirthdayService {
     public void sendGreetings(OurDate date) {
         List<Employee> employeesWhoseIsBirthday = employeesHavingBirthday(date);
         List<GreetingMessage> messages = greetingMessagesFor(employeesWhoseIsBirthday);
-        send(messages);
+        greetingsSender.send(messages);
     }
 
     private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
@@ -31,12 +31,4 @@ public class BirthdayService {
     private List<Employee> employeesHavingBirthday(OurDate today) {
         return employeesRepository.whoseBirthdayIs(today);
     }
-
-    private void send(List<GreetingMessage> messages) {
-        for (GreetingMessage message : messages) {
-            greetingsSender.sendMessage(message);
-        }
-    }
-
-
 }
