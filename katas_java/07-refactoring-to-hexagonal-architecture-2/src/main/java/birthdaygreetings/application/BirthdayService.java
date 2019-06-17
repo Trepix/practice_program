@@ -19,7 +19,9 @@ public class BirthdayService {
     }
 
     public void sendGreetings(OurDate date) {
-        send(greetingMessagesFor(employeesHavingBirthday(date)));
+        List<Employee> employeesWhoseIsBirthday = employeesHavingBirthday(date);
+        List<GreetingMessage> messages = greetingMessagesFor(employeesWhoseIsBirthday);
+        send(messages);
     }
 
     private List<GreetingMessage> greetingMessagesFor(List<Employee> employees) {
