@@ -2,7 +2,7 @@ package birthdaygreetings.application;
 
 import birthdaygreetings.core.OurDate;
 import birthdaygreetings.infrastructure.repositories.FileEmployeesRepository;
-import birthdaygreetings.infrastructure.senders.GreetingsSender;
+import birthdaygreetings.infrastructure.senders.SmtpGreetingsSender;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         BirthdayService service = new BirthdayService(
-                new GreetingsSender(HOST, SMTP_PORT, SENDER_EMAIL_ADDRESS),
+                new SmtpGreetingsSender(HOST, SMTP_PORT, SENDER_EMAIL_ADDRESS),
                 new FileEmployeesRepository(EMPLOYEES_FILE_PATH));
         try {
             OurDate today = new OurDate(new Date());

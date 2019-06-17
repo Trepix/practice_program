@@ -4,6 +4,7 @@ import birthdaygreetings.application.BirthdayService;
 import birthdaygreetings.core.OurDate;
 import birthdaygreetings.infrastructure.repositories.FileEmployeesRepository;
 import birthdaygreetings.infrastructure.senders.GreetingsSender;
+import birthdaygreetings.infrastructure.senders.SmtpGreetingsSender;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ public class BirthdayServiceAcceptanceTest {
     @Before
     public void setUp() throws Exception {
         messagesSent = new ArrayList<>();
-        GreetingsSender greetingsSender = new GreetingsSender(SMTP_HOST, SMTP_PORT, FROM) {
+        GreetingsSender greetingsSender = new SmtpGreetingsSender(SMTP_HOST, SMTP_PORT, FROM) {
             @Override
             public void sendMessage(Message msg) throws MessagingException {
                 messagesSent.add(msg);
