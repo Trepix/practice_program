@@ -4,7 +4,7 @@ import birthdaygreetings.core.Employee;
 import birthdaygreetings.core.EmployeesRepository;
 import birthdaygreetings.core.GreetingMessage;
 import birthdaygreetings.core.OurDate;
-import birthdaygreetings.infrastructure.senders.GreetingsSender;
+import birthdaygreetings.core.GreetingsSender;
 
 import java.util.List;
 

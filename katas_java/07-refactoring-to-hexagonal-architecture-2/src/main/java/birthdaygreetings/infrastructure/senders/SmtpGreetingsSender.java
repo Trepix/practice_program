@@ -2,6 +2,7 @@ package birthdaygreetings.infrastructure.senders;
 
 import birthdaygreetings.core.CannotSendGreetingsException;
 import birthdaygreetings.core.GreetingMessage;
+import birthdaygreetings.core.GreetingsSender;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

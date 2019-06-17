@@ -1,6 +1,4 @@
-package birthdaygreetings.infrastructure.senders;
-
-import birthdaygreetings.core.GreetingMessage;
+package birthdaygreetings.core;
 
 import java.util.List;
 

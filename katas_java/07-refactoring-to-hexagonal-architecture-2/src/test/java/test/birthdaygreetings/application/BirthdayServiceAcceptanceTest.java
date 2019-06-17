@@ -3,7 +3,7 @@ package test.birthdaygreetings.application;
 import birthdaygreetings.application.BirthdayService;
 import birthdaygreetings.core.OurDate;
 import birthdaygreetings.infrastructure.repositories.FileEmployeesRepository;
-import birthdaygreetings.infrastructure.senders.GreetingsSender;
+import birthdaygreetings.core.GreetingsSender;
 import birthdaygreetings.infrastructure.senders.SmtpGreetingsSender;
 import org.junit.Before;
 import org.junit.Test;
