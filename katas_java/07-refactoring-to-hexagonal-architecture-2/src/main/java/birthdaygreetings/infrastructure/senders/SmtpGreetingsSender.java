@@ -36,7 +36,7 @@ public class SmtpGreetingsSender implements GreetingsSender {
             sendMessage(greetingMessage.subject(), greetingMessage.text(), greetingMessage.to());
         }
         catch (MessagingException e) {
-            throw new CannotSendGreetingsException("", e);
+            throw new CannotSendGreetingsException("An error occurred when trying to send a smtp message", e);
         }
 
     }
