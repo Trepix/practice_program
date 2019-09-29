@@ -6,12 +6,12 @@ class Oche {
 
     private Reader reader;
     private Writer writer;
-    private HourRetriever hourRetriever;
+    private MomentOfTheDay momentOfTheDay;
 
     Oche(Reader reader, Writer writer, HourRetriever hourRetriever) {
         this.reader = reader;
         this.writer = writer;
-        this.hourRetriever = hourRetriever;
+        this.momentOfTheDay = new MomentOfTheDay(hourRetriever);
     }
 
     private static boolean hasToStopProgram(String input) {
@@ -38,20 +38,12 @@ class Oche {
     }
 
     private void printGreeting(String name) {
-        if (isInTheMorning()) {
+        if (momentOfTheDay.isTheMorning()) {
             writer.write("¡Buenas días " + name + "!");
-        } else if (isInTheAfternoon()) {
+        } else if (momentOfTheDay.isTheAfternoon()) {
             writer.write("¡Buenas tardes " + name + "!");
         } else {
             writer.write("¡Buenas noches " + name + "!");
         }
-    }
-
-    private boolean isInTheMorning() {
-        return hourRetriever.getIn24Format() >= 6 && hourRetriever.getIn24Format() < 12;
-    }
-
-    private boolean isInTheAfternoon() {
-        return hourRetriever.getIn24Format() >= 12 && hourRetriever.getIn24Format() < 20;
     }
 }
