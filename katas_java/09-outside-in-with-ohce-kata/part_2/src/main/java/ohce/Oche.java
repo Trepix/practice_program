@@ -1,6 +1,7 @@
 package ohce;
 
 class Oche {
+
     private Reader reader;
     private Writer writer;
     private Hour hour;
@@ -14,9 +15,10 @@ class Oche {
     void runs(String name) {
         printGreeting(name);
 
-        String input;
-        while (!(input = reader.nextWord()).equals("Stop!")) {
+        String input = reader.nextWord();
+        while (!input.equals("Stop!")) {
             processWord(input);
+            input = reader.nextWord();
         }
         writer.write("Adios " + name);
     }
