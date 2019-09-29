@@ -16,9 +16,9 @@ class Oche {
 
         String input;
         while (!(input = reader.nextWord()).equals("Stop!")) {
-            String reversed = new StringBuilder(input).reverse().toString();
-            writer.write(reversed);
-            if (reversed.equals(input)) {
+            Word word = Word.from(input);
+            writer.write(word.reverseIt());
+            if (word.reverseIt().equals(input)) {
                 writer.write("¡Bonita palabra!");
             }
         }
