@@ -2,6 +2,8 @@ package ohce;
 
 class Oche {
 
+    private static final String WORD_TO_STOP_PROGRAM = "Stop!";
+
     private Reader reader;
     private Writer writer;
     private Hour hour;
@@ -16,11 +18,15 @@ class Oche {
         printGreeting(name);
 
         String input = reader.nextWord();
-        while (!input.equals("Stop!")) {
+        while (!hasToStopProgram(input)) {
             processWord(input);
             input = reader.nextWord();
         }
         writer.write("Adios " + name);
+    }
+
+    private static boolean hasToStopProgram(String input) {
+        return input.equals(WORD_TO_STOP_PROGRAM);
     }
 
     private void processWord(String input) {
