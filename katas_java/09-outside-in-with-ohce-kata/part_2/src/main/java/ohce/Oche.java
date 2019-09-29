@@ -14,6 +14,10 @@ class Oche {
         this.hour = hour;
     }
 
+    private static boolean hasToStopProgram(String input) {
+        return input.equals(WORD_TO_STOP_PROGRAM);
+    }
+
     void runs(String name) {
         printGreeting(name);
 
@@ -25,10 +29,6 @@ class Oche {
         writer.write("Adios " + name);
     }
 
-    private static boolean hasToStopProgram(String input) {
-        return input.equals(WORD_TO_STOP_PROGRAM);
-    }
-
     private void processWord(String input) {
         Word word = Word.from(input);
         writer.write(word.reverseIt());
@@ -38,12 +38,20 @@ class Oche {
     }
 
     private void printGreeting(String name) {
-        if (hour.getIn24Format() < 12) {
+        if (isInTheMorning()) {
             writer.write("¡Buenas días " + name + "!");
-        } else if (hour.getIn24Format() < 20){
+        } else if (isInTheAfternoon()) {
             writer.write("¡Buenas tardes " + name + "!");
         } else {
             writer.write("¡Buenas noches " + name + "!");
         }
+    }
+
+    private boolean isInTheMorning() {
+        return hour.getIn24Format() >= 6 && hour.getIn24Format() < 12;
+    }
+
+    private boolean isInTheAfternoon() {
+        return hour.getIn24Format() >= 12 && hour.getIn24Format() < 20;
     }
 }
