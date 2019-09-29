@@ -8,11 +8,10 @@ public class OcheTest {
 
     @Test
     public void runs_when_is_in_the_morning_receiving_palindrome_and_non_palindrome_words() {
-        IO io = mock(IO.class);
         Reader reader = mock(Reader.class);
         Writer writer= mock(Writer.class);
         Hour hour = new StubHour(10);
-        Oche oche = new Oche(io, reader, writer, hour);
+        Oche oche = new Oche(reader, writer, hour);
 
         when(reader.nextWord()).thenReturn("hola", "oto", "stop", "Stop!");
 
@@ -29,11 +28,10 @@ public class OcheTest {
 
     @Test
     public void runs_when_is_in_the_afternoon_receiving_palindrome_and_non_palindrome_words() {
-        IO io = mock(IO.class);
         Reader reader = mock(Reader.class);
         Writer writer= mock(Writer.class);
         Hour hour = new StubHour(18);
-        Oche oche = new Oche(io, reader, writer, hour);
+        Oche oche = new Oche(reader, writer, hour);
         when(reader.nextWord()).thenReturn("hola", "abba", "Stop!");
 
         oche.runs("Karl");
@@ -47,11 +45,10 @@ public class OcheTest {
 
     @Test
     public void runs_when_is_in_the_night_receiving_palindrome_and_non_palindrome_words() {
-        IO io = mock(IO.class);
         Reader reader = mock(Reader.class);
         Writer writer= mock(Writer.class);
         Hour hour = new StubHour(22);
-        Oche oche = new Oche(io, reader, writer, hour);
+        Oche oche = new Oche(reader, writer, hour);
         when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
 
         oche.runs("Karl");
