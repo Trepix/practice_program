@@ -10,13 +10,7 @@ class Oche {
     }
 
     void runs(String name) {
-        if (hour.getIn24Format() < 12) {
-            io.write("¡Buenas días " + name + "!");
-        } else if (hour.getIn24Format() < 20){
-            io.write("¡Buenas tardes " + name + "!");
-        } else {
-            io.write("¡Buenas noches " + name + "!");
-        }
+        printGreeting(name);
 
         String input;
         while (!(input = io.read()).equals("Stop!")) {
@@ -27,5 +21,15 @@ class Oche {
             }
         }
         io.write("Adios " + name);
+    }
+
+    private void printGreeting(String name) {
+        if (hour.getIn24Format() < 12) {
+            io.write("¡Buenas días " + name + "!");
+        } else if (hour.getIn24Format() < 20){
+            io.write("¡Buenas tardes " + name + "!");
+        } else {
+            io.write("¡Buenas noches " + name + "!");
+        }
     }
 }
