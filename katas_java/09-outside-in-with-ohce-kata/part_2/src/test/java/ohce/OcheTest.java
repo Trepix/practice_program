@@ -9,7 +9,9 @@ public class OcheTest {
     @Test
     public void runs_when_is_in_the_morning_receiving_palindrome_and_non_palindrome_words() {
         IO io = mock(IO.class);
-        Oche oche = new Oche(io);
+        Hour hour = null;
+        Oche oche = new Oche(io, hour);
+
         when(io.read()).thenReturn("hola", "oto", "stop", "Stop!");
 
         oche.runs("Karl");

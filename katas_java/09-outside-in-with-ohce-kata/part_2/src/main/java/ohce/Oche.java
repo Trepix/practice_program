@@ -2,9 +2,11 @@ package ohce;
 
 class Oche {
     private final IO io;
+    private Hour hour;
 
-    Oche(IO io) {
+    Oche(IO io, Hour hour) {
         this.io = io;
+        this.hour = hour;
     }
 
     void runs(String name) {
