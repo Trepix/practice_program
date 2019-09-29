@@ -18,7 +18,7 @@ class Oche {
         while (!(input = reader.nextWord()).equals("Stop!")) {
             Word word = Word.from(input);
             writer.write(word.reverseIt());
-            if (word.reverseIt().equals(input)) {
+            if (word.isPalindrome()) {
                 writer.write("¡Bonita palabra!");
             }
         }

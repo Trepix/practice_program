@@ -15,4 +15,7 @@ class Word {
         return new StringBuilder(value).reverse().toString();
     }
 
+    boolean isPalindrome() {
+        return value.equals(this.reverseIt());
+    }
 }
