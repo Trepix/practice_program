@@ -2,6 +2,7 @@ package ohce;
 
 class Oche {
     private final IO io;
+    private Reader reader;
     private Hour hour;
 
     Oche(IO io, Hour hour) {
@@ -9,11 +10,17 @@ class Oche {
         this.hour = hour;
     }
 
+    Oche(IO io, Reader reader, Hour hour) {
+        this.io = io;
+        this.reader = reader;
+        this.hour = hour;
+    }
+
     void runs(String name) {
         printGreeting(name);
 
         String input;
-        while (!(input = io.read()).equals("Stop!")) {
+        while (!(input = read()).equals("Stop!")) {
             String reversed = new StringBuilder(input).reverse().toString();
             io.write(reversed);
             if (reversed.equals(input)) {
@@ -21,6 +28,14 @@ class Oche {
             }
         }
         io.write("Adios " + name);
+    }
+
+    private String read() {
+        if (reader == null) {
+            return io.read();
+        }
+        return reader.nextWord();
+
     }
 
     private void printGreeting(String name) {

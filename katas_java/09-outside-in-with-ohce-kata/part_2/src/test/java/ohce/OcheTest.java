@@ -9,10 +9,11 @@ public class OcheTest {
     @Test
     public void runs_when_is_in_the_morning_receiving_palindrome_and_non_palindrome_words() {
         IO io = mock(IO.class);
+        Reader reader = mock(Reader.class);
         Hour hour = new StubHour(10);
-        Oche oche = new Oche(io, hour);
+        Oche oche = new Oche(io, reader, hour);
 
-        when(io.read()).thenReturn("hola", "oto", "stop", "Stop!");
+        when(reader.nextWord()).thenReturn("hola", "oto", "stop", "Stop!");
 
         oche.runs("Karl");
 
