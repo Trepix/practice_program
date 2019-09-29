@@ -10,7 +10,12 @@ class Oche {
     }
 
     void runs(String name) {
-        io.write("¡Buenas días " + name + "!");
+        if (hour.getIn24Format() < 12) {
+            io.write("¡Buenas días " + name + "!");
+        }
+        else {
+            io.write("¡Buenas tardes " + name + "!");
+        }
         String input;
         while (!(input = io.read()).equals("Stop!")) {
             String reversed = new StringBuilder(input).reverse().toString();

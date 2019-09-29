@@ -1,6 +1,5 @@
 package ohce;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
@@ -27,7 +26,6 @@ public class OcheTest {
 
 
     @Test
-    @Ignore
     public void runs_when_is_in_the_afternoon_receiving_palindrome_and_non_palindrome_words() {
         IO io = mock(IO.class);
         Hour hour = new StubHour(18);
