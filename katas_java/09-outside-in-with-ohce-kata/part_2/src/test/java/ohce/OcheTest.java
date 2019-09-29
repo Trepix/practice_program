@@ -1,5 +1,6 @@
 package ohce;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.stream.Stream;
@@ -106,6 +107,25 @@ public class OcheTest {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
         Hour hour = new StubHour(20);
+        Oche oche = new Oche(reader, writer, hour);
+        when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
+
+        oche.runs("Karl");
+
+        verifyThatHasBeenWritten(writer,
+                "¡Buenas noches Karl!",
+                "olleh",
+                "alla",
+                "¡Bonita palabra!",
+                "Adios Karl");
+    }
+
+    @Test
+    @Ignore
+    public void runs_when_is_in_the_last_hour_of_the_night_receiving_palindrome_and_non_palindrome_words() {
+        Reader reader = mock(Reader.class);
+        Writer writer = mock(Writer.class);
+        Hour hour = new StubHour(5);
         Oche oche = new Oche(reader, writer, hour);
         when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
 
