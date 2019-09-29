@@ -16,13 +16,17 @@ class Oche {
 
         String input;
         while (!(input = reader.nextWord()).equals("Stop!")) {
-            Word word = Word.from(input);
-            writer.write(word.reverseIt());
-            if (word.isPalindrome()) {
-                writer.write("¡Bonita palabra!");
-            }
+            processWord(input);
         }
         writer.write("Adios " + name);
+    }
+
+    private void processWord(String input) {
+        Word word = Word.from(input);
+        writer.write(word.reverseIt());
+        if (word.isPalindrome()) {
+            writer.write("¡Bonita palabra!");
+        }
     }
 
     private void printGreeting(String name) {
