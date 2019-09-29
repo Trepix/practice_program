@@ -141,7 +141,7 @@ public class OcheTest {
         Stream.of(lines).forEach(line -> verify(writer).write(line));
     }
 
-    private class StubHourRetriever extends HourRetriever {
+    private class StubHourRetriever implements HourRetriever {
 
         private final int value;
 
@@ -150,7 +150,7 @@ public class OcheTest {
         }
 
         @Override
-        int getIn24Format() {
+        public int getIn24Format() {
             return this.value;
         }
     }
