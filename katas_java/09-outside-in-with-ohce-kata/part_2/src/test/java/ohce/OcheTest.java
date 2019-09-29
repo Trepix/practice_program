@@ -66,6 +66,25 @@ public class OcheTest {
     }
 
     @Test
+    public void runs_when_is_in_the_first_hour_of_the_afternoon_receiving_palindrome_and_non_palindrome_words() {
+        Reader reader = mock(Reader.class);
+        Writer writer = mock(Writer.class);
+        Hour hour = new StubHour(12);
+        Oche oche = new Oche(reader, writer, hour);
+        when(reader.nextWord()).thenReturn("hola", "abba", "Stop!");
+
+        oche.runs("Karl");
+
+        verifyThatHasBeenWritten(writer,
+                "¡Buenas tardes Karl!",
+                "aloh",
+                "abba",
+                "¡Bonita palabra!",
+                "Adios Karl");
+    }
+
+
+    @Test
     public void runs_when_is_in_the_night_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
