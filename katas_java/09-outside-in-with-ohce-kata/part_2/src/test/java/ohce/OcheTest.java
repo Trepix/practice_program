@@ -41,6 +41,22 @@ public class OcheTest {
         verify(io).write("Adios Karl");
     }
 
+    @Test
+    public void runs_when_is_in_the_night_receiving_palindrome_and_non_palindrome_words() {
+        IO io = mock(IO.class);
+        Hour hour = new StubHour(22);
+        Oche oche = new Oche(io, hour);
+        when(io.read()).thenReturn("hello", "alla", "Stop!");
+
+        oche.runs("Karl");
+
+        verify(io).write("¡Buenas noches Karl!");
+        verify(io).write("olleh");
+        verify(io).write("alla");
+        verify(io).write("¡Bonita palabra!");
+        verify(io).write("Adios Karl");
+    }
+
     private class StubHour extends Hour {
 
         private final int value;
