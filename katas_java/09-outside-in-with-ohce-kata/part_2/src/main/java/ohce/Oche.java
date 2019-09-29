@@ -5,11 +5,6 @@ class Oche {
     private Reader reader;
     private Hour hour;
 
-    Oche(IO io, Hour hour) {
-        this.io = io;
-        this.hour = hour;
-    }
-
     Oche(IO io, Reader reader, Hour hour) {
         this.io = io;
         this.reader = reader;
@@ -20,7 +15,7 @@ class Oche {
         printGreeting(name);
 
         String input;
-        while (!(input = read()).equals("Stop!")) {
+        while (!(input = reader.nextWord()).equals("Stop!")) {
             String reversed = new StringBuilder(input).reverse().toString();
             io.write(reversed);
             if (reversed.equals(input)) {
@@ -28,14 +23,6 @@ class Oche {
             }
         }
         io.write("Adios " + name);
-    }
-
-    private String read() {
-        if (reader == null) {
-            return io.read();
-        }
-        return reader.nextWord();
-
     }
 
     private void printGreeting(String name) {

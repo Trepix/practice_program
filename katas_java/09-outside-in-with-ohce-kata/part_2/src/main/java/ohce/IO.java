@@ -6,7 +6,4 @@ class IO {
 
     }
 
-    String read() {
-        return null;
-    }
 }
