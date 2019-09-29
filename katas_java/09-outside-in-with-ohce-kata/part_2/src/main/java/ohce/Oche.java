@@ -3,11 +3,19 @@ package ohce;
 class Oche {
     private final IO io;
     private Reader reader;
+    private Writer writer;
     private Hour hour;
 
     Oche(IO io, Reader reader, Hour hour) {
         this.io = io;
         this.reader = reader;
+        this.hour = hour;
+    }
+
+    Oche(IO io, Reader reader, Writer writer, Hour hour) {
+        this.io = io;
+        this.reader = reader;
+        this.writer = writer;
         this.hour = hour;
     }
 
@@ -17,21 +25,29 @@ class Oche {
         String input;
         while (!(input = reader.nextWord()).equals("Stop!")) {
             String reversed = new StringBuilder(input).reverse().toString();
-            io.write(reversed);
+            write(reversed);
             if (reversed.equals(input)) {
-                io.write("¡Bonita palabra!");
+                write("¡Bonita palabra!");
             }
         }
-        io.write("Adios " + name);
+        write("Adios " + name);
+    }
+
+    private void write(String s) {
+        if (writer == null) {
+            io.write(s);
+        }
+        else writer.write(s);
+
     }
 
     private void printGreeting(String name) {
         if (hour.getIn24Format() < 12) {
-            io.write("¡Buenas días " + name + "!");
+            write("¡Buenas días " + name + "!");
         } else if (hour.getIn24Format() < 20){
-            io.write("¡Buenas tardes " + name + "!");
+            write("¡Buenas tardes " + name + "!");
         } else {
-            io.write("¡Buenas noches " + name + "!");
+            write("¡Buenas noches " + name + "!");
         }
     }
 }
