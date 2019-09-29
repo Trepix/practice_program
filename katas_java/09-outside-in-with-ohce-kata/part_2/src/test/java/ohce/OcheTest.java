@@ -1,6 +1,5 @@
 package ohce;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.stream.Stream;
@@ -13,8 +12,8 @@ public class OcheTest {
     public void runs_when_is_in_the_first_hour_of_the_morning_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(6);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(6);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hola", "oto", "stop", "Stop!");
 
         oche.runs("Karl");
@@ -32,8 +31,8 @@ public class OcheTest {
     public void runs_when_is_in_the_last_hour_of_the_morning_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(11);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(11);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hola", "oto", "stop", "Stop!");
 
         oche.runs("Karl");
@@ -51,8 +50,8 @@ public class OcheTest {
     public void runs_when_is_in_the_first_hour_of_the_afternoon_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(12);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(12);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hola", "abba", "Stop!");
 
         oche.runs("Karl");
@@ -69,8 +68,8 @@ public class OcheTest {
     public void runs_when_is_in_the_last_hour_of_the_afternoon_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(19);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(19);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hola", "abba", "Stop!");
 
         oche.runs("Karl");
@@ -88,8 +87,8 @@ public class OcheTest {
     public void runs_when_is_in_the_night_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(22);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(22);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
 
         oche.runs("Karl");
@@ -106,8 +105,8 @@ public class OcheTest {
     public void runs_when_is_in_the_first_hour_of_the_night_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(20);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(20);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
 
         oche.runs("Karl");
@@ -124,8 +123,8 @@ public class OcheTest {
     public void runs_when_is_in_the_last_hour_of_the_night_receiving_palindrome_and_non_palindrome_words() {
         Reader reader = mock(Reader.class);
         Writer writer = mock(Writer.class);
-        Hour hour = new StubHour(5);
-        Oche oche = new Oche(reader, writer, hour);
+        HourRetriever hourRetriever = new StubHourRetriever(5);
+        Oche oche = new Oche(reader, writer, hourRetriever);
         when(reader.nextWord()).thenReturn("hello", "alla", "Stop!");
 
         oche.runs("Karl");
@@ -142,11 +141,11 @@ public class OcheTest {
         Stream.of(lines).forEach(line -> verify(writer).write(line));
     }
 
-    private class StubHour extends Hour {
+    private class StubHourRetriever extends HourRetriever {
 
         private final int value;
 
-        private StubHour(int value) {
+        private StubHourRetriever(int value) {
             this.value = value;
         }
 

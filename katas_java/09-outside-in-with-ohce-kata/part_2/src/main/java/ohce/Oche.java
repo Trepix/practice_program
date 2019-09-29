@@ -6,12 +6,12 @@ class Oche {
 
     private Reader reader;
     private Writer writer;
-    private Hour hour;
+    private HourRetriever hourRetriever;
 
-    Oche(Reader reader, Writer writer, Hour hour) {
+    Oche(Reader reader, Writer writer, HourRetriever hourRetriever) {
         this.reader = reader;
         this.writer = writer;
-        this.hour = hour;
+        this.hourRetriever = hourRetriever;
     }
 
     private static boolean hasToStopProgram(String input) {
@@ -48,10 +48,10 @@ class Oche {
     }
 
     private boolean isInTheMorning() {
-        return hour.getIn24Format() >= 6 && hour.getIn24Format() < 12;
+        return hourRetriever.getIn24Format() >= 6 && hourRetriever.getIn24Format() < 12;
     }
 
     private boolean isInTheAfternoon() {
-        return hour.getIn24Format() >= 12 && hour.getIn24Format() < 20;
+        return hourRetriever.getIn24Format() >= 12 && hourRetriever.getIn24Format() < 20;
     }
 }
