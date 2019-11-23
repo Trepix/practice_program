@@ -1,4 +1,4 @@
-package bank.tests.acceptance;
+package bank.acceptance;
 
 import org.junit.Test;
 
