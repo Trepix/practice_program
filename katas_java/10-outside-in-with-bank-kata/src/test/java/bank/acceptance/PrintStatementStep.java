@@ -9,8 +9,7 @@ import io.cucumber.java.en.When;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import static bank.DateUtils.parse;
 
 public class PrintStatementStep {
 
@@ -42,10 +41,6 @@ public class PrintStatementStep {
         statementOrder.verify(display).show("14/01/2012 || || 500.00 || 2500.00");
         statementOrder.verify(display).show("13/01/2012 || 2000.00 || || 3000.00");
         statementOrder.verify(display).show("10/01/2012 || 1000.00 || || 1000.00");
-    }
-
-    private LocalDate parse(String date) {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
 }
