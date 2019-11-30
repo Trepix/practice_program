@@ -39,11 +39,11 @@ public class StatementTest {
     @Test
     public void two_deposits_are_added() {
         Statement statement = new Statement();
-        BankingTransaction transaction_1 = BankingTransaction.deposit(parse("10/01/2012"), 1000);
-        BankingTransaction transaction_2 = BankingTransaction.deposit(parse("11/01/2012"), 1000);
+        BankingTransaction oldestTransaction = BankingTransaction.deposit(parse("10/01/2012"), 1000);
+        BankingTransaction moreRecentTransaction = BankingTransaction.deposit(parse("11/01/2012"), 1000);
 
-        statement.add(transaction_1);
-        statement.add(transaction_2);
+        statement.add(oldestTransaction);
+        statement.add(moreRecentTransaction);
 
         List<StatementRow> expectedRow = asList(
                 StatementRow.deposit(parse("11/01/2012"), 1000, 2000),
@@ -54,7 +54,7 @@ public class StatementTest {
 
     @Test
     @Ignore("naming must be improved")
-    public void when_two_deposits_are_added_the_order_addition_execution_does_not_matter() {
+    public void when_two_deposits_are_added_the_order_of_its_addition_to_statement_does_not_matter() {
         Statement statement_1_2 = new Statement();
         Statement statement_2_1 = new Statement();
         BankingTransaction transaction_1 = BankingTransaction.deposit(parse("10/01/2012"), 1000);
