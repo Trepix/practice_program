@@ -5,6 +5,7 @@ import bank.BankingTransaction;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Iterator;
 
 public class Statement {
 
@@ -23,9 +24,9 @@ public class Statement {
 
     private StatementRow generateStatementRow(BankingTransaction transaction, int balance) {
         if (transaction.amount() > 0)
-            return StatementRow.deposit(transaction.date(), transaction.amount(), balance);
+            return StatementRow.deposit(transaction, balance);
         else
-            return StatementRow.withdrawal(transaction.date(), -transaction.amount(), balance);
+            return StatementRow.withdrawal(transaction, balance);
     }
 
     public void add(BankingTransaction transaction) {

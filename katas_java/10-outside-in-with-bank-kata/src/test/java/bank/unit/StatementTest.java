@@ -32,7 +32,7 @@ public class StatementTest {
 
         statement.add(transaction);
 
-        List<StatementRow> expectedRow = singletonList(StatementRow.deposit(parse("10/01/2012"), 1000, 1000));
+        List<StatementRow> expectedRow = singletonList(StatementRow.deposit(transaction, 1000));
         assertThat(expectedRow, is(statement.rows()));
     }
 
@@ -46,8 +46,8 @@ public class StatementTest {
         statement.add(moreRecentTransaction);
 
         List<StatementRow> expectedRow = asList(
-                StatementRow.deposit(parse("11/01/2012"), 1000, 2000),
-                StatementRow.deposit(parse("10/01/2012"), 1000, 1000)
+                StatementRow.deposit(moreRecentTransaction, 2000),
+                StatementRow.deposit(oldestTransaction, 1000)
         );
         assertThat(expectedRow, is(statement.rows()));
     }
@@ -59,13 +59,13 @@ public class StatementTest {
 
         statement.add(transaction);
 
-        List<StatementRow> expectedRow = singletonList(StatementRow.withdrawal(parse("10/01/2012"), 1000, -1000));
+        List<StatementRow> expectedRow = singletonList(StatementRow.withdrawal(transaction, -1000));
         assertThat(expectedRow, is(statement.rows()));
     }
 
     @Test
     @Ignore("naming must be improved")
-    public void when_two_deposits_are_added_the_order_of_its_addition_to_statement_does_not_matter() {
+    public void when_two_deposits_are_added_the_order_of_its_addition_to_statement_does_not_matter_because_are_sorted_by_date() {
         Statement statement_1_2 = new Statement();
         Statement statement_2_1 = new Statement();
         BankingTransaction transaction_1 = BankingTransaction.deposit(parse("10/01/2012"), 1000);

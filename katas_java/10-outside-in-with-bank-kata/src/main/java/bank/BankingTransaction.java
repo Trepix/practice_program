@@ -1,7 +1,12 @@
 package bank;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
 import java.time.LocalDate;
 
+@ToString
+@EqualsAndHashCode
 public class BankingTransaction {
 
     private final int amount;

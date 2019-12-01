@@ -1,6 +1,6 @@
 package bank.statement;
 
-import lombok.AccessLevel;
+import bank.BankingTransaction;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -13,16 +13,15 @@ import static lombok.AccessLevel.PRIVATE;
 @EqualsAndHashCode
 @RequiredArgsConstructor(access = PRIVATE)
 public class StatementRow {
-    private final LocalDate date;
-    private final int depositAmount;
-    private final int withdrawalAmount;
+    private final BankingTransaction transaction;
     private final int balance;
 
-    public static StatementRow deposit(LocalDate date, int depositAmount, int balance) {
-        return new StatementRow(date, depositAmount, 0, balance);
+    public static StatementRow deposit(BankingTransaction transaction, int balance) {
+        return new StatementRow(transaction, balance);
     }
 
-    public static StatementRow withdrawal(LocalDate date, int withdrawalAmount, int balance) {
-        return new StatementRow(date, 0, withdrawalAmount, balance);
+    public static StatementRow withdrawal(BankingTransaction transaction, int balance) {
+        return new StatementRow(transaction, balance);
     }
+
 }
