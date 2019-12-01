@@ -14,4 +14,12 @@ public class StatementRow {
         this.transaction = transaction;
         this.balance = balance;
     }
+
+    int amount() {
+        return transaction.amount();
+    }
+
+    int balance() {
+        return balance;
+    }
 }
