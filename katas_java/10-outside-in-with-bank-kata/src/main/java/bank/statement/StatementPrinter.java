@@ -14,8 +14,7 @@ public class StatementPrinter {
 
     public void print(Statement statement) {
         display.show("date || credit || debit || balance");
-        if (!statement.rows().isEmpty()) {
-            StatementRow row = statement.rows().get(0);
+        for (StatementRow row : statement.rows()) {
             display.show(format(row.date()) + " || " + format(row.deposit()) + " || || " + format(row.balance()));
         }
     }
