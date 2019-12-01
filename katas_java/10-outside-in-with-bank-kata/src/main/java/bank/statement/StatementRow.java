@@ -21,4 +21,8 @@ public class StatementRow {
     public static StatementRow deposit(LocalDate date, int depositAmount, int balance) {
         return new StatementRow(date, depositAmount, 0, balance);
     }
+
+    public static StatementRow withdrawal(LocalDate date, int withdrawalAmount, int balance) {
+        return new StatementRow(date, 0, withdrawalAmount, balance);
+    }
 }

@@ -53,6 +53,17 @@ public class StatementTest {
     }
 
     @Test
+    public void one_withdrawal_is_added() {
+        Statement statement = new Statement();
+        BankingTransaction transaction = BankingTransaction.withdrawal(parse("10/01/2012"), 1000);
+
+        statement.add(transaction);
+
+        List<StatementRow> expectedRow = singletonList(StatementRow.withdrawal(parse("10/01/2012"), 1000, -1000));
+        assertThat(expectedRow, is(statement.rows()));
+    }
+
+    @Test
     @Ignore("naming must be improved")
     public void when_two_deposits_are_added_the_order_of_its_addition_to_statement_does_not_matter() {
         Statement statement_1_2 = new Statement();

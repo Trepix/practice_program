@@ -15,10 +15,17 @@ public class Statement {
         int balance = 0;
         for (BankingTransaction transaction : transactions) {
             balance += transaction.amount();
-            StatementRow row = StatementRow.deposit(transaction.date(), transaction.amount(), balance);
+            StatementRow row = generateStatementRow(transaction, balance);
             statementRows.push(row);
         }
         return statementRows;
+    }
+
+    private StatementRow generateStatementRow(BankingTransaction transaction, int balance) {
+        if (transaction.amount() > 0)
+            return StatementRow.deposit(transaction.date(), transaction.amount(), balance);
+        else
+            return StatementRow.withdrawal(transaction.date(), -transaction.amount(), balance);
     }
 
     public void add(BankingTransaction transaction) {

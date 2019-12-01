@@ -16,6 +16,10 @@ public class BankingTransaction {
         return new BankingTransaction(date, amount);
     }
 
+    public static BankingTransaction withdrawal(LocalDate date, int amount) {
+        return new BankingTransaction(date, -amount);
+    }
+
     public int amount() {
         return this.amount;
     }
