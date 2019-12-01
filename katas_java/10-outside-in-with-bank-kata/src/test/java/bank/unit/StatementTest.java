@@ -3,12 +3,10 @@ package bank.unit;
 import bank.BankingTransaction;
 import bank.statement.Statement;
 import bank.statement.StatementRow;
-import io.cucumber.java.bs.I;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static bank.DateUtils.parse;
@@ -23,17 +21,6 @@ public class StatementTest {
     public void when_no_banking_transactions_are_added_statement_should_be_empty() {
         Statement statement = new Statement();
         assertThat(statement.rows(), is(new ArrayList<>()));
-    }
-
-    @Test
-    public void a_deposit_is_added() {
-        Statement statement = new Statement();
-        BankingTransaction transaction = BankingTransaction.deposit(parse("10/01/2012"), 1000);
-
-        statement.add(transaction);
-
-        List<StatementRow> expectedRow = singletonList(StatementRow.deposit(transaction, 1000));
-        assertThat(expectedRow, is(statement.rows()));
     }
 
     @Test
@@ -60,6 +47,25 @@ public class StatementTest {
         statement.add(transaction);
 
         List<StatementRow> expectedRow = singletonList(StatementRow.withdrawal(transaction, -1000));
+        assertThat(expectedRow, is(statement.rows()));
+    }
+
+    @Test
+    public void deposits_and_withdrawals_are_added_to_statement() {
+        Statement statement = new Statement();
+        BankingTransaction firstDeposit = BankingTransaction.deposit(parse("10/01/2012"), 1000);
+        BankingTransaction withdrawal = BankingTransaction.withdrawal(parse("11/01/2012"), 500);
+        BankingTransaction secondDeposit = BankingTransaction.deposit(parse("12/01/2012"), 2000);
+
+        statement.add(firstDeposit);
+        statement.add(withdrawal);
+        statement.add(secondDeposit);
+
+        List<StatementRow> expectedRow = asList(
+                StatementRow.deposit(secondDeposit, 2500),
+                StatementRow.withdrawal(withdrawal, 500),
+                StatementRow.deposit(firstDeposit, 1000)
+        );
         assertThat(expectedRow, is(statement.rows()));
     }
 
