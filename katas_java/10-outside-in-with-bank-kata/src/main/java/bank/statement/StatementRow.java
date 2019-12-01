@@ -17,7 +17,7 @@ public class StatementRow {
         this.balance = balance;
     }
 
-    int amount() {
+    int deposit() {
         return transaction.amount();
     }
 
