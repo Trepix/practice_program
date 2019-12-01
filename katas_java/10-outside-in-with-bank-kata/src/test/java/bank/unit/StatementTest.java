@@ -33,8 +33,8 @@ public class StatementTest {
         statement.add(moreRecentTransaction);
 
         List<StatementRow> expectedRow = asList(
-                StatementRow.deposit(moreRecentTransaction, 2000),
-                StatementRow.deposit(oldestTransaction, 1000)
+                new StatementRow(moreRecentTransaction, 2000),
+                new StatementRow(oldestTransaction, 1000)
         );
         assertThat(expectedRow, is(statement.rows()));
     }
@@ -46,7 +46,7 @@ public class StatementTest {
 
         statement.add(transaction);
 
-        List<StatementRow> expectedRow = singletonList(StatementRow.withdrawal(transaction, -1000));
+        List<StatementRow> expectedRow = singletonList(new StatementRow(transaction, -1000));
         assertThat(expectedRow, is(statement.rows()));
     }
 
@@ -62,9 +62,9 @@ public class StatementTest {
         statement.add(secondDeposit);
 
         List<StatementRow> expectedRow = asList(
-                StatementRow.deposit(secondDeposit, 2500),
-                StatementRow.withdrawal(withdrawal, 500),
-                StatementRow.deposit(firstDeposit, 1000)
+                new StatementRow(secondDeposit, 2500),
+                new StatementRow(withdrawal, 500),
+                new StatementRow(firstDeposit, 1000)
         );
         assertThat(expectedRow, is(statement.rows()));
     }

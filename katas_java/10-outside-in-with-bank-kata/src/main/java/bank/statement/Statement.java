@@ -5,7 +5,6 @@ import bank.BankingTransaction;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Iterator;
 
 public class Statement {
 
@@ -16,17 +15,10 @@ public class Statement {
         int balance = 0;
         for (BankingTransaction transaction : transactions) {
             balance += transaction.amount();
-            StatementRow row = generateStatementRow(transaction, balance);
+            StatementRow row = new StatementRow(transaction, balance);
             statementRows.push(row);
         }
         return statementRows;
-    }
-
-    private StatementRow generateStatementRow(BankingTransaction transaction, int balance) {
-        if (transaction.amount() > 0)
-            return StatementRow.deposit(transaction, balance);
-        else
-            return StatementRow.withdrawal(transaction, balance);
     }
 
     public void add(BankingTransaction transaction) {
