@@ -4,6 +4,8 @@ import bank.BankingTransaction;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @ToString
 @EqualsAndHashCode
 public class StatementRow {
@@ -21,5 +23,9 @@ public class StatementRow {
 
     int balance() {
         return balance;
+    }
+
+    LocalDate date() {
+        return transaction.date();
     }
 }
