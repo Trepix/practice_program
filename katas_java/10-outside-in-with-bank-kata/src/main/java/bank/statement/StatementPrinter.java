@@ -15,8 +15,15 @@ public class StatementPrinter {
     public void print(Statement statement) {
         display.show("date || credit || debit || balance");
         for (StatementRow row : statement.rows()) {
-            display.show(format(row.date()) + " || " + format(row.deposit()) + " || || " + format(row.balance()));
+            display.show(generateLine(row));
         }
+    }
+
+    private String generateLine(StatementRow row) {
+        if (row.isAnIncome())
+            return format(row.date()) + " || " + format(row.deposit()) + " || || " + format(row.balance());
+        else
+            return format(row.date()) + " || || " + format(row.withdrawal()) + " || " + format(row.balance());
     }
 
     private String format(LocalDate date) {

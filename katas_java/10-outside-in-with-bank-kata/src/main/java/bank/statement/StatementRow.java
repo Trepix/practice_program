@@ -21,11 +21,19 @@ public class StatementRow {
         return transaction.amount();
     }
 
+    public int withdrawal() {
+        return Math.abs(transaction.amount());
+    }
+
     int balance() {
         return balance;
     }
 
     LocalDate date() {
         return transaction.date();
+    }
+
+    boolean isAnIncome() {
+        return transaction.amount() > 0;
     }
 }
