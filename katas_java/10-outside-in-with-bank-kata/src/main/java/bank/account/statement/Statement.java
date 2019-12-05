@@ -1,6 +1,6 @@
-package bank.statement;
+package bank.account.statement;
 
-import bank.BankingTransaction;
+import bank.account.BankingTransaction;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

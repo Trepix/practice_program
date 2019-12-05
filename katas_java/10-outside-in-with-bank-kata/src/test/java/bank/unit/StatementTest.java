@@ -1,8 +1,8 @@
 package bank.unit;
 
-import bank.BankingTransaction;
-import bank.statement.Statement;
-import bank.statement.StatementRow;
+import bank.account.BankingTransaction;
+import bank.account.statement.Statement;
+import bank.account.statement.StatementRow;
 import org.junit.Ignore;
 import org.junit.Test;
 

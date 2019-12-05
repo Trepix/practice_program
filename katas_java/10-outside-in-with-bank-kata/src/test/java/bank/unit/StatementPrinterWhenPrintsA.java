@@ -1,11 +1,10 @@
 package bank.unit;
 
-import bank.BankingTransaction;
-import bank.DateUtils;
-import bank.Display;
-import bank.statement.Statement;
-import bank.statement.StatementPrinter;
-import bank.statement.StatementRow;
+import bank.account.BankingTransaction;
+import bank.account.statement.Statement;
+import bank.account.statement.StatementPrinter;
+import bank.account.statement.StatementRow;
+import bank.system.Display;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

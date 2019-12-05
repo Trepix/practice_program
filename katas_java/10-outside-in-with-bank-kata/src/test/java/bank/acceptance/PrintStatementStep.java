@@ -1,8 +1,8 @@
 package bank.acceptance;
 
-import bank.BankAccount;
-import bank.Calendar;
-import bank.Display;
+import bank.account.BankAccount;
+import bank.system.Calendar;
+import bank.system.Display;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
