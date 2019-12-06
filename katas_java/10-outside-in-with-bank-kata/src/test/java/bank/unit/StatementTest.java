@@ -3,24 +3,29 @@ package bank.unit;
 import bank.account.BankingTransaction;
 import bank.account.statement.Statement;
 import bank.account.statement.StatementLine;
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static bank.DateHelper.date;
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.contains;
 
 public class StatementTest {
 
     @Test
     public void when_no_banking_transactions_are_added_statement_should_be_empty() {
         Statement statement = new Statement();
-        assertThat(statement.lines(), is(new ArrayList<>()));
+
+        assertThat(statement.iterator(), Matchers.emptyIterable());
     }
 
     @Test
@@ -32,11 +37,9 @@ public class StatementTest {
         statement.add(oldestTransaction);
         statement.add(moreRecentTransaction);
 
-        List<StatementLine> expectedLine = asList(
+        assertThat(statement.iterator(), contains(
                 new StatementLine(moreRecentTransaction, 2000),
-                new StatementLine(oldestTransaction, 1000)
-        );
-        assertThat(expectedLine, is(statement.lines()));
+                new StatementLine(oldestTransaction, 1000)));
     }
 
     @Test
@@ -46,8 +49,7 @@ public class StatementTest {
 
         statement.add(transaction);
 
-        List<StatementLine> expectedLine = singletonList(new StatementLine(transaction, -1000));
-        assertThat(expectedLine, is(statement.lines()));
+        assertThat(statement.iterator(), contains(new StatementLine(transaction, -1000)));
     }
 
     @Test
@@ -61,12 +63,10 @@ public class StatementTest {
         statement.add(withdrawal);
         statement.add(secondDeposit);
 
-        List<StatementLine> expectedLine = asList(
+        assertThat(statement.iterator(), contains(
                 new StatementLine(secondDeposit, 2500),
                 new StatementLine(withdrawal, 500),
-                new StatementLine(firstDeposit, 1000)
-        );
-        assertThat(expectedLine, is(statement.lines()));
+                new StatementLine(firstDeposit, 1000)));
     }
 
     @Test
@@ -83,7 +83,13 @@ public class StatementTest {
         statement_2_1.add(transaction_2);
         statement_2_1.add(transaction_1);
 
-        assertThat(statement_1_2.lines(), is(statement_2_1.lines()));
+        //assertThat(statement_1_2.iterator(), is(statement_2_1.iterator()));
     }
 
+    private <T> void assertThat(Iterator<T> iterator, Matcher<Iterable<? extends T>> listMatcher) {
+        List<T> listFromIterator = StreamSupport
+                .stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false)
+                .collect(Collectors.toList());
+        Assert.assertThat("", listFromIterator, listMatcher);
+    }
 }
