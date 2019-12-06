@@ -8,11 +8,11 @@ import java.time.LocalDate;
 
 @ToString
 @EqualsAndHashCode
-public class StatementRow {
+public class StatementLine {
     private final BankingTransaction transaction;
     private final int balance;
 
-    public StatementRow(BankingTransaction transaction, int balance) {
+    public StatementLine(BankingTransaction transaction, int balance) {
         this.transaction = transaction;
         this.balance = balance;
     }

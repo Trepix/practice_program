@@ -3,7 +3,7 @@ package bank.unit;
 import bank.account.BankingTransaction;
 import bank.account.statement.Statement;
 import bank.account.statement.StatementPrinter;
-import bank.account.statement.StatementRow;
+import bank.account.statement.StatementLine;
 import bank.system.Display;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -87,10 +87,10 @@ public class StatementPrinterWhenPrintsA {
 
     @Test
     @Ignore
-    public void when_statement_row_is_a_deposit_and_withdrawal_is_called() {
+    public void when_statement_line_is_a_deposit_and_withdrawal_is_called() {
         BankingTransaction transaction = BankingTransaction.deposit(date("06/11/1917"), 1000);
-        StatementRow statementRow = new StatementRow(transaction, 0);
+        StatementLine statementLine = new StatementLine(transaction, 0);
 
-        statementRow.withdrawal();
+        statementLine.withdrawal();
     }
 }

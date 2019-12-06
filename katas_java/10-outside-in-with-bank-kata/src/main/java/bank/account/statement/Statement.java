@@ -10,15 +10,15 @@ public class Statement {
 
     private List<BankingTransaction> transactions = new ArrayList<>();
 
-    public List<StatementRow> rows() {
-        LinkedList<StatementRow> statementRows = new LinkedList<>();
+    public List<StatementLine> lines() {
+        LinkedList<StatementLine> statementLines = new LinkedList<>();
         int balance = 0;
         for (BankingTransaction transaction : transactions) {
             balance += transaction.amount();
-            StatementRow row = new StatementRow(transaction, balance);
-            statementRows.push(row);
+            StatementLine line = new StatementLine(transaction, balance);
+            statementLines.push(line);
         }
-        return statementRows;
+        return statementLines;
     }
 
     public void add(BankingTransaction transaction) {

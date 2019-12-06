@@ -2,7 +2,7 @@ package bank.unit;
 
 import bank.account.BankingTransaction;
 import bank.account.statement.Statement;
-import bank.account.statement.StatementRow;
+import bank.account.statement.StatementLine;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class StatementTest {
     @Test
     public void when_no_banking_transactions_are_added_statement_should_be_empty() {
         Statement statement = new Statement();
-        assertThat(statement.rows(), is(new ArrayList<>()));
+        assertThat(statement.lines(), is(new ArrayList<>()));
     }
 
     @Test
@@ -32,11 +32,11 @@ public class StatementTest {
         statement.add(oldestTransaction);
         statement.add(moreRecentTransaction);
 
-        List<StatementRow> expectedRow = asList(
-                new StatementRow(moreRecentTransaction, 2000),
-                new StatementRow(oldestTransaction, 1000)
+        List<StatementLine> expectedLine = asList(
+                new StatementLine(moreRecentTransaction, 2000),
+                new StatementLine(oldestTransaction, 1000)
         );
-        assertThat(expectedRow, is(statement.rows()));
+        assertThat(expectedLine, is(statement.lines()));
     }
 
     @Test
@@ -46,8 +46,8 @@ public class StatementTest {
 
         statement.add(transaction);
 
-        List<StatementRow> expectedRow = singletonList(new StatementRow(transaction, -1000));
-        assertThat(expectedRow, is(statement.rows()));
+        List<StatementLine> expectedLine = singletonList(new StatementLine(transaction, -1000));
+        assertThat(expectedLine, is(statement.lines()));
     }
 
     @Test
@@ -61,12 +61,12 @@ public class StatementTest {
         statement.add(withdrawal);
         statement.add(secondDeposit);
 
-        List<StatementRow> expectedRow = asList(
-                new StatementRow(secondDeposit, 2500),
-                new StatementRow(withdrawal, 500),
-                new StatementRow(firstDeposit, 1000)
+        List<StatementLine> expectedLine = asList(
+                new StatementLine(secondDeposit, 2500),
+                new StatementLine(withdrawal, 500),
+                new StatementLine(firstDeposit, 1000)
         );
-        assertThat(expectedRow, is(statement.rows()));
+        assertThat(expectedLine, is(statement.lines()));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class StatementTest {
         statement_2_1.add(transaction_2);
         statement_2_1.add(transaction_1);
 
-        assertThat(statement_1_2.rows(), is(statement_2_1.rows()));
+        assertThat(statement_1_2.lines(), is(statement_2_1.lines()));
     }
 
 }

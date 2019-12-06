@@ -14,16 +14,16 @@ public class StatementPrinter {
 
     public void print(Statement statement) {
         display.show("date || credit || debit || balance");
-        for (StatementRow row : statement.rows()) {
-            display.show(generateLine(row));
+        for (StatementLine statementLine : statement.lines()) {
+            display.show(generateLine(statementLine));
         }
     }
 
-    private String generateLine(StatementRow row) {
-        if (row.isAnIncome())
-            return format(row.date()) + " || " + format(row.deposit()) + " || || " + format(row.balance());
+    private String generateLine(StatementLine statementLine) {
+        if (statementLine.isAnIncome())
+            return format(statementLine.date()) + " || " + format(statementLine.deposit()) + " || || " + format(statementLine.balance());
         else
-            return format(row.date()) + " || || " + format(row.withdrawal()) + " || " + format(row.balance());
+            return format(statementLine.date()) + " || || " + format(statementLine.withdrawal()) + " || " + format(statementLine.balance());
     }
 
     private String format(LocalDate date) {
