@@ -14,12 +14,12 @@ public class StatementPrinter {
 
     public void print(Statement statement) {
         display.show("date || credit || debit || balance");
-        for (StatementLine statementLine : statement.lines()) {
-            display.show(generateLine(statementLine));
+        for (StatementLine statementLine : statement) {
+            display.show(format(statementLine));
         }
     }
 
-    private String generateLine(StatementLine statementLine) {
+    private String format(StatementLine statementLine) {
         if (statementLine.isAnIncome())
             return format(statementLine.date()) + " || " + format(statementLine.deposit()) + " || || " + format(statementLine.balance());
         else
