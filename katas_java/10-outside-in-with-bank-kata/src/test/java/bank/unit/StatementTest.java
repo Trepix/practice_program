@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bank.DateUtils.parse;
+import static bank.DateHelper.date;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.is;
@@ -26,8 +26,8 @@ public class StatementTest {
     @Test
     public void two_deposits_are_added() {
         Statement statement = new Statement();
-        BankingTransaction oldestTransaction = BankingTransaction.deposit(parse("01/05/1886"), 1000);
-        BankingTransaction moreRecentTransaction = BankingTransaction.deposit(parse("03/05/1886"), 1000);
+        BankingTransaction oldestTransaction = BankingTransaction.deposit(date("01/05/1886"), 1000);
+        BankingTransaction moreRecentTransaction = BankingTransaction.deposit(date("03/05/1886"), 1000);
 
         statement.add(oldestTransaction);
         statement.add(moreRecentTransaction);
@@ -42,7 +42,7 @@ public class StatementTest {
     @Test
     public void one_withdrawal_is_added() {
         Statement statement = new Statement();
-        BankingTransaction transaction = BankingTransaction.withdrawal(parse("01/05/1886"), 1000);
+        BankingTransaction transaction = BankingTransaction.withdrawal(date("01/05/1886"), 1000);
 
         statement.add(transaction);
 
@@ -53,9 +53,9 @@ public class StatementTest {
     @Test
     public void deposits_and_withdrawals_are_added_to_statement() {
         Statement statement = new Statement();
-        BankingTransaction firstDeposit = BankingTransaction.deposit(parse("01/05/1886"), 1000);
-        BankingTransaction withdrawal = BankingTransaction.withdrawal(parse("03/05/1886"), 500);
-        BankingTransaction secondDeposit = BankingTransaction.deposit(parse("12/01/2012"), 2000);
+        BankingTransaction firstDeposit = BankingTransaction.deposit(date("01/05/1886"), 1000);
+        BankingTransaction withdrawal = BankingTransaction.withdrawal(date("03/05/1886"), 500);
+        BankingTransaction secondDeposit = BankingTransaction.deposit(date("12/01/2012"), 2000);
 
         statement.add(firstDeposit);
         statement.add(withdrawal);
@@ -74,8 +74,8 @@ public class StatementTest {
     public void when_two_deposits_are_added_the_order_of_its_addition_to_statement_does_not_matter_because_are_sorted_by_date() {
         Statement statement_1_2 = new Statement();
         Statement statement_2_1 = new Statement();
-        BankingTransaction transaction_1 = BankingTransaction.deposit(parse("01/05/1886"), 1000);
-        BankingTransaction transaction_2 = BankingTransaction.deposit(parse("03/05/1886"), 1000);
+        BankingTransaction transaction_1 = BankingTransaction.deposit(date("01/05/1886"), 1000);
+        BankingTransaction transaction_2 = BankingTransaction.deposit(date("03/05/1886"), 1000);
 
         statement_1_2.add(transaction_1);
         statement_1_2.add(transaction_2);

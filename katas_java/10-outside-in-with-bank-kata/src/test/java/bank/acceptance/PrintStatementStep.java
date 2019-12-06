@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import static bank.DateUtils.parse;
+import static bank.DateHelper.date;
 
 public class PrintStatementStep {
 
@@ -19,13 +19,13 @@ public class PrintStatementStep {
 
     @Given("a deposit of {int} on date {string}")
     public void aDepositOf(int amount, String date) {
-        Mockito.when(calendar.date()).thenReturn(parse(date));
+        Mockito.when(calendar.date()).thenReturn(date(date));
         bankAccount.deposit(amount);
     }
 
     @Given("a withdrawal of {int} on date {string}")
     public void aWithdrawalOf(int amount, String date) {
-        Mockito.when(calendar.date()).thenReturn(parse(date));
+        Mockito.when(calendar.date()).thenReturn(date(date));
         bankAccount.withdraw(amount);
     }
 

@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import static bank.DateUtils.*;
+import static bank.DateHelper.*;
 
 public class StatementPrinterWhenPrintsA {
 
@@ -36,7 +36,7 @@ public class StatementPrinterWhenPrintsA {
     @Test
     public void statement_with_only_one_deposit() {
         Statement statement = new Statement();
-        statement.add(BankingTransaction.deposit(parse("06/11/1917"), 1000));
+        statement.add(BankingTransaction.deposit(date("06/11/1917"), 1000));
 
         printer.print(statement);
 
@@ -48,8 +48,8 @@ public class StatementPrinterWhenPrintsA {
     @Test
     public void statement_with_two_deposits() {
         Statement statement = new Statement();
-        statement.add(BankingTransaction.deposit(parse("06/11/1917"), 1000));
-        statement.add(BankingTransaction.deposit(parse("08/11/1917"), 2000));
+        statement.add(BankingTransaction.deposit(date("06/11/1917"), 1000));
+        statement.add(BankingTransaction.deposit(date("08/11/1917"), 2000));
 
         printer.print(statement);
 
@@ -62,7 +62,7 @@ public class StatementPrinterWhenPrintsA {
     @Test
     public void statement_with_one_withdrawal() {
         Statement statement = new Statement();
-        statement.add(BankingTransaction.withdrawal(parse("06/11/1917"), 1000));
+        statement.add(BankingTransaction.withdrawal(date("06/11/1917"), 1000));
 
         printer.print(statement);
 
@@ -74,8 +74,8 @@ public class StatementPrinterWhenPrintsA {
     @Test
     public void statement_with_deposits_and_withdrawals() {
         Statement statement = new Statement();
-        statement.add(BankingTransaction.deposit(parse("06/11/1917"), 1000));
-        statement.add(BankingTransaction.withdrawal(parse("08/11/1917"), 1500));
+        statement.add(BankingTransaction.deposit(date("06/11/1917"), 1000));
+        statement.add(BankingTransaction.withdrawal(date("08/11/1917"), 1500));
 
         printer.print(statement);
 
@@ -88,7 +88,7 @@ public class StatementPrinterWhenPrintsA {
     @Test
     @Ignore
     public void when_statement_row_is_a_deposit_and_withdrawal_is_called() {
-        BankingTransaction transaction = BankingTransaction.deposit(parse("06/11/1917"), 1000);
+        BankingTransaction transaction = BankingTransaction.deposit(date("06/11/1917"), 1000);
         StatementRow statementRow = new StatementRow(transaction, 0);
 
         statementRow.withdrawal();
