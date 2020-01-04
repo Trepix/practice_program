@@ -1,6 +1,6 @@
-package bank.account.statement;
+package bankaccount.domain.statement;
 
-import bank.system.Display;
+import bankaccount.domain.Display;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

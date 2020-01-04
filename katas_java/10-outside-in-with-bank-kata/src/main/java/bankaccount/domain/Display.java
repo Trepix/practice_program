@@ -1,4 +1,4 @@
-package bank.system;
+package bankaccount.domain;
 
 public interface Display {
     void show(String line);

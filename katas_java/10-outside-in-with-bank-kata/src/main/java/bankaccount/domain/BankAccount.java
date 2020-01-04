@@ -1,9 +1,7 @@
-package bank.account;
+package bankaccount.domain;
 
-import bank.account.statement.Statement;
-import bank.account.statement.StatementPrinter;
-import bank.system.Calendar;
-import bank.system.Display;
+import bankaccount.domain.statement.Statement;
+import bankaccount.domain.statement.StatementPrinter;
 
 public class BankAccount {
 

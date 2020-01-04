@@ -1,6 +1,6 @@
-package bank.account.statement;
+package bankaccount.domain.statement;
 
-import bank.account.BankingTransaction;
+import bankaccount.domain.BankingTransaction;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

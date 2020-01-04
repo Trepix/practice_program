@@ -1,4 +1,4 @@
-package bank.account;
+package bankaccount.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

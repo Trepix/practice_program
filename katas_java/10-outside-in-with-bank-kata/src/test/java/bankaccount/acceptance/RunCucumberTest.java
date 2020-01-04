@@ -1,4 +1,4 @@
-package bank.acceptance;
+package bankaccount.acceptance;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

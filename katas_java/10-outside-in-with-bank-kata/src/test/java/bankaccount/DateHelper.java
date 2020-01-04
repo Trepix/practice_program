@@ -1,4 +1,4 @@
-package bank;
+package bankaccount;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

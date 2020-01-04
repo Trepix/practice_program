@@ -1,17 +1,17 @@
-package bank.unit;
+package bankaccount.unit;
 
-import bank.account.BankingTransaction;
-import bank.account.statement.Statement;
-import bank.account.statement.StatementPrinter;
-import bank.account.statement.StatementLine;
-import bank.system.Display;
+import bankaccount.domain.BankingTransaction;
+import bankaccount.domain.statement.Statement;
+import bankaccount.domain.statement.StatementPrinter;
+import bankaccount.domain.statement.StatementLine;
+import bankaccount.domain.Display;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import static bank.DateHelper.*;
+import static bankaccount.DateHelper.*;
 
 public class StatementPrinterWhenPrintsA {
 
@@ -25,7 +25,7 @@ public class StatementPrinterWhenPrintsA {
     }
 
     @Test
-    public void an_empty_statement_should_print_only_the_headers() {
+    public void empty_statement_should_print_only_the_headers() {
         Statement statement = new Statement();
 
         printer.print(statement);

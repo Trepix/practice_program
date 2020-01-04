@@ -1,15 +1,15 @@
-package bank.acceptance;
+package bankaccount.acceptance;
 
-import bank.account.BankAccount;
-import bank.system.Calendar;
-import bank.system.Display;
+import bankaccount.domain.BankAccount;
+import bankaccount.domain.Display;
+import bankaccount.domain.Calendar;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
 
-import static bank.DateHelper.date;
+import static bankaccount.DateHelper.date;
 
 public class PrintStatementStep {
 

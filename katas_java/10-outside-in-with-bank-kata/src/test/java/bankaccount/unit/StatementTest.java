@@ -1,8 +1,8 @@
-package bank.unit;
+package bankaccount.unit;
 
-import bank.account.BankingTransaction;
-import bank.account.statement.Statement;
-import bank.account.statement.StatementLine;
+import bankaccount.domain.BankingTransaction;
+import bankaccount.domain.statement.Statement;
+import bankaccount.domain.statement.StatementLine;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static bank.DateHelper.date;
+import static bankaccount.DateHelper.date;
 import static org.hamcrest.Matchers.contains;
 
 public class StatementTest {
@@ -90,6 +90,7 @@ public class StatementTest {
         List<T> listFromIterator = StreamSupport
                 .stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false)
                 .collect(Collectors.toList());
-        Assert.assertThat("", listFromIterator, listMatcher);
+        String reasonToFail = "Iterator " + listFromIterator + " not contains the elements of " + listMatcher.toString();
+        Assert.assertThat(reasonToFail, listFromIterator, listMatcher);
     }
 }
