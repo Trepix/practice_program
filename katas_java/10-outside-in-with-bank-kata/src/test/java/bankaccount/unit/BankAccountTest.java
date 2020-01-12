@@ -1,17 +1,17 @@
 package bankaccount.unit;
 
-import bankaccount.BankAccount;
-import bankaccount.Calendar;
-import bankaccount.bankingtransactions.BankingTransactionRepository;
-import bankaccount.statement.Statement;
-import bankaccount.statement.StatementPrinter;
+import bankaccount.domain.BankAccount;
+import bankaccount.domain.Calendar;
+import bankaccount.domain.bankingtransactions.BankingTransactionRepository;
+import bankaccount.domain.statement.Statement;
+import bankaccount.domain.statement.StatementPrinter;
 import org.junit.Before;
 import org.junit.Test;
 
 import static bankaccount.DateHelper.date;
 import static bankaccount.StatementBuilder.with;
-import static bankaccount.bankingtransactions.BankingTransaction.deposit;
-import static bankaccount.bankingtransactions.BankingTransaction.withdrawal;
+import static bankaccount.domain.bankingtransactions.BankingTransaction.deposit;
+import static bankaccount.domain.bankingtransactions.BankingTransaction.withdrawal;
 import static org.mockito.Mockito.*;
 
 public class BankAccountTest {

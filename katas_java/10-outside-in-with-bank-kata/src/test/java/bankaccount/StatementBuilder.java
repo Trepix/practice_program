@@ -1,7 +1,7 @@
 package bankaccount;
 
-import bankaccount.bankingtransactions.BankingTransaction;
-import bankaccount.statement.Statement;
+import bankaccount.domain.bankingtransactions.BankingTransaction;
+import bankaccount.domain.statement.Statement;
 
 import java.util.LinkedList;
 import java.util.List;

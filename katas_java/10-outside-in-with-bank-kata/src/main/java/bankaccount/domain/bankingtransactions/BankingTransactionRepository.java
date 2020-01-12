@@ -1,6 +1,6 @@
-package bankaccount.bankingtransactions;
+package bankaccount.domain.bankingtransactions;
 
-import bankaccount.statement.Statement;
+import bankaccount.domain.statement.Statement;
 
 public interface BankingTransactionRepository {
     void add(BankingTransaction bankingTransaction);

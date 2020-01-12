@@ -1,8 +1,8 @@
-package bankaccount;
+package bankaccount.domain;
 
-import bankaccount.bankingtransactions.BankingTransaction;
-import bankaccount.bankingtransactions.BankingTransactionRepository;
-import bankaccount.statement.StatementPrinter;
+import bankaccount.domain.bankingtransactions.BankingTransaction;
+import bankaccount.domain.bankingtransactions.BankingTransactionRepository;
+import bankaccount.domain.statement.StatementPrinter;
 
 public class BankAccount {
 

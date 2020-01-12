@@ -1,4 +1,4 @@
-package bankaccount;
+package bankaccount.domain;
 
 import java.time.LocalDate;
 
