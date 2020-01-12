@@ -17,9 +17,10 @@ public class InMemoryBankingTransactionRepository implements BankingTransactionR
 
     @Override
     public Statement generateStatement() {
-        if (bankingTransactions.isEmpty()) return new Statement();
         Statement statement = new Statement();
-        statement.add(bankingTransactions.get(0));
+        for (BankingTransaction bankingTransaction : bankingTransactions) {
+            statement.add(bankingTransaction);
+        }
         return statement;
     }
 }

@@ -19,7 +19,18 @@ public class StatementBuilder {
         return statementBuilder;
     }
 
+    public static StatementBuilder withFirst(BankingTransaction bankingTransaction) {
+        StatementBuilder statementBuilder = new StatementBuilder();
+        statementBuilder.bankingTransactions.add(bankingTransaction);
+        return statementBuilder;
+    }
+
     public StatementBuilder and(BankingTransaction bankingTransaction) {
+        bankingTransactions.add(bankingTransaction);
+        return this;
+    }
+
+    public StatementBuilder andAfter(BankingTransaction bankingTransaction) {
         bankingTransactions.add(bankingTransaction);
         return this;
     }
