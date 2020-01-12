@@ -2,6 +2,7 @@ package bankaccount.unit;
 
 import bankaccount.BankAccount;
 import bankaccount.Calendar;
+import bankaccount.bankingtransactions.BankingTransaction;
 import bankaccount.bankingtransactions.BankingTransactionRepository;
 import bankaccount.statement.Statement;
 import bankaccount.statement.StatementPrinter;
@@ -45,6 +46,16 @@ public class BankAccountTest {
         bankAccount.deposit(1000);
 
         verify(bankingTransactionRepository).add(deposit(date("01/05/1886"), 1000));
+    }
+
+    @Test
+    public void when_a_withdraw_is_done_its_added_to_repository() {
+        BankAccount bankAccount = new BankAccount(calendar, printer, bankingTransactionRepository);
+        when(calendar.date()).thenReturn(date("03/05/1886"));
+
+        bankAccount.withdraw(500);
+
+        verify(bankingTransactionRepository).add(BankingTransaction.withdrawal(date("03/05/1886"), 500));
     }
 
 }

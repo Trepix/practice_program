@@ -26,6 +26,7 @@ public class BankAccount {
     }
 
     public void withdraw(int amount) {
+        bankingTransactionRepository.add(BankingTransaction.withdrawal(calendar.date(), amount));
     }
 
     public void printStatement() {

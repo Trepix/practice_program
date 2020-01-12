@@ -20,4 +20,8 @@ public class BankingTransaction {
     public static BankingTransaction deposit(LocalDate date, int amount) {
         return new BankingTransaction(date, amount);
     }
+
+    public static BankingTransaction withdrawal(LocalDate date, int amount) {
+        return new BankingTransaction(date, -amount);
+    }
 }
