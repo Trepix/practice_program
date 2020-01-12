@@ -2,7 +2,6 @@ package bankaccount.unit;
 
 import bankaccount.BankAccount;
 import bankaccount.Calendar;
-import bankaccount.bankingtransactions.BankingTransaction;
 import bankaccount.bankingtransactions.BankingTransactionRepository;
 import bankaccount.statement.Statement;
 import bankaccount.statement.StatementPrinter;
@@ -10,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static bankaccount.DateHelper.date;
+import static bankaccount.StatementBuilder.with;
 import static bankaccount.bankingtransactions.BankingTransaction.deposit;
+import static bankaccount.bankingtransactions.BankingTransaction.withdrawal;
 import static org.mockito.Mockito.*;
 
 public class BankAccountTest {
@@ -24,18 +25,6 @@ public class BankAccountTest {
         printer = mock(StatementPrinter.class);
         calendar = mock(Calendar.class);
         bankingTransactionRepository = mock(BankingTransactionRepository.class);
-    }
-
-    @Test
-    public void when_no_banking_transactions_are_done_should_print_an_empty_statement() {
-        BankAccount bankAccount = new BankAccount(calendar, printer, bankingTransactionRepository);
-        Statement statement = new Statement();
-
-        when(bankingTransactionRepository.generateStatement()).thenReturn(statement);
-
-        bankAccount.printStatement();
-
-        verify(printer).print(statement);
     }
 
     @Test
@@ -55,7 +44,33 @@ public class BankAccountTest {
 
         bankAccount.withdraw(500);
 
-        verify(bankingTransactionRepository).add(BankingTransaction.withdrawal(date("03/05/1886"), 500));
+        verify(bankingTransactionRepository).add(withdrawal(date("03/05/1886"), 500));
+    }
+
+
+    @Test
+    public void when_no_banking_transactions_are_done_should_print_an_empty_statement() {
+        BankAccount bankAccount = new BankAccount(calendar, printer, bankingTransactionRepository);
+        Statement statement = new Statement();
+        when(bankingTransactionRepository.generateStatement()).thenReturn(statement);
+
+        bankAccount.printStatement();
+
+        verify(printer).print(statement);
+    }
+
+
+    @Test
+    public void prints_the_statement_with_banking_transactions() {
+        BankAccount bankAccount = new BankAccount(calendar, printer, bankingTransactionRepository);
+        Statement statement = with(deposit(date("01/05/1886"), 1000))
+                .and(withdrawal(date("03/05/1886"), 500))
+                .build();
+        when(bankingTransactionRepository.generateStatement()).thenReturn(statement);
+
+        bankAccount.printStatement();
+
+        verify(printer).print(statement);
     }
 
 }
