@@ -19,7 +19,7 @@ public class StatementBuilder {
         return statementBuilder;
     }
 
-    public static StatementBuilder withFirst(BankingTransaction bankingTransaction) {
+    public static StatementBuilder startingOnTopWith(BankingTransaction bankingTransaction) {
         StatementBuilder statementBuilder = new StatementBuilder();
         statementBuilder.bankingTransactions.add(bankingTransaction);
         return statementBuilder;
