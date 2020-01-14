@@ -21,9 +21,9 @@ public class StatementPrinter {
 
     private String format(StatementLine statementLine) {
         if (statementLine.isAnIncome())
-            return format(statementLine.date()) + " || " + format(statementLine.deposit()) + " || || " + format(statementLine.balance());
+            return format(statementLine.date()) + " || " + format(statementLine.credit()) + " || || " + format(statementLine.balance());
         else
-            return format(statementLine.date()) + " || || " + format(statementLine.withdrawal()) + " || " + format(statementLine.balance());
+            return format(statementLine.date()) + " || || " + format(statementLine.debit()) + " || " + format(statementLine.balance());
     }
 
     private String format(LocalDate date) {

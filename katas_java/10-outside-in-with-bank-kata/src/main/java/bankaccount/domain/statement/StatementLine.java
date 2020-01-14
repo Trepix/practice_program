@@ -17,11 +17,11 @@ public class StatementLine {
         this.balance = balance;
     }
 
-    int deposit() {
+    int credit() {
         return transaction.amount();
     }
 
-    public int withdrawal() {
+    public int debit() {
         return Math.abs(transaction.amount());
     }
 

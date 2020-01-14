@@ -91,6 +91,6 @@ public class StatementPrinterWhenPrintsA {
         BankingTransaction transaction = BankingTransaction.deposit(date("06/11/1917"), 1000);
         StatementLine statementLine = new StatementLine(transaction, 0);
 
-        statementLine.withdrawal();
+        statementLine.debit();
     }
 }
