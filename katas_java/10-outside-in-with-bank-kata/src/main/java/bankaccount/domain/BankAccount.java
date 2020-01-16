@@ -3,6 +3,7 @@ package bankaccount.domain;
 import bankaccount.domain.bankingtransactions.BankingTransaction;
 import bankaccount.domain.bankingtransactions.BankingTransactionRepository;
 import bankaccount.domain.statement.StatementPrinter;
+import bankaccount.infrastructure.InMemoryBankingTransactionRepository;
 
 public class BankAccount {
 
@@ -13,6 +14,7 @@ public class BankAccount {
 
     public BankAccount(Calendar calendar, Display display) {
         this.calendar = calendar;
+        this.bankingTransactionRepository = new InMemoryBankingTransactionRepository();
     }
 
     public BankAccount(Calendar calendar, StatementPrinter printer, BankingTransactionRepository bankingTransactionRepository) {
