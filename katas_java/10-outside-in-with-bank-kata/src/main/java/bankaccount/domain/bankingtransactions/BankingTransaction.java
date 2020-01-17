@@ -24,4 +24,12 @@ public class BankingTransaction {
     public static BankingTransaction withdrawal(LocalDate date, int amount) {
         return new BankingTransaction(date, -amount);
     }
+
+    public LocalDate date() {
+        return this.date;
+    }
+
+    public int amount() {
+        return amount;
+    }
 }
