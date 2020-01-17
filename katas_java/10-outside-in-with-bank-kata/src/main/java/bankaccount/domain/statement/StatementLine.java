@@ -23,6 +23,10 @@ public class StatementLine {
     }
 
     public int amount() {
-        return bankingTransaction.amount();
+        return Math.abs(bankingTransaction.amount());
+    }
+
+    public boolean isCredit() {
+        return bankingTransaction.amount() > 0;
     }
 }

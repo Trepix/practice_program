@@ -17,13 +17,19 @@ public class BritishStatementPrinter implements StatementPrinter {
         display.show("date || credit || debit || balance");
 
         for (StatementLine statementLine : statement) {
-            display.show(format(statementLine.date()) + " || " + statementLine.amount() + ".00 || || " + statementLine.balance() + ".00");
+            if (statementLine.isCredit())
+                display.show(format(statementLine.date()) + " || " + format(statementLine.amount()) + " || || " + format(statementLine.balance()));
+            else
+                display.show(format(statementLine.date()) + " || || " + format(statementLine.amount()) + " || " + format(statementLine.balance()));
         }
-
     }
 
     private String format(LocalDate date) {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return dateFormat.format(date);
+    }
+
+    private String format(int amount) {
+        return amount + ".00";
     }
 }
