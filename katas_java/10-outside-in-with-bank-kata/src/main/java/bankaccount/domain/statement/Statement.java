@@ -21,6 +21,10 @@ public class Statement implements Iterable<StatementLine> {
 
     @Override
     public Iterator<StatementLine> iterator() {
-        return Collections.emptyIterator();
+        LinkedList<StatementLine> statementLines = new LinkedList<>();
+        for (BankingTransaction bankingTransaction : bankingTransactions) {
+            statementLines.push(new StatementLine(bankingTransaction, bankingTransaction.amount()));
+        }
+        return statementLines.iterator();
     }
 }

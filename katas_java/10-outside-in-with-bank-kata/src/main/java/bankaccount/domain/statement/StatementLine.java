@@ -1,9 +1,13 @@
 package bankaccount.domain.statement;
 
 import bankaccount.domain.bankingtransactions.BankingTransaction;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
+@ToString
+@EqualsAndHashCode
 public class StatementLine {
 
     private BankingTransaction bankingTransaction;

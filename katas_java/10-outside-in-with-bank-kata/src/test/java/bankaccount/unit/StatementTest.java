@@ -1,6 +1,10 @@
 package bankaccount.unit;
 
+import bankaccount.DateHelper;
+import bankaccount.StatementBuilder;
+import bankaccount.domain.bankingtransactions.BankingTransaction;
 import bankaccount.domain.statement.Statement;
+import bankaccount.domain.statement.StatementLine;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -13,6 +17,9 @@ import java.util.Spliterators;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static bankaccount.StatementBuilder.*;
+import static bankaccount.domain.bankingtransactions.BankingTransaction.deposit;
+
 public class StatementTest {
 
     @Test
@@ -20,6 +27,16 @@ public class StatementTest {
         Statement statement = new Statement();
 
         assertThat(statement.iterator(), Matchers.emptyIterable());
+    }
+
+    @Test
+    public void should_return_statement_with_one_deposit() {
+        BankingTransaction deposit = deposit(DateHelper.date("17/04/1961"), 1000);
+        Statement statement = with(deposit).build();
+
+        assertThat(statement.iterator(), Matchers.contains(
+                new StatementLine(deposit, 1000)
+        ));
     }
 
     private <T> void assertThat(Iterator<T> iterator, Matcher<Iterable<? extends T>> listMatcher) {
