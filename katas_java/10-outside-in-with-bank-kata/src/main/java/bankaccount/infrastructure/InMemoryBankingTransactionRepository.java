@@ -12,7 +12,7 @@ public class InMemoryBankingTransactionRepository implements BankingTransactionR
 
     @Override
     public void add(BankingTransaction bankingTransaction) {
-        bankingTransactions.push(bankingTransaction);
+        bankingTransactions.add(bankingTransaction);
     }
 
     @Override

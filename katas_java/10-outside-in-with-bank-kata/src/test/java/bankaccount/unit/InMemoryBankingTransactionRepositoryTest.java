@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static bankaccount.DateHelper.date;
-import static bankaccount.StatementBuilder.startingOnTopWith;
+import static bankaccount.StatementBuilder.startingWithOldest;
 import static bankaccount.StatementBuilder.with;
 import static bankaccount.domain.bankingtransactions.BankingTransaction.deposit;
 import static bankaccount.domain.bankingtransactions.BankingTransaction.withdrawal;
@@ -45,15 +45,15 @@ public class InMemoryBankingTransactionRepositoryTest {
 
     @Test
     public void returns_statement_with_multiple_banking_transactions() {
-        BankingTransaction withdraw = withdrawal(date("02/05/1943"), 500);
-        BankingTransaction deposit = deposit(date("02/02/1945"), 1000);
+        BankingTransaction withdraw = withdrawal(date("02/05/1945"), 500);
+        BankingTransaction deposit = deposit(date("02/02/1943"), 1000);
         
-        Statement statement = startingOnTopWith(deposit)
+        Statement statement = startingWithOldest(deposit)
                 .andAfter(withdraw)
                 .build();
 
-        bankingTransactionRepository.add(withdraw);
         bankingTransactionRepository.add(deposit);
+        bankingTransactionRepository.add(withdraw);
 
         assertThat(bankingTransactionRepository.generateStatement(), is(statement));
     }
