@@ -51,7 +51,7 @@ public class StatementTest {
                 new StatementLine(deposit, 400)
         ));
     }
-    
+
     private <T> void assertThat(Iterator<T> iterator, Matcher<Iterable<? extends T>> listMatcher) {
         List<T> listFromIterator = StreamSupport
                 .stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false)

@@ -1,5 +1,6 @@
 package bankaccount.unit;
 
+import bankaccount.StatementBuilder;
 import bankaccount.domain.Display;
 import bankaccount.domain.bankingtransactions.BankingTransaction;
 import bankaccount.domain.statement.BritishStatementPrinter;
@@ -13,6 +14,7 @@ import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 import static bankaccount.DateHelper.date;
+import static bankaccount.StatementBuilder.*;
 import static bankaccount.domain.bankingtransactions.BankingTransaction.deposit;
 import static bankaccount.domain.bankingtransactions.BankingTransaction.withdrawal;
 import static java.util.Arrays.asList;
@@ -42,8 +44,7 @@ public class BritishDateStatementPrinterTest {
     @Test
     public void should_print_statement_with_one_deposit() {
         BankingTransaction deposit = deposit(date("12/04/1961"), 1000);
-        Statement statement = mock(Statement.class);
-        when(statement.iterator()).thenReturn(singletonList(new StatementLine(deposit, 1000)).iterator());
+        Statement statement = with(deposit).build();
 
         britishStatementPrinter.print(statement);
 
@@ -55,8 +56,7 @@ public class BritishDateStatementPrinterTest {
     @Test
     public void should_print_statement_with_one_withdrawal() {
         BankingTransaction withdrawal = withdrawal(date("12/04/1961"), 500);
-        Statement statement = mock(Statement.class);
-        when(statement.iterator()).thenReturn(singletonList(new StatementLine(withdrawal, -500)).iterator());
+        Statement statement = with(withdrawal).build();
 
         britishStatementPrinter.print(statement);
 
