@@ -3,6 +3,8 @@ package bankaccount.acceptance;
 import bankaccount.domain.BankAccount;
 import bankaccount.domain.Calendar;
 import bankaccount.domain.Display;
+import bankaccount.domain.statement.BritishStatementPrinter;
+import bankaccount.infrastructure.InMemoryBankingTransactionRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,7 +18,7 @@ public class PrintStatementStep {
 
     private Calendar calendar = Mockito.mock(Calendar.class);
     private Display display = Mockito.spy(Display.class);
-    private BankAccount bankAccount = new BankAccount(calendar, display);
+    private BankAccount bankAccount = new BankAccount(calendar, new BritishStatementPrinter(display), new InMemoryBankingTransactionRepository());
 
     @Given("a deposit of {int} on date {string}")
     public void aDepositOf(int amount, String date) {

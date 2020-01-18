@@ -2,9 +2,7 @@ package bankaccount.domain;
 
 import bankaccount.domain.bankingtransactions.BankingTransaction;
 import bankaccount.domain.bankingtransactions.BankingTransactionRepository;
-import bankaccount.domain.statement.BritishStatementPrinter;
 import bankaccount.domain.statement.StatementPrinter;
-import bankaccount.infrastructure.InMemoryBankingTransactionRepository;
 
 public class BankAccount {
 
@@ -12,10 +10,6 @@ public class BankAccount {
     private StatementPrinter printer;
     private BankingTransactionRepository bankingTransactionRepository;
 
-
-    public BankAccount(Calendar calendar, Display display) {
-        this(calendar, new BritishStatementPrinter(display), new InMemoryBankingTransactionRepository());
-    }
 
     public BankAccount(Calendar calendar, StatementPrinter printer, BankingTransactionRepository bankingTransactionRepository) {
         this.calendar = calendar;
