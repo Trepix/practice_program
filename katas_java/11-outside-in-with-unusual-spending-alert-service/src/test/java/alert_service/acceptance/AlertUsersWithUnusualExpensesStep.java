@@ -39,7 +39,7 @@ public class AlertUsersWithUnusualExpensesStep {
 
     @When("execute de detection of unusual expenses of user {string}")
     public void executeDeDetectionOfUnusualExpenses(String userId) {
-        val service = new UnusualExpensesDetectorService(paymentsRepository, userRepository, notificationSender, calendar);
+        val service = new UnusualExpensesAlerterService(paymentsRepository, userRepository, notificationSender, calendar);
         service.execute(UserId.of(userId));
     }
 
