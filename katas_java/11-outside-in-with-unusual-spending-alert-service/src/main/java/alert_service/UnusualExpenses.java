@@ -1,5 +1,6 @@
 package alert_service;
 
+import alert_service.notify.UserId;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

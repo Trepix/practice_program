@@ -1,4 +1,4 @@
-package alert_service;
+package alert_service.notify;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

@@ -1,6 +1,6 @@
 package alert_service.acceptance.config;
 
-import alert_service.Payment;
+import alert_service.detection.Payment;
 import io.cucumber.core.api.TypeRegistry;
 import io.cucumber.core.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;

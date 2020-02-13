@@ -1,6 +1,11 @@
 package alert_service.acceptance;
 
 import alert_service.*;
+import alert_service.detection.Calendar;
+import alert_service.detection.Payment;
+import alert_service.detection.Payments;
+import alert_service.detection.PaymentsRepository;
+import alert_service.notify.*;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

@@ -1,4 +1,4 @@
-package alert_service;
+package alert_service.notify;
 
 public interface NotificationSender {
     void send(Notification notification);
