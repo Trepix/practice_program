@@ -8,6 +8,8 @@ import io.cucumber.datatable.TableEntryTransformer;
 
 import java.util.Locale;
 
+import static alert_service.DateHelper.date;
+
 public class DataTableConfigurator implements TypeRegistryConfigurer {
 
     @Override
@@ -18,10 +20,13 @@ public class DataTableConfigurator implements TypeRegistryConfigurer {
     @Override
     public void configureTypeRegistry(TypeRegistry typeRegistry) {
         typeRegistry.defineDataTableType(new DataTableType(Payment.class,
-                (TableEntryTransformer<Payment>) entry ->
-                        new Payment(
-                                Integer.valueOf(entry.get("amount")),
-                                entry.get("category"),
-                                entry.get("date"))));
+                        (TableEntryTransformer<Payment>) entry ->
+                                new Payment(
+                                        Integer.valueOf(entry.get("amount")),
+                                        entry.get("category"),
+                                        date(entry.get("date"))
+                                )
+                )
+        );
     }
 }
