@@ -16,9 +16,14 @@ public class Detector {
     }
 
     public UnusualExpenses detect(UserId userId) {
+        DateRange dateRange = monthBeforeToNowRange();
+        Payments payments = paymentsRepository.getBy(userId, dateRange);
+        return payments.findUnusualExpenses();
+    }
+
+    private DateRange monthBeforeToNowRange() {
         LocalDate end = calendar.today();
         LocalDate start = end.minusMonths(1).withDayOfMonth(1);
-        Payments payments = paymentsRepository.getBy(userId, new DateRange(start, end));
-        return payments.findUnusualExpenses();
+        return new DateRange(start, end);
     }
 }
