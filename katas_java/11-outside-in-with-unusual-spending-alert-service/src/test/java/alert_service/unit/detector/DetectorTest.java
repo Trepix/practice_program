@@ -4,19 +4,17 @@ import alert_service.DateHelper;
 import alert_service.UnusualExpenses;
 import alert_service.detection.*;
 import alert_service.notify.UserId;
-import io.cucumber.java.ca.Cal;
-import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,7 +37,7 @@ public class DetectorTest {
     public void when_there_are_no_payments_should_return_empty_unusual_expenses() {
         Payments noPayments = new Payments(userId, emptyList());
         when(calendar.today()).thenReturn(date);
-        when(paymentsRepository.getByUserId(userId)).thenReturn(noPayments);
+        when(paymentsRepository.getBy(userId, any())).thenReturn(noPayments);
 
         UnusualExpenses unusualExpenses = detector.detect(userId);
 
@@ -55,7 +53,7 @@ public class DetectorTest {
                 new Payment(500, "rent", "02/04/1940")
         ));
         when(calendar.today()).thenReturn(date);
-        when(paymentsRepository.getByUserId(userId)).thenReturn(tooOldPayments);
+        when(paymentsRepository.getBy(userId, any())).thenReturn(tooOldPayments);
 
         UnusualExpenses unusualExpenses = detector.detect(userId);
 

@@ -1,10 +1,7 @@
 package alert_service.acceptance;
 
 import alert_service.UnusualExpensesAlerterService;
-import alert_service.detection.Calendar;
-import alert_service.detection.Payment;
-import alert_service.detection.Payments;
-import alert_service.detection.PaymentsRepository;
+import alert_service.detection.*;
 import alert_service.notify.*;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -12,6 +9,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.val;
+
+import java.time.LocalDate;
 
 import static alert_service.DateHelper.date;
 import static org.mockito.Mockito.*;
@@ -22,6 +21,7 @@ public class AlertUsersWithUnusualExpensesStep {
     private PaymentsRepository paymentsRepository = mock(PaymentsRepository.class);
     private Calendar calendar = mock(Calendar.class);
     private NotificationSender notificationSender = mock(NotificationSender.class);
+    private LocalDate now;
 
     @Given("a user with id {string} and email {string}")
     public void a_user(String id, String email) {
@@ -31,14 +31,16 @@ public class AlertUsersWithUnusualExpensesStep {
 
     @And("being today {string}")
     public void beingToday(String now) {
-        when(calendar.today()).thenReturn(date(now));
+        this.now = date(now);
+        when(calendar.today()).thenReturn(this.now);
     }
 
     @And("a list of payments for the user:")
     public void aListOfPayments(DataTable dataTable) {
         UserId userId = UserId.of("1234");
         Payments payments = new Payments(userId, dataTable.asList(Payment.class));
-        when(paymentsRepository.getByUserId(userId)).thenReturn(payments);
+        LocalDate firstDayOfMonthBefore = this.now.minusMonths(1).withDayOfMonth(1);
+        when(paymentsRepository.getBy(userId, new DateRange(firstDayOfMonthBefore, this.now))).thenReturn(payments);
     }
 
 
