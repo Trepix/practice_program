@@ -1,15 +1,10 @@
 package alert_service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class DateHelper {
-    public static Date date(String date) {
-        try {
-            return new SimpleDateFormat("dd/MM/yyyy").parse(date);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException();
-        }
+    public static LocalDate date(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }

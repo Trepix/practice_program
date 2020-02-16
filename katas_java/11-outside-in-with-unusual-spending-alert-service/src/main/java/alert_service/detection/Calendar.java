@@ -1,7 +1,7 @@
 package alert_service.detection;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public interface Calendar {
-    Date today();
+    LocalDate today();
 }

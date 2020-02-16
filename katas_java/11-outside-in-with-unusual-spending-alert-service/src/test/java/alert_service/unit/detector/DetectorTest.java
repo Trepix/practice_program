@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class DetectorTest {
 
     private final UserId userId = UserId.of("1234");
-    private final Date date = DateHelper.date("28/04/1945");
+    private final LocalDate date = DateHelper.date("28/04/1945");
     private PaymentsRepository paymentsRepository;
     private Calendar calendar;
     private Detector detector;
