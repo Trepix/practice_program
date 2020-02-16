@@ -1,6 +1,7 @@
 package alert_service.unit.detector;
 
 import alert_service.DateHelper;
+import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
 import alert_service.detection.*;
 import alert_service.notify.UserId;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import static alert_service.DateHelper.date;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
@@ -39,7 +41,6 @@ public class DetectorTest {
 
     @Test
     public void when_there_are_no_payments_should_return_empty_unusual_expenses() {
-        LocalDate date = date("28/04/1945");
         when(paymentsRepository.getBy(eq(userId), any())).thenReturn(noPayments);
 
         UnusualExpenses unusualExpenses = detector.detect(userId);
@@ -59,17 +60,16 @@ public class DetectorTest {
     }
 
     @Test
-    @Ignore
     public void when_payments_of_month_before_of_the_same_category_outstrip_by_50_percent_should_be_detected_as_unusual_expenses() {
         Payments payments = new Payments(userId, asList(
-                new Payment(1000, "rent", DateHelper.date("02/03/1945"))
-
+                new Payment(1000, "rent", DateHelper.date("02/03/1945")),
+                new Payment(2000, "rent", DateHelper.date("02/04/1945"))
         ));
-        when(paymentsRepository.getBy(eq(userId), any())).thenReturn(noPayments);
+        when(paymentsRepository.getBy(eq(userId), any())).thenReturn(payments);
 
-        detector.detect(userId);
+        UnusualExpenses unusualExpenses = detector.detect(userId);
 
-        DateRange dateRange = new DateRange(date("01/03/1945"), now);
-        verify(paymentsRepository).getBy(userId, dateRange);
+        UnusualExpenses detected = new UnusualExpenses(userId, singletonList(new UnusualExpense("rent", 2000)));
+        assertThat(unusualExpenses, is(detected));
     }
 }

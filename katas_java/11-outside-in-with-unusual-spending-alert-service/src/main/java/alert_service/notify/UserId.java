@@ -6,7 +6,13 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 public class UserId {
+    private final String id;
+
+    private UserId(String id) {
+        this.id = id;
+    }
+
     public static UserId of(String id) {
-        return null;
+        return new UserId(id);
     }
 }

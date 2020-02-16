@@ -5,8 +5,6 @@ import alert_service.notify.UserId;
 
 import java.time.LocalDate;
 
-import static java.util.Collections.emptyList;
-
 public class Detector {
     private final PaymentsRepository paymentsRepository;
     private final Calendar calendar;
