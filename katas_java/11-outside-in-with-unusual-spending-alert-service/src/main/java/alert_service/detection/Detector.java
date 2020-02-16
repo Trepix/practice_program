@@ -3,16 +3,24 @@ package alert_service.detection;
 import alert_service.UnusualExpenses;
 import alert_service.notify.UserId;
 
-import java.util.Collections;
+import java.time.LocalDate;
 
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
 
 public class Detector {
-    public Detector(PaymentsRepository paymentsRepository) {
+    private final PaymentsRepository paymentsRepository;
+    private final Calendar calendar;
 
+    public Detector(PaymentsRepository paymentsRepository, Calendar calendar) {
+
+        this.paymentsRepository = paymentsRepository;
+        this.calendar = calendar;
     }
 
     public UnusualExpenses detect(UserId userId) {
-        return new UnusualExpenses(userId, emptyList());
+        LocalDate end = calendar.today();
+        LocalDate start = end.minusMonths(1).withDayOfMonth(1);
+        Payments payments = paymentsRepository.getBy(userId, new DateRange(start, end));
+        return payments.findUnusualExpenses();
     }
 }

@@ -10,18 +10,19 @@ import org.mockito.Matchers;
 
 import java.time.LocalDate;
 
+import static alert_service.DateHelper.date;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class DetectorTest {
 
     private final UserId userId = UserId.of("1234");
-    private final LocalDate date = DateHelper.date("28/04/1945");
+    private final Payments noPayments = new Payments(userId, emptyList());
+
     private PaymentsRepository paymentsRepository;
     private Calendar calendar;
     private Detector detector;
@@ -30,14 +31,14 @@ public class DetectorTest {
     public void setUp() {
        this.paymentsRepository = mock(PaymentsRepository.class);
        this.calendar = mock(Calendar.class);
-       this.detector = new Detector(paymentsRepository);
+       this.detector = new Detector(paymentsRepository, calendar);
     }
 
     @Test
     public void when_there_are_no_payments_should_return_empty_unusual_expenses() {
-        Payments noPayments = new Payments(userId, emptyList());
+        LocalDate date = date("28/04/1945");
         when(calendar.today()).thenReturn(date);
-        when(paymentsRepository.getBy(userId, any())).thenReturn(noPayments);
+        when(paymentsRepository.getBy(eq(userId), any())).thenReturn(noPayments);
 
         UnusualExpenses unusualExpenses = detector.detect(userId);
 
@@ -46,18 +47,14 @@ public class DetectorTest {
     }
 
     @Test
-    public void when_there_are_payments_but_not_belong_to_last_two_months_should_return_empty_unusual_expenses() {
-        Payments tooOldPayments = new Payments(userId, asList(
-                new Payment(1000, "rent", "01/03/1940"),
-                new Payment(500, "rent", "02/03/1940"),
-                new Payment(500, "rent", "02/04/1940")
-        ));
-        when(calendar.today()).thenReturn(date);
-        when(paymentsRepository.getBy(userId, any())).thenReturn(tooOldPayments);
+    public void when_retrieve_payments_should_ask_for_the_current_and_past_month_payments() {
+        LocalDate now = date("28/04/1945");
+        when(calendar.today()).thenReturn(now);
+        when(paymentsRepository.getBy(eq(userId), any())).thenReturn(noPayments);
 
-        UnusualExpenses unusualExpenses = detector.detect(userId);
+        detector.detect(userId);
 
-        UnusualExpenses emptyUnusualExpenses = new UnusualExpenses(userId, emptyList());
-        assertThat(unusualExpenses, is(emptyUnusualExpenses));
+        DateRange dateRange = new DateRange(date("01/03/1945"), now);
+        verify(paymentsRepository).getBy(userId, dateRange);
     }
 }
