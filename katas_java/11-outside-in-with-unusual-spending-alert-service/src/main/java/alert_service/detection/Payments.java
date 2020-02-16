@@ -4,6 +4,7 @@ import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
 import alert_service.notify.UserId;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -18,7 +19,7 @@ public class Payments {
         this.payments = payments;
     }
 
-    UnusualExpenses findUnusualExpenses() {
+    public UnusualExpenses findUnusualExpenses(LocalDate today) {
         if (payments.isEmpty()) return new UnusualExpenses(userId, emptyList());
         return new UnusualExpenses(userId, singletonList(new UnusualExpense("rent", 2000)));
     }
