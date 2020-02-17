@@ -5,10 +5,13 @@ import alert_service.UnusualExpenses;
 import alert_service.notify.UserId;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.toList;
 
 public class Payments {
     private final UserId userId;
@@ -19,8 +22,15 @@ public class Payments {
         this.payments = payments;
     }
 
-    public UnusualExpenses findUnusualExpenses(LocalDate today) {
-        if (payments.isEmpty()) return new UnusualExpenses(userId, emptyList());
-        return new UnusualExpenses(userId, singletonList(new UnusualExpense("rent", 2000)));
+    public UnusualExpenses findUnusual(LocalDate today) {
+        List<Payment> currentMonthPayments = filterByMonth(today.getMonth());
+        return new UnusualExpenses(userId, emptyList());
+
+    }
+
+    private List<Payment> filterByMonth(Month month) {
+        return payments.stream()
+                .filter(payment -> payment.wasMakeIn(month))
+                .collect(toList());
     }
 }

@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 @ToString
 @EqualsAndHashCode
@@ -16,5 +17,9 @@ public class Payment {
         this.amount = amount;
         this.category = category;
         this.date = date;
+    }
+
+    public boolean wasMakeIn(Month month) {
+        return date.getMonth().equals(month);
     }
 }
