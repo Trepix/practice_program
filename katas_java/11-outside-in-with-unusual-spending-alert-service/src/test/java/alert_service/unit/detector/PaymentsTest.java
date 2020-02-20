@@ -52,4 +52,17 @@ public class PaymentsTest {
                 singletonList(new UnusualExpense("rent", 2000)));
         assertThat(payments.findUnusual(now), is(unusualExpenses));
     }
+
+    @Test
+    public void should_return_the_sum_of_current_month_payment_as_unusual_expense() {
+        Payments payments = new Payments(userId, Arrays.asList(
+                new Payment(1, "rent", date("02/03/1870")),
+                new Payment(200, "rent", date("03/04/1870")),
+                new Payment(400, "rent", date("05/04/1870"))
+        ));
+
+        UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
+                singletonList(new UnusualExpense("rent", 600)));
+        assertThat(payments.findUnusual(now), is(unusualExpenses));
+    }
 }

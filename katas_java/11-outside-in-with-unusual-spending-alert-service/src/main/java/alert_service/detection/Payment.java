@@ -22,4 +22,12 @@ public class Payment {
     public boolean wasMakeIn(Month month) {
         return date.getMonth().equals(month);
     }
+
+    public String category() {
+        return this.category;
+    }
+
+    public int amount() {
+        return this.amount;
+    }
 }
