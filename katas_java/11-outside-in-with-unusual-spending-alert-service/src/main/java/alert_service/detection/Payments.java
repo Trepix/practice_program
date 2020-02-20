@@ -24,7 +24,8 @@ public class Payments {
 
     public UnusualExpenses findUnusual(LocalDate today) {
         List<Payment> currentMonthPayments = filterByMonth(today.getMonth());
-        return new UnusualExpenses(userId, emptyList());
+        if (currentMonthPayments.isEmpty()) return new UnusualExpenses(userId, emptyList());
+        return new UnusualExpenses(userId, singletonList(new UnusualExpense("rent", 2000)));
 
     }
 
