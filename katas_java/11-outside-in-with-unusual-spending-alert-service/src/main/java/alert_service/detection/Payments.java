@@ -9,7 +9,7 @@ import java.time.Month;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
-import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class Payments {
@@ -34,8 +34,16 @@ public class Payments {
     }
 
     private List<UnusualExpense> sumUnusualExpenses(List<Payment> payments) {
-        int totalAmount = payments.stream().mapToInt(Payment::amount).sum();
-        return singletonList(new UnusualExpense(payments.get(0).category(), totalAmount));
+        return payments.stream()
+                .collect(groupingBy(Payment::category))
+                .entrySet().stream()
+                .map(entry -> {
+                            List<Payment> categoryPayments = entry.getValue();
+                            int amount = categoryPayments.stream().mapToInt(Payment::amount).sum();
+                            String category = entry.getKey();
+                            return new UnusualExpense(category, amount);
+                        }
+                ).collect(toList());
     }
 
 }
