@@ -29,8 +29,7 @@ public class UnusualExpenses {
         UnusualExpenses that = (UnusualExpenses) o;
         return Objects.equals(userId, that.userId) &&
                 ((unusualExpenses == that.unusualExpenses) ||
-                        (unusualExpenses != null &&
-                            unusualExpenses.containsAll(that.unusualExpenses)));
+                        (unusualExpenses != null && unusualExpenses.containsAll(that.unusualExpenses) && that.unusualExpenses.containsAll(unusualExpenses)));
     }
 
     /*

@@ -5,6 +5,7 @@ import alert_service.UnusualExpenses;
 import alert_service.detection.Payment;
 import alert_service.detection.Payments;
 import alert_service.notify.UserId;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -78,6 +79,18 @@ public class PaymentsTest {
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
                 asList(new UnusualExpense("rent", 600),
                         new UnusualExpense("restaurant", 300)));
+        assertThat(payments.findUnusual(now), is(unusualExpenses));
+    }
+
+    @Test
+    @Ignore
+    public void should_not_detect_as_unusual_expense_if_not_outstrip_by_more_than_50_percent() {
+        Payments payments = new Payments(userId, asList(
+                new Payment(100, "rent", date("02/03/1870")),
+                new Payment(150, "rent", date("03/04/1870"))
+        ));
+
+        UnusualExpenses unusualExpenses = new UnusualExpenses(userId, emptyList());
         assertThat(payments.findUnusual(now), is(unusualExpenses));
     }
 }
