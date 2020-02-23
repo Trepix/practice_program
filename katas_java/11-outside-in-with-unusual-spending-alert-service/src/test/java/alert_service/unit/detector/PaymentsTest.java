@@ -83,7 +83,6 @@ public class PaymentsTest {
     }
 
     @Test
-    @Ignore
     public void should_not_detect_as_unusual_expense_if_not_outstrip_by_more_than_50_percent() {
         Payments payments = new Payments(userId, asList(
                 new Payment(100, "rent", date("02/03/1870")),
