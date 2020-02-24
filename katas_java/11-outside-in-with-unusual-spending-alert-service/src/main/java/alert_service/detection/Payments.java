@@ -95,7 +95,7 @@ public class Payments {
         }
 
         boolean currentMonthSpendingIsUnusual() {
-            return Optional.of(monthBefore)
+            return Optional.ofNullable(monthBefore)
                     .map(x -> currentMonth != null && x.amount * 1.5 < currentMonth.amount)
                     .orElse(false);
         }

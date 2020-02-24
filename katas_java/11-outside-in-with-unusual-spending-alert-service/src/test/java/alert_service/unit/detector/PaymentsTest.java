@@ -41,18 +41,6 @@ public class PaymentsTest {
     }
 
     @Test
-    public void should_return_current_month_payment_as_unusual_expense() {
-        Payments payments = new Payments(userId, asList(
-                new Payment(1, "rent", date("02/03/1870")),
-                new Payment(2000, "rent", date("05/04/1870"))
-        ));
-
-        UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
-                singletonList(new UnusualExpense("rent", 2000)));
-        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
-    }
-
-    @Test
     public void should_return_the_sum_of_current_month_payment_as_unusual_expense() {
         Payments payments = new Payments(userId, asList(
                 new Payment(1, "rent", date("02/03/1870")),
@@ -86,6 +74,16 @@ public class PaymentsTest {
         Payments payments = new Payments(userId, asList(
                 new Payment(100, "rent", date("02/03/1870")),
                 new Payment(150, "rent", date("03/04/1870"))
+        ));
+
+        UnusualExpenses unusualExpenses = new UnusualExpenses(userId, emptyList());
+        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
+    }
+
+    @Test
+    public void when_there_are_no_payments_on_month_before_for_a_category_should_not_return_current_month_expenses_as_unusual() {
+        Payments payments = new Payments(userId, singletonList(
+                new Payment(100, "rent", date("02/04/1870"))
         ));
 
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId, emptyList());
