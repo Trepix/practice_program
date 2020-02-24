@@ -26,7 +26,7 @@ public class PaymentsTest {
         Payments noPayments = new Payments(userId, emptyList());
 
         UnusualExpenses noUnusualExpenses = new UnusualExpenses(userId, emptyList());
-        assertThat(noPayments.findUnusual(now), is(noUnusualExpenses));
+        assertThat(noPayments.findUnusualCategorySpending(now), is(noUnusualExpenses));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class PaymentsTest {
         ));
 
         UnusualExpenses noUnusualExpenses = new UnusualExpenses(userId, emptyList());
-        assertThat(noPayments.findUnusual(now), is(noUnusualExpenses));
+        assertThat(noPayments.findUnusualCategorySpending(now), is(noUnusualExpenses));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class PaymentsTest {
 
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
                 singletonList(new UnusualExpense("rent", 2000)));
-        assertThat(payments.findUnusual(now), is(unusualExpenses));
+        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
     }
 
     @Test
@@ -62,7 +62,7 @@ public class PaymentsTest {
 
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
                 singletonList(new UnusualExpense("rent", 600)));
-        assertThat(payments.findUnusual(now), is(unusualExpenses));
+        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class PaymentsTest {
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
                 asList(new UnusualExpense("rent", 600),
                         new UnusualExpense("restaurant", 300)));
-        assertThat(payments.findUnusual(now), is(unusualExpenses));
+        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
     }
 
     @Test
@@ -89,6 +89,6 @@ public class PaymentsTest {
         ));
 
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId, emptyList());
-        assertThat(payments.findUnusual(now), is(unusualExpenses));
+        assertThat(payments.findUnusualCategorySpending(now), is(unusualExpenses));
     }
 }

@@ -18,7 +18,7 @@ public class Detector {
     public UnusualExpenses detect(UserId userId) {
         DateRange dateRange = monthBeforeToNowRange();
         Payments payments = paymentsRepository.getBy(userId, dateRange);
-        return payments.findUnusual(calendar.today());
+        return payments.findUnusualCategorySpending(calendar.today());
     }
 
     private DateRange monthBeforeToNowRange() {

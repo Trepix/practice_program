@@ -23,7 +23,7 @@ public class Payments {
         this.payments = payments;
     }
 
-    public UnusualExpenses findUnusual(LocalDate today) {
+    public UnusualExpenses findUnusualCategorySpending(LocalDate today) {
         List<CategorySpending> currentMonthSpending = sumCategoryExpensesOfCurrentMonth(today);
         List<CategorySpending> monthBeforeSpending = sumCategoryExpensesOfMonthBefore(today);
         List<UnusualExpense> unusualExpensesDetected = detectUnusual(currentMonthSpending, monthBeforeSpending);
