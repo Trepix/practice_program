@@ -14,8 +14,8 @@ Feature: Alert Users With Unusual Expenses
       |   300  | restaurant | 15/01/2020 |
       |   200  |    rent    | 17/01/2020 |
       |   100  |   health   | 20/01/2020 |
-      |   600  | restaurant | 01/02/2020 |
-      |   299  |    rent    | 04/02/2020 |
+      |   601  | restaurant | 01/02/2020 |
+      |   300  |    rent    | 04/02/2020 |
       |   400  |   health   | 07/02/2020 |
     When execute de detection of unusual expenses of user '1234'
     Then send a mail to 'user@mail.com' with subject 'Unusual spending of $1000 detected!' with this body
@@ -24,7 +24,7 @@ Feature: Alert Users With Unusual Expenses
 
       We have detected unusually high spending on your card in these categories:
 
-      * You spent $600 on restaurant
+      * You spent $601 on restaurant
       * You spent $400 on health
 
       Love,
