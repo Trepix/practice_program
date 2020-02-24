@@ -5,7 +5,6 @@ import alert_service.UnusualExpenses;
 import alert_service.detection.Payment;
 import alert_service.detection.Payments;
 import alert_service.notify.UserId;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;

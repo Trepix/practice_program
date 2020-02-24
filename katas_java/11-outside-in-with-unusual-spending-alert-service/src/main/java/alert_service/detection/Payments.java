@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
@@ -31,12 +31,16 @@ public class Payments {
     }
 
     private List<UnusualExpense> detectUnusual(List<CategorySpending> currentMonth, List<CategorySpending> monthBefore) {
-        List<UnusualExpense> unusualExpensesDetected = new LinkedList<>();
-        for (CategorySpending categoryExpenseMonthBefore : monthBefore) {
-            Optional<CategorySpending> currentMonthCategoryExpense = currentMonth.stream().filter(x -> x.category.equals(categoryExpenseMonthBefore.category)).findFirst();
-            currentMonthCategoryExpense.filter(x -> categoryExpenseMonthBefore.amount * 1.5 < x.amount).map(x -> new UnusualExpense(x.category, x.amount)).ifPresent(unusualExpensesDetected::add);
-        }
-        return unusualExpensesDetected;
+        return Stream.concat(
+                currentMonth.stream().map(BimonthlyCategorySpending::ofCurrentMonth),
+                monthBefore.stream().map(BimonthlyCategorySpending::ofMonthBefore)
+        )
+                .collect(groupingBy(BimonthlyCategorySpending::category))
+                .values().stream()
+                .map(list -> list.stream().reduce(BimonthlyCategorySpending::merge).get())
+                .filter(BimonthlyCategorySpending::currentMonthSpendingIsUnusual)
+                .map(BimonthlyCategorySpending::getUnusualExpense)
+                .collect(toList());
     }
 
     private List<CategorySpending> sumCategoryExpensesOfCurrentMonth(LocalDate today) {
@@ -64,6 +68,41 @@ public class Payments {
                             return new CategorySpending(category, amount);
                         }
                 ).collect(toList());
+    }
+
+    @RequiredArgsConstructor
+    private static class BimonthlyCategorySpending {
+        private final CategorySpending currentMonth;
+        private final CategorySpending monthBefore;
+
+        static BimonthlyCategorySpending ofCurrentMonth(CategorySpending categorySpending) {
+            return new BimonthlyCategorySpending(categorySpending, null);
+        }
+
+        static BimonthlyCategorySpending ofMonthBefore(CategorySpending categorySpending) {
+            return new BimonthlyCategorySpending(null, categorySpending);
+        }
+
+        static BimonthlyCategorySpending merge(BimonthlyCategorySpending first, BimonthlyCategorySpending second) {
+            CategorySpending current = Optional.ofNullable(first.currentMonth).orElse(second.currentMonth);
+            CategorySpending monthBefore = Optional.ofNullable(first.monthBefore).orElse(second.monthBefore);
+            return new BimonthlyCategorySpending(current, monthBefore);
+        }
+
+        String category() {
+            if (currentMonth != null) return currentMonth.category;
+            else return monthBefore.category;
+        }
+
+        boolean currentMonthSpendingIsUnusual() {
+            return Optional.of(monthBefore)
+                    .map(x -> currentMonth != null && x.amount * 1.5 < currentMonth.amount)
+                    .orElse(false);
+        }
+
+        UnusualExpense getUnusualExpense() {
+            return new UnusualExpense(currentMonth.category, currentMonth.amount);
+        }
     }
 
     @RequiredArgsConstructor
