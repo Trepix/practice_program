@@ -37,7 +37,9 @@ public class Payments {
         )
                 .collect(groupingBy(BimonthlyCategorySpending::category))
                 .values().stream()
-                .map(list -> list.stream().reduce(BimonthlyCategorySpending::merge).get())
+                .map(list -> list.stream().reduce(BimonthlyCategorySpending::merge))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .filter(BimonthlyCategorySpending::currentMonthSpendingIsUnusual)
                 .map(BimonthlyCategorySpending::getUnusualExpense)
                 .collect(toList());
@@ -75,32 +77,32 @@ public class Payments {
         private final CategorySpending currentMonth;
         private final CategorySpending monthBefore;
 
-        static BimonthlyCategorySpending ofCurrentMonth(CategorySpending categorySpending) {
+        private static BimonthlyCategorySpending ofCurrentMonth(CategorySpending categorySpending) {
             return new BimonthlyCategorySpending(categorySpending, null);
         }
 
-        static BimonthlyCategorySpending ofMonthBefore(CategorySpending categorySpending) {
+        private static BimonthlyCategorySpending ofMonthBefore(CategorySpending categorySpending) {
             return new BimonthlyCategorySpending(null, categorySpending);
         }
 
-        static BimonthlyCategorySpending merge(BimonthlyCategorySpending first, BimonthlyCategorySpending second) {
+        private static BimonthlyCategorySpending merge(BimonthlyCategorySpending first, BimonthlyCategorySpending second) {
             CategorySpending current = Optional.ofNullable(first.currentMonth).orElse(second.currentMonth);
             CategorySpending monthBefore = Optional.ofNullable(first.monthBefore).orElse(second.monthBefore);
             return new BimonthlyCategorySpending(current, monthBefore);
         }
 
-        String category() {
+        private String category() {
             if (currentMonth != null) return currentMonth.category;
             else return monthBefore.category;
         }
 
-        boolean currentMonthSpendingIsUnusual() {
-            return Optional.ofNullable(monthBefore)
-                    .map(x -> currentMonth != null && x.amount * 1.5 < currentMonth.amount)
-                    .orElse(false);
+        private boolean currentMonthSpendingIsUnusual() {
+            if (monthBefore == null) return false;
+            if (currentMonth == null) return false;
+            return currentMonth.amount > monthBefore.amount * 1.5;
         }
 
-        UnusualExpense getUnusualExpense() {
+        private UnusualExpense getUnusualExpense() {
             return new UnusualExpense(currentMonth.category, currentMonth.amount);
         }
     }
