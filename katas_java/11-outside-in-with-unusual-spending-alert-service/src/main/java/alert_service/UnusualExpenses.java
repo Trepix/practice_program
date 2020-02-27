@@ -22,6 +22,10 @@ public class UnusualExpenses {
         return unusualExpenses.isEmpty();
     }
 
+    public UserId userId() {
+        return this.userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,4 +45,6 @@ public class UnusualExpenses {
     public int hashCode() {
         return Objects.hash(userId, unusualExpenses);
     }
+
+
 }
