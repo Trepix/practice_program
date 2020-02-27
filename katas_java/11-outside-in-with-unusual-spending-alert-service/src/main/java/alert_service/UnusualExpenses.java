@@ -26,6 +26,11 @@ public class UnusualExpenses {
         return this.userId;
     }
 
+
+    public int total() {
+        return 1000;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +50,5 @@ public class UnusualExpenses {
     public int hashCode() {
         return Objects.hash(userId, unusualExpenses);
     }
-
 
 }
