@@ -27,8 +27,6 @@ public class UnusualExpensesAlerterService {
 
     public void execute(UserId userId) {
         UnusualExpenses unusualExpenses = detector.detect(userId);
-        if (unusualExpenses.isEmpty()) return;
-
         notifier.notify(unusualExpenses);
     }
 }
