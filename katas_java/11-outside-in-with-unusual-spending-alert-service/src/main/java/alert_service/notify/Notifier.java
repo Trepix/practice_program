@@ -1,6 +1,12 @@
 package alert_service.notify;
 
+import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Notifier {
 
@@ -31,11 +37,18 @@ public class Notifier {
                 "\n",
                 "We have detected unusually high spending on your card in these categories:\n",
                 "\n",
-                "* You spent $" + unusualExpenses.total() + " on rent\n",
+                generateCategoriesSpending(unusualExpenses.unusualExpenses),
                 "\n",
                 "Love,\n",
                 "\n",
                 "The Credit Card Company\n"};
+    }
+
+    private String generateCategoriesSpending(List<UnusualExpense> unusualExpenses) {
+        Collections.reverse(unusualExpenses);
+        return unusualExpenses.stream()
+                .map(x -> "* You spent $" + x.amount() + " on " + x.category() +"\n")
+                .collect(Collectors.joining());
     }
 
 }

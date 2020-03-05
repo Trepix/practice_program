@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
+
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.any;
@@ -38,7 +41,7 @@ public class NotifierTest {
 
 
     @Test
-    public void when_there_are_an_usual_expense_should_send_a_notification() {
+    public void when_there_is_an_usual_expense_should_send_a_notification() {
         when(userRepository.getBy(userId)).thenReturn(new User(userId, "user@mail.com"));
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId,
                 singletonList(new UnusualExpense("rent", 1000)));
@@ -57,5 +60,29 @@ public class NotifierTest {
                         "Love,\n",
                         "\n",
                         "The Credit Card Company\n").build());
+    }
+
+    @Test
+    public void when_there_are_multiple_usual_expense_should_order_it_by_amount() {
+        when(userRepository.getBy(userId)).thenReturn(new User(userId, "user@mail.com"));
+        UnusualExpenses unusualExpenses = new UnusualExpenses(userId, asList(
+                new UnusualExpense("rent", 1000),
+                new UnusualExpense("restaurant", 2000)));
+
+        notifier.notify(unusualExpenses);
+
+        verify(notificationSender).send(
+                Notification.to("user@mail.com")
+                        .withSubject("Unusual spending of $3000 detected!")
+                        .withBody("Hello card user!\n",
+                                "\n",
+                                "We have detected unusually high spending on your card in these categories:\n",
+                                "\n",
+                                "* You spent $2000 on restaurant\n",
+                                "* You spent $1000 on rent\n",
+                                "\n",
+                                "Love,\n",
+                                "\n",
+                                "The Credit Card Company\n").build());
     }
 }

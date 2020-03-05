@@ -11,7 +11,7 @@ import java.util.Objects;
 @ToString
 public class UnusualExpenses {
     private final UserId userId;
-    private List<UnusualExpense> unusualExpenses;
+    public final List<UnusualExpense> unusualExpenses;
 
     public UnusualExpenses(UserId userId, List<UnusualExpense> unusualExpenses) {
         this.userId = userId;
@@ -28,7 +28,7 @@ public class UnusualExpenses {
 
 
     public int total() {
-        return 1000;
+        return unusualExpenses.stream().mapToInt(UnusualExpense::amount).sum();
     }
 
     @Override

@@ -13,4 +13,12 @@ public class UnusualExpense {
         this.category = category;
         this.amount = amount;
     }
+
+    public int amount(){
+        return this.amount;
+    }
+
+    public String category() {
+        return this.category;
+    }
 }
