@@ -13,11 +13,6 @@ public class UnusualExpensesAlerterService {
     private Detector detector;
     private Notifier notifier;
 
-    public UnusualExpensesAlerterService(Detector detector, Notifier notifier) {
-        this.detector = detector;
-        this.notifier = notifier;
-    }
-
     public UnusualExpensesAlerterService(PaymentsRepository paymentsRepository,
                                          UserRepository userRepository,
                                          NotificationSender notificationSender,
