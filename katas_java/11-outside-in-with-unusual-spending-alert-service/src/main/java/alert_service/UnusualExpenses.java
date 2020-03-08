@@ -4,14 +4,12 @@ import alert_service.notify.UserId;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @ToString
-public class UnusualExpenses {
+public class UnusualExpenses implements Iterable<UnusualExpense>{
     private final UserId userId;
-    public final List<UnusualExpense> unusualExpenses;
+    private final List<UnusualExpense> unusualExpenses;
 
     public UnusualExpenses(UserId userId, List<UnusualExpense> unusualExpenses) {
         this.userId = userId;
@@ -26,9 +24,14 @@ public class UnusualExpenses {
         return this.userId;
     }
 
-
     public int total() {
         return unusualExpenses.stream().mapToInt(UnusualExpense::amount).sum();
+    }
+
+    @Override
+    public Iterator<UnusualExpense> iterator() {
+        Collections.reverse(unusualExpenses);
+        return unusualExpenses.iterator();
     }
 
     @Override
@@ -50,5 +53,4 @@ public class UnusualExpenses {
     public int hashCode() {
         return Objects.hash(userId, unusualExpenses);
     }
-
 }

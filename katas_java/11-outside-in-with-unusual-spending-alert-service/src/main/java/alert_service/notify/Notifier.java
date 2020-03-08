@@ -14,7 +14,6 @@ public class Notifier {
     private UserRepository userRepository;
 
     public Notifier(NotificationSender notificationSender, UserRepository userRepository) {
-
         this.notificationSender = notificationSender;
         this.userRepository = userRepository;
     }
@@ -37,18 +36,20 @@ public class Notifier {
                 "\n",
                 "We have detected unusually high spending on your card in these categories:\n",
                 "\n",
-                generateCategoriesSpending(unusualExpenses.unusualExpenses),
+                generateCategoriesSpending(unusualExpenses),
                 "\n",
                 "Love,\n",
                 "\n",
                 "The Credit Card Company\n"};
     }
 
-    private String generateCategoriesSpending(List<UnusualExpense> unusualExpenses) {
-        Collections.reverse(unusualExpenses);
-        return unusualExpenses.stream()
-                .map(x -> "* You spent $" + x.amount() + " on " + x.category() +"\n")
-                .collect(Collectors.joining());
+    private String generateCategoriesSpending(UnusualExpenses unusualExpenses) {
+        String lineTemplate = "* You spent $%d on %s\n";
+        StringBuilder result = new StringBuilder();
+        for (UnusualExpense unusualExpense: unusualExpenses) {
+            result.append(String.format(lineTemplate, unusualExpense.amount(), unusualExpense.category()));
+        }
+        return result.toString();
     }
 
 }
