@@ -40,7 +40,7 @@ public class Notifier {
                 "\n",
                 "Love,\n",
                 "\n",
-                "The Credit Card Company\n"};
+                "The Credit Card Company"};
     }
 
     private String generateCategoriesSpending(UnusualExpenses unusualExpenses) {

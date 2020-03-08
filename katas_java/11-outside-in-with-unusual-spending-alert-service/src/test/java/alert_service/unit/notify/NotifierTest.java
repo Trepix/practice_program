@@ -59,7 +59,7 @@ public class NotifierTest {
                         "\n",
                         "Love,\n",
                         "\n",
-                        "The Credit Card Company\n").build());
+                        "The Credit Card Company").build());
     }
 
     @Test
@@ -83,6 +83,6 @@ public class NotifierTest {
                                 "\n",
                                 "Love,\n",
                                 "\n",
-                                "The Credit Card Company\n").build());
+                                "The Credit Card Company").build());
     }
 }

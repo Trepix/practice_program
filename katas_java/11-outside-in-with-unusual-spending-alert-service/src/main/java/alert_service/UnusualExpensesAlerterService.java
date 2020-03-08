@@ -23,6 +23,7 @@ public class UnusualExpensesAlerterService {
                                          NotificationSender notificationSender,
                                          Calendar calendar) {
         this.detector = new Detector(paymentsRepository, calendar);
+        this.notifier = new Notifier(notificationSender, userRepository);
     }
 
     public void execute(UserId userId) {

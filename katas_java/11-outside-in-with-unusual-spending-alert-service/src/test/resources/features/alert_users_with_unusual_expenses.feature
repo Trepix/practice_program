@@ -18,7 +18,7 @@ Feature: Alert Users With Unusual Expenses
       |   300  |    rent    | 04/02/2020 |
       |   400  |   health   | 07/02/2020 |
     When execute de detection of unusual expenses of user '1234'
-    Then send a mail to 'user@mail.com' with subject 'Unusual spending of $1000 detected!' with this body
+    Then send a mail to 'user@mail.com' with subject 'Unusual spending of $1001 detected!' with this body
       """
       Hello card user!
 
