@@ -30,7 +30,7 @@ public class UnusualExpenses implements Iterable<UnusualExpense>{
 
     @Override
     public Iterator<UnusualExpense> iterator() {
-        Collections.reverse(unusualExpenses);
+        Collections.sort(unusualExpenses);
         return unusualExpenses.iterator();
     }
 

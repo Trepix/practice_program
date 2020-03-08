@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @ToString
 @EqualsAndHashCode
-public class UnusualExpense {
+public class UnusualExpense implements Comparable<UnusualExpense> {
     private final String category;
     private final Integer amount;
 
@@ -20,5 +20,13 @@ public class UnusualExpense {
 
     public String category() {
         return this.category;
+    }
+
+    @Override
+    public int compareTo(UnusualExpense that) {
+        if (!this.amount.equals(that.amount)) {
+            return that.amount.compareTo(this.amount);
+        }
+        return this.category.compareTo(that.category);
     }
 }
