@@ -1,13 +1,15 @@
 package alert_service;
 
 import alert_service.notify.UserId;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 @ToString
-public class UnusualExpenses implements Iterable<UnusualExpense>{
+public class UnusualExpenses implements Iterable<UnusualExpense> {
     private final UserId userId;
     private final List<UnusualExpense> unusualExpenses;
 

@@ -6,9 +6,7 @@ import alert_service.UnusualExpenses;
 import alert_service.detection.*;
 import alert_service.notify.UserId;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Matchers;
 
 import java.time.LocalDate;
 
@@ -16,8 +14,8 @@ import static alert_service.DateHelper.date;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -32,11 +30,11 @@ public class DetectorTest {
 
     @Before
     public void setUp() {
-       this.paymentsRepository = mock(PaymentsRepository.class);
-       Calendar calendar = mock(Calendar.class);
-       when(calendar.today()).thenReturn(now);
+        this.paymentsRepository = mock(PaymentsRepository.class);
+        Calendar calendar = mock(Calendar.class);
+        when(calendar.today()).thenReturn(now);
 
-       this.detector = new Detector(paymentsRepository, calendar);
+        this.detector = new Detector(paymentsRepository, calendar);
     }
 
     @Test

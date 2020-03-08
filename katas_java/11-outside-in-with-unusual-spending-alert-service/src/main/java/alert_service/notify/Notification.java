@@ -23,8 +23,6 @@ public class Notification {
 
     public static class NotificationBuilder {
 
-        public static final String endline = "\n";
-
         private String email;
         private String subject;
         private String body;

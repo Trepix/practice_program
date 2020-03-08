@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.Arrays;
-
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
@@ -50,16 +48,16 @@ public class NotifierTest {
 
         verify(notificationSender).send(
                 Notification.to("user@mail.com")
-                .withSubject("Unusual spending of $1000 detected!")
-                .withBody("Hello card user!\n",
-                        "\n",
-                        "We have detected unusually high spending on your card in these categories:\n",
-                        "\n",
-                        "* You spent $1000 on rent\n",
-                        "\n",
-                        "Love,\n",
-                        "\n",
-                        "The Credit Card Company").build());
+                        .withSubject("Unusual spending of $1000 detected!")
+                        .withBody("Hello card user!\n",
+                                "\n",
+                                "We have detected unusually high spending on your card in these categories:\n",
+                                "\n",
+                                "* You spent $1000 on rent\n",
+                                "\n",
+                                "Love,\n",
+                                "\n",
+                                "The Credit Card Company").build());
     }
 
     @Test

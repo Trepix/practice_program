@@ -19,15 +19,15 @@ public class Payment {
         this.date = date;
     }
 
-    public boolean wasMakeIn(Month month) {
+    boolean wasMakeIn(Month month) {
         return date.getMonth().equals(month);
     }
 
-    public String category() {
+    String category() {
         return this.category;
     }
 
-    public int amount() {
+    int amount() {
         return this.amount;
     }
 }

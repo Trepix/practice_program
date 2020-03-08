@@ -3,11 +3,6 @@ package alert_service.notify;
 import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Notifier {
 
     private NotificationSender notificationSender;
@@ -19,7 +14,7 @@ public class Notifier {
     }
 
     public void notify(UnusualExpenses unusualExpenses) {
-        if (unusualExpenses.isEmpty()) return ;
+        if (unusualExpenses.isEmpty()) return;
         User user = userRepository.getBy(unusualExpenses.userId());
         Notification notification = Notification.to(user.email())
                 .withSubject(subject(unusualExpenses.total()))
@@ -28,7 +23,7 @@ public class Notifier {
     }
 
     private String subject(Integer total) {
-        return "Unusual spending of $"+ total +" detected!";
+        return "Unusual spending of $" + total + " detected!";
     }
 
     private String[] body(UnusualExpenses unusualExpenses) {
@@ -46,7 +41,7 @@ public class Notifier {
     private String generateCategoriesSpending(UnusualExpenses unusualExpenses) {
         String lineTemplate = "* You spent $%d on %s\n";
         StringBuilder result = new StringBuilder();
-        for (UnusualExpense unusualExpense: unusualExpenses) {
+        for (UnusualExpense unusualExpense : unusualExpenses) {
             result.append(String.format(lineTemplate, unusualExpense.amount(), unusualExpense.category()));
         }
         return result.toString();
