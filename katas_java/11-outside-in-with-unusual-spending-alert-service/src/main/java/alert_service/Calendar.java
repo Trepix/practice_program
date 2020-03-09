@@ -1,4 +1,4 @@
-package alert_service.detection;
+package alert_service;
 
 import java.time.LocalDate;
 

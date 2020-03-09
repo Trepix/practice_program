@@ -1,12 +1,8 @@
 package alert_service;
 
-import alert_service.detection.Calendar;
 import alert_service.detection.Detector;
-import alert_service.detection.PaymentsRepository;
-import alert_service.notify.NotificationSender;
 import alert_service.notify.Notifier;
 import alert_service.notify.UserId;
-import alert_service.notify.UserRepository;
 
 public class UnusualExpensesAlerterService {
 

@@ -1,8 +1,6 @@
 package alert_service.unit.detector;
 
-import alert_service.DateHelper;
-import alert_service.UnusualExpense;
-import alert_service.UnusualExpenses;
+import alert_service.*;
 import alert_service.detection.*;
 import alert_service.notify.UserId;
 import org.junit.Before;

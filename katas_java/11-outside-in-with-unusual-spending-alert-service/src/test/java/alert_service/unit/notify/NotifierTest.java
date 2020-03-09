@@ -1,7 +1,9 @@
 package alert_service.unit.notify;
 
+import alert_service.NotificationSender;
 import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
+import alert_service.UserRepository;
 import alert_service.notify.*;
 import org.junit.Before;
 import org.junit.Test;

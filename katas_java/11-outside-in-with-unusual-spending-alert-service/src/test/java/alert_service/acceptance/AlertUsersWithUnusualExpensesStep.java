@@ -1,6 +1,6 @@
 package alert_service.acceptance;
 
-import alert_service.UnusualExpensesAlerterService;
+import alert_service.*;
 import alert_service.detection.*;
 import alert_service.notify.*;
 import io.cucumber.datatable.DataTable;

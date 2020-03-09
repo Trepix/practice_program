@@ -41,7 +41,7 @@ public class UnusualExpenses implements Iterable<UnusualExpense> {
         return Objects.equals(userId, that.userId)
                 && Objects.equals(new HashSet<>(this.unusualExpenses), new HashSet<>(that.unusualExpenses));
     }
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(userId, new HashSet<>(this.unusualExpenses));

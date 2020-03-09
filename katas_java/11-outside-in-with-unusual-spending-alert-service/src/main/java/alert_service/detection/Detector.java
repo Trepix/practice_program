@@ -1,5 +1,7 @@
 package alert_service.detection;
 
+import alert_service.Calendar;
+import alert_service.PaymentsRepository;
 import alert_service.UnusualExpenses;
 import alert_service.notify.UserId;
 

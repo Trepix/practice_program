@@ -1,7 +1,9 @@
 package alert_service.notify;
 
+import alert_service.NotificationSender;
 import alert_service.UnusualExpense;
 import alert_service.UnusualExpenses;
+import alert_service.UserRepository;
 
 public class Notifier {
 
