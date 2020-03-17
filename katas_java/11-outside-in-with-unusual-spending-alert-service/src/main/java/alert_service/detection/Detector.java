@@ -12,7 +12,6 @@ public class Detector {
     private final Calendar calendar;
 
     public Detector(PaymentsRepository paymentsRepository, Calendar calendar) {
-
         this.paymentsRepository = paymentsRepository;
         this.calendar = calendar;
     }

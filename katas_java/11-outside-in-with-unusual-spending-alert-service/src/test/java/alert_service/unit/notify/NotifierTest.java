@@ -66,7 +66,7 @@ public class NotifierTest {
     public void when_there_are_multiple_usual_expense_should_order_it_by_amount() {
         when(userRepository.getBy(userId)).thenReturn(new User(userId, "user@mail.com"));
         UnusualExpenses unusualExpenses = new UnusualExpenses(userId, asList(
-                new UnusualExpense("rent", 1000),
+                new UnusualExpense("oil", 1000),
                 new UnusualExpense("restaurant", 2000)));
 
         notifier.notify(unusualExpenses);
@@ -79,7 +79,7 @@ public class NotifierTest {
                                 "We have detected unusually high spending on your card in these categories:\n",
                                 "\n",
                                 "* You spent $2000 on restaurant\n",
-                                "* You spent $1000 on rent\n",
+                                "* You spent $1000 on oil\n",
                                 "\n",
                                 "Love,\n",
                                 "\n",
