@@ -74,6 +74,7 @@ public class Payments {
 
     @RequiredArgsConstructor
     private static class BimonthlyCategorySpending {
+        private static final double UNUSUAL_SPENDING_RATIO = 1.5;
         private final CategorySpending currentMonth;
         private final CategorySpending monthBefore;
 
@@ -99,7 +100,7 @@ public class Payments {
         private boolean currentMonthSpendingIsUnusual() {
             if (monthBefore == null) return false;
             if (currentMonth == null) return false;
-            return currentMonth.amount > monthBefore.amount * 1.5;
+            return currentMonth.amount > monthBefore.amount * UNUSUAL_SPENDING_RATIO;
         }
 
         private UnusualExpense getUnusualExpense() {
